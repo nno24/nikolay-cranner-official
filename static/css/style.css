@@ -1,0 +1,41 @@
+{% load static %}
+
+.nc-header-footer {
+    background-color: #1C140D;
+    color: #827373;
+}
+
+.nc-body {
+    background-color: #150E05;
+    color: #827373;
+}
+
+main {
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    flex: 1 0 auto;
+}
+
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+.air-20 {
+    height: 20vh;
+}
+.air-50 {
+      height: 50vh;
+  }
+
+.air-80 {
+    height: 80vh;
+}
+
+.nc-txt-md {
+      font-size: 1.5rem;
+      font-family: monospace;
+  }
