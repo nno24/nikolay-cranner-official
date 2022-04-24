@@ -7,84 +7,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-    <link rel="stylesheet" href='{% static "nc/css/style.css" %}'>
+    <link rel="stylesheet" href='{% static "css/style.css" %}'>
     <title>Nikolay Cranner | Official</title>
 </head>
 <body>
   <header>
     <nav>
-        <div class="nav-wrapper cyan darken-4">
-          <a href="/home/" class="brand-logo center">Pizza Heaven</a>
+        <div class="nav-wrapper nc-header-footer">
+          <a href="/home/" class="brand-logo center" >nikolay cranner</a>
           <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-          <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li><a href="/book">Menu/Book</a></li>
-            <li><a href="/about">About</a></li>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="#">new music</a></li>
+            <li><a href="#">contact</a></li>
+            <li><a href="#">store</a></li>
+            <li><a href="#">login</a></li>
           </ul>
         </div>
       </nav>
-      <ul class="sidenav cyan darken-4" id="mobile-demo">
-        <li ><a href="/home/">Home</a></li>
-        <li ><a href="/book">Menu/Book</a></li>
-        <li><a href="/about">About</a></li>
+      <ul class="sidenav nc-header-footer" id="mobile-demo">
+        <li><a href="#">new music</a></li>
+        <li><a href="#">contact</a></li>
+        <li><a href="#">store</a></li>
+        <li><a href="#">login</a></li>
       </ul>
   </header>
-  <main style="background-image: url('{% static "booking/img/background.jpg" %}');">
+  <main style="background-image: url('{% static "img/background.PNG" %}');">
   <section>
     {% block content %}
     {% endblock %}
   </section>
   </main>
-  <footer class="page-footer cyan darken-4">
+  <footer class="page-footer nc-header-footer">
     <div class="container">
       <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Opening Hours</h5>
-          <table>
-            <thead>
-              <tr>
-                <th>Day</th>
-                <th>Hours</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Monday - Friday</td>
-                <td>10 - 23</td>
-              </tr>
-              <tr>
-                <td>Saturday</td>
-                <td>10 - 02</td>
-              </tr>
-              <tr>
-                <td>Sonday</td>
-                <td>12 - 23</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="col l4 offset-l2 s12">
-          <h5 class="white-text">Socials</h5>
+        <div class="col s12 center">
           <ul>
-            <li><a class="grey-text text-lighten-3" href="#!"><i class="fab fa-instagram"></i></a></li>
-            <li><a class="grey-text text-lighten-3" href="#!"><i class="fab fa-facebook"></i></a></li>
-            <li><a class="grey-text text-lighten-3" href="#!"><i class="fab fa-twitter"></i></a></li>    
+            <li><a class="grey-text text-lighten-3" href="#!"><i class="fab fa-spotify"></i></a></li>
           </ul>
-        </div>
-        <div class="col 10 offset-12 s12">
-          <h5 class="white-text">Contact</h5>
-            <p>heavnpizza@eatme.now</p>
-            <p>+0672358931</p>
         </div>
       </div>
     </div>
-    <div class="footer-copyright cyan darken-3">
+    <div class="footer-copyright nc-header-footer center">
       <div class="container">
-      © 2022 Copyright Pizza Heaven
+      © 2022 Copyright Nikolay Cranner
       </div>
     </div>
   </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
-    <script src='{% static "booking/js/script.js" %}'></script>
+    <script src='{% static "js/script.js" %}'></script>
 </body>
 </html>
