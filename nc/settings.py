@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'nc',
     'home',
     'store',
+    'music',
+    'contact',
+    'login',
 ]
 
 MIDDLEWARE = [
