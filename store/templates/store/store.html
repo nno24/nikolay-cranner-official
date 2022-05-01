@@ -1,4 +1,10 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 <h5>This is the store</h5>
+<div class="row">
+    {% for product in products %}
+    <div class="col">{{ product.name }}</div>
+    {% endfor %}
+</div>
 {% endblock %}
