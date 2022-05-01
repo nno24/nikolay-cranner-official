@@ -18,7 +18,7 @@ body {
     min-height: 100vh;
     flex-direction: column;
     background-color: #150E05;
-    color: #827373;
+    color: #827373 !important;
   }
 
 .air-20 {
@@ -46,6 +46,20 @@ body {
       background-color: #827373;
   }
 
-  .brand-logo {
-      
+  .nc-logo {
+      height: 40px;
+      width: auto;
+      margin-top: 10px;
+      margin-left: 5px;
   }
+
+  .sidenav li>a {
+    color: #827373 !important;
+    font-size: 2rem;
+    margin: 2rem;
+}
+
+#nav-mobile li>a {
+    color: #827373 !important;
+    font-size: 1.2rem;
+}

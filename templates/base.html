@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href='{% static "css/style.css" %}'>
     <title>Nikolay Cranner | Official</title>
 </head>
@@ -14,8 +15,10 @@
   <header>
     <nav>
         <div class="nav-wrapper nc-header-footer">
-          <a href="/home/" class="brand-logo center" >nikolay cranner</a>
-          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <a href="/home/" class="brand-logo left">
+            <img src='{% static "img/logo.png" %}' alt="Nikolay Cranner Logo" class="nc-logo">
+          </a>
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="#">new music</a></li>
             <li><a href="#">contact</a></li>
