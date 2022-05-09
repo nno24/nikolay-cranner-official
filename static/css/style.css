@@ -74,3 +74,13 @@ body {
     opacity: 0.5;
     transition: 2s;
 }
+
+.nc-store-details-txt {
+    text-align: left;
+}
+
+.nc-store-details-img {
+    height: auto;
+    width: 100%;
+    margin-top: 10vh;
+}
