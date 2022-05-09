@@ -8,7 +8,7 @@
             <a href="{% url 'home' %}" class="brand-logo left">
                 <img src='{% static "img/logo.png" %}' alt="Nikolay Cranner Logo" class="nc-logo">
             </a>
-            <a href="{% url 'bag' %}" class="right basket-counter"><i class="small material-icons right">shopping_cart</i></a>
+            <a href="#" class="right" id="basket-counter"><i class="small material-icons right">shopping_cart</i></a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="{% url 'music' %}">new music</a></li>
@@ -30,13 +30,14 @@
 {% block content %}
 {% for product in products %}
 <div class="row">
-    <div class="col s8 offset-s2">
-        <a href="{% url 'store_details' product.pk %}">
-            <img src="{{ MEDIA_URL }}{{ product.image }}" alt="{{ product.image }}" class="nc-product-img">
-        </a>
-        <p>{{ product.name }}</p>
-        <audio controls src="{{ MEDIA_URL }}{{ product.media }}"></audio>
-    </div>
+    <div class="col s4 center"><img src="{{ MEDIA_URL }}{{ product.image }}" alt="{{ product.image }}" class="nc-bag-img"></div>
+    <div class="col s4 center">{{ product.name }}</div>
+    <div class="col s4 center">{{ product.price }} USD</div>
 </div>
 {% endfor %}
+<div class="row">
+    <div class="col s4 center"></div>
+    <div class="col s4 center">Grand Total</div>
+    <div class="col s4 center">{{ grand_total }} USD</div>
+</div>
 {% endblock %}
