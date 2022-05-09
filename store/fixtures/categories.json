@@ -30,5 +30,13 @@
         "name": "clothing",
         "friendly_name": "Clothing"
       }
+    },
+    {
+      "pk": 5,
+      "model": "store.category",
+      "fields": {
+        "name": "music",
+        "friendly_name": "Music"
+      }
     }
   ]

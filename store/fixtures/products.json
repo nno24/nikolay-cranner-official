@@ -1,61 +1,50 @@
 [
-    {
-      "pk": 1,
-      "model": "store.product",
-      "fields": {
-        "sku": "pp01",
-        "name": "Java Sigars",
-        "description": "Ultimate party sigars with a blended taste. Also good for any occasion",
-        "price": 40.99,
-        "category": 1,
-        "rating": 4.6,
-        "image_url": "",
-        "image": "javasigars.jpeg"
-      }
-    },
-    {
-      "pk": 2,
-      "model": "store.product",
-      "fields": {
-        "sku": "pp02",
-        "name": "The Calvenie Whisky",
-        "description": "The Calvenie is a unique range of single malts created by David C. Stewart MBE, The Balvenie Malt Master.",
-        "price": 58.99,
-        "category": 2,
-        "rating": 4.9,
-        "image_url": "",
-        "image": "whiskey.jpg"
-      }
-    },
-    {
-      "pk": 3,
-      "model": "store.product",
-      "fields": {
-        "sku": "pp03",
-        "name": "Cranner shades",
-        "description": "Ultimate shades for any occasion, classy and protective.",
-        "price": 89.99,
-        "category": 3,
-        "rating": 4.5,
-        "image_url": "",
-        "image": "shades.jpg"
-      }
-      
-      
-    },
-    {
-        "pk": 4,
+      {
+        "pk": 10,
         "model": "store.product",
         "fields": {
-          "sku": "pp04",
-          "name": "Cranner blazer",
-          "description": "Ultimate party blazer for any occasion, classy and stylish.",
-          "price": 121.99,
-          "category": 4,
-          "rating": 4.5,
+          "sku": "pp10",
+          "name": "Don't Walk Away",
+          "description": "Don’t Walk Away, is an upbeat and warm vocal house track. The song is about “holding on to what you got when life gets tough in a relationship”. The teasing buildup vs. a more relaxed drop creates an energetic but warm atmosphere with the brassy lead melody. The fact that the buildup seems more intense than the drop is untraditional and unique.",
+          "price": 3.99,
+          "category": 5,
+          "rating": 4.9,
           "image_url": "",
-          "image": "blazer.jpeg"
+          "image": "dont-walk-away.png",
+          "media": "snippet-dont-walk-away.mp3"
         }      
         
-      } 
+      },
+      {
+        "pk": 11,
+        "model": "store.product",
+        "fields": {
+          "sku": "pp11",
+          "name": "Darkest Love",
+          "description": "The composition consists of melodic deep vocals by Kieran Fowkes, minted with a mid-range spacious lead. The song is dominated by the sub-frequency domain and intertwined with harmonic chord progression, sparky synths and mysterious pads.",
+          "price": 4.99,
+          "category": 5,
+          "rating": 4.8,
+          "image_url": "",
+          "image": "darkest-love.png",
+          "media": ""
+        }      
+        
+      },
+      {
+        "pk": 12,
+        "model": "store.product",
+        "fields": {
+          "sku": "pp12",
+          "name": "The Sky",
+          "description": "Expect The Sky from Nikolay Cranner & Batuhan CLK to transport you into a world of your own as flushes of their organic sounds flood through the speakers from the moment you press play",
+          "price": 3.99,
+          "category": 5,
+          "rating": 4.7,
+          "image_url": "",
+          "image": "the-sky.png",
+          "media": ""
+        }      
+        
+      }    
 ]

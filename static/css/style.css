@@ -84,3 +84,8 @@ body {
     width: 100%;
     margin-top: 10vh;
 }
+
+audio {
+    display: block;
+    width: 100%;
+}
