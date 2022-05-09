@@ -63,3 +63,14 @@ body {
     color: #827373 !important;
     font-size: 1.2rem;
 }
+
+.nc-product-img {
+    height: auto;
+    width: 100%;
+    margin-top: 20vh;
+}
+
+.nc-product-img:hover {
+    opacity: 0.5;
+    transition: 2s;
+}
