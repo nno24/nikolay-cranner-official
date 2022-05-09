@@ -12,6 +12,7 @@
     <title>Nikolay Cranner | Official</title>
 </head>
 <body>
+  {% block page_header %}
   <header>
     <nav>
         <div class="nav-wrapper nc-header-footer">
@@ -34,6 +35,7 @@
         <li><a href="{% url 'login' %}">login</a></li>
       </ul>
   </header>
+  {% endblock %}
   <main style="background-image: url('{% static "img/background.PNG" %}');">
   <section>
     {% block content %}

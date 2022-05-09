@@ -1,5 +1,32 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block page_header %}
+<header>
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper nc-header-footer">
+            <a href="{% url 'home' %}" class="brand-logo left">
+                <img src='{% static "img/logo.png" %}' alt="Nikolay Cranner Logo" class="nc-logo">
+            </a>
+            <a href="#" class="right" id="basket-counter"><i class="small material-icons right">shopping_cart</i></a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="{% url 'music' %}">new music</a></li>
+                <li><a href="{% url 'contact' %}">contact</a></li>
+                <li><a href="{% url 'store' %}">store</a></li>
+                <li><a href="{% url 'login' %}">login</a></li>
+            </ul>
+            </div>
+        </nav>
+    </div>
+      <ul class="sidenav nc-header-footer" id="mobile-demo">
+        <li><a href="{% url 'music' %}">new music</a></li>
+        <li><a href="{% url 'contact' %}">contact</a></li>
+        <li><a href="{% url 'store' %}">store</a></li>
+        <li><a href="{% url 'login' %}">login</a></li>
+      </ul>
+  </header>
+{% endblock %}
 {% block content %}
 <div class="row">
     <div class="col s10 offset-s1">
@@ -11,8 +38,17 @@
         <h5>{{ product.name }}</h5>
         <p>{{ product.description }}</p>
         <p><strong>{{ product.price }} USD</strong></p>
-        <button class="btn waves-effect waves-light nc-btn-color" type="submit" name="action">Add to Basket
-        </button>
+        <a class="waves-effect waves-light btn nc-btn-color" id="#basket-confirm" onclick="openModal();"><i class="material-icons left">add_shopping_cart</i>Add To Basket</a>
+        <div id="basket-confirm" class="modal">
+            <div class="modal-content">
+                <h4>Added {{product.name}} to basket</h3>
+                <p>Continue shopping ?</p>
+            </div>
+            <div class="modal-footer">
+              <a href="{% url 'home' %}" class="modal-close waves-effect waves-light btn-flat nc-btn-color">To Checkout</a>
+              <a href="{% url 'store' %}" class="modal-close waves-effect waves-light btn-flat nc-btn-color">Continue Shopping</a>
+            </div>
+          </div>
     </div>
 </div>
 {% endblock %}

@@ -1,8 +1,8 @@
 {% load static %}
 
-.nc-header-footer {
-    background-color: #1C140D;
-    color: #827373;
+.nc-header-footer, .modal-footer {
+    background-color: #1C140D !important;
+    color: #827373 !important;
 }
 
 main {
@@ -20,6 +20,12 @@ body {
     background-color: #150E05;
     color: #827373 !important;
   }
+
+.modal-content {
+    background-color: #150E05;
+    color: #827373;
+}
+
 
 .air-20 {
     height: 20vh;
@@ -89,3 +95,10 @@ audio {
     display: block;
     width: 100%;
 }
+
+.material-icons {
+    color: white;
+    margin-right: 20px;
+    margin-left: 0px !important;
+}
+

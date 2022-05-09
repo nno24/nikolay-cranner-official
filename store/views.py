@@ -13,7 +13,7 @@ def get_store(request):
     }
     return render(request, 'store/store.html', context)
 
-def store_details(request, store_id):
+def store_details(request, store_id ):
     """A view to show product details"""
 
     product = get_object_or_404(Product, pk=store_id)
@@ -22,3 +22,4 @@ def store_details(request, store_id):
     }
 
     return render(request, 'store/store_details.html', context)
+
