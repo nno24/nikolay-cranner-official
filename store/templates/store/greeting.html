@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col">
+        <h3>Thank you for you order</h3>
+        {% for product in products_bag %}
+        <div class="col">{{product.name}}</div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

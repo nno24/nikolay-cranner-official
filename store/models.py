@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils import timezone as tz
+from datetime import date, time
 
 # Create your models here.
 
@@ -29,3 +31,10 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+class Order(models.Model):
+    order_id = models.CharField(max_length=254, null=True, blank=True)
+    user_id = models.CharField(max_length=254, null=True, blank=True)
+    transaction_date = models.DateField(default=tz.now)
+    transaction_time = models.TimeField(default=time(18, 00))
+    grand_total = models.IntegerField(default=0)

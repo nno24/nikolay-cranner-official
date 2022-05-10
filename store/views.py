@@ -1,10 +1,13 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 import requests
 from .models import Product, Category
 from django.http import JsonResponse
+from .forms import OrderForm
 
 #Global variables for bag
 bag = []
+products_bag = []
+grand_total = 0
 
 
 # Create your views here.
@@ -25,6 +28,7 @@ def store_details(request, store_id ):
 
     if request.POST:
         bag.append(store_id)
+        return redirect('store')
 
 
     product = get_object_or_404(Product, pk=store_id)
@@ -41,15 +45,25 @@ def store_details(request, store_id ):
 def get_bag(request):
     """A view to show the cart/bag"""
     global bag
+    global products_bag
     products_bag = []
+    global grand_total
     grand_total = 0
     
+    form = OrderForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+
+        form = OrderForm()
+
+
     if request.POST:
         for key, value in request.POST.items():
             print('Key: %s' % (key))
             print('value: %s' % (value))
             if key == 'delete' and len(bag) != 0:
                 del bag[int(value)]
+
     
     #Update the products in bag view
     for id in bag:
@@ -60,6 +74,17 @@ def get_bag(request):
     context = {
         'products_bag': products_bag,
         'grand_total': grand_total,
+        'form': form,
     }
 
     return render(request, 'store/bag.html', context)
+
+def get_greeting(request):
+    global products_bag
+    global grand_total
+
+    context = {
+        'products_bag': products_bag,
+        'grand_total': grand_total,
+    }
+    return render(request, 'store/greeting.html', context)

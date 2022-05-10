@@ -17,6 +17,13 @@ document.addEventListener('DOMContentLoaded', function() {
     instance.open();
 });
 
+//Auto fill hidden form for submitting order to database...
+document.addEventListener('DOMContentLoaded', function autoFillOrderForm() {
+  document.getElementById('id_order_id').setAttribute('value', 'heyho');
+  document.getElementById('id_user_id').setAttribute('value', 'user1');
+  document.getElementById('id_grand_total').setAttribute('value', '150');
+});
+
     
 
  
