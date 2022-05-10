@@ -40,7 +40,7 @@
         <p><strong>{{ product.price }} USD</strong></p>
         <form action="{% url 'store_details' product.pk %}" method="post">
             {% csrf_token %}
-            <button class="btn waves-effect waves-light btn nc-btn-color basket-button" id="#add-to-basket" type="submit" name="add-to-basket" value="{{ product.pk }}">Add to basket
+            <button class="btn waves-effect waves-light btn nc-btn-color" id="#add-to-basket" type="submit" name="add-to-basket" value="{{ product.pk }}">Add to basket
                 <i class="material-icons left">add_shopping_cart</i>
             </button>
         </form>
