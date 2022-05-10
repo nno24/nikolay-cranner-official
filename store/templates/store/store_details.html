@@ -40,17 +40,17 @@
         <p><strong>{{ product.price }} USD</strong></p>
         <form action="{% url 'store_details' product.pk %}" method="post">
             {% csrf_token %}
-            <button class="btn waves-effect waves-light btn nc-btn-color" id="#basket-confirm" type="submit" name="action" onclick="">Add to basket
+            <button class="btn waves-effect waves-light btn nc-btn-color basket-button" id="#add-to-basket" type="submit" name="add-to-basket" value="{{ product.pk }}">Add to basket
                 <i class="material-icons left">add_shopping_cart</i>
             </button>
         </form>
-        <div id="basket-confirm" class="modal">
+        <div id="add-to-basket" class="modal">
             <div class="modal-content">
                 <h4>Added {{product.name}} to basket</h3>
                 <p>Continue shopping ?</p>
             </div>
             <div class="modal-footer">
-              <a href="{% url 'home' %}" class="modal-close waves-effect waves-light btn-flat nc-btn-color">To Checkout</a>
+              <a href="{% url 'bag' %}" class="modal-close waves-effect waves-light btn-flat nc-btn-color">To Checkout</a>
               <a href="{% url 'store' %}" class="modal-close waves-effect waves-light btn-flat nc-btn-color">Continue Shopping</a>
             </div>
           </div>
