@@ -38,7 +38,6 @@
         <h5>{{ product.name }}</h5>
         <p>{{ product.description }}</p>
         <p><strong>{{ product.price }} USD</strong></p>
-        <p>{{ bag|length }}{{ bag}}</p>
         <form action="{% url 'store_details' product.pk %}" method="post">
             {% csrf_token %}
             <button class="btn waves-effect waves-light btn nc-btn-color" id="#basket-confirm" type="submit" name="action" onclick="">Add to basket

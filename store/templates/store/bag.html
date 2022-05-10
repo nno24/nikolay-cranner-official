@@ -28,11 +28,19 @@
   </header>
 {% endblock %}
 {% block content %}
-{% for product in products %}
+{% for product in products_bag %}
 <div class="row">
-    <div class="col s4 center"><img src="{{ MEDIA_URL }}{{ product.image }}" alt="{{ product.image }}" class="nc-bag-img"></div>
-    <div class="col s4 center">{{ product.name }}</div>
-    <div class="col s4 center">{{ product.price }} USD</div>
+    <div class="col s3 center"><img src="{{ MEDIA_URL }}{{ product.image }}" alt="{{ product.image }}" class="nc-bag-img"></div>
+    <div class="col s3">{{ product.name }}</div>
+    <div class="col s3">{{ product.price }} USD</div>
+    <div class="col s3">
+        <form action="{% url 'bag' %}" method="post">
+            {% csrf_token %}
+            <button class="btn-floating btn-small waves-effect waves-light nc-btn-color" id="{{ forloop.counter0 }}" type="submit" name="delete" value="{{ forloop.counter0 }}" onclick="">
+                <i class="material-icons">remove</i>
+            </button>
+        </form>
+    </div>
 </div>
 {% endfor %}
 <div class="row">

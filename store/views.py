@@ -2,7 +2,9 @@ from django.shortcuts import render, get_object_or_404
 import requests
 from .models import Product, Category
 
+#Global variables for bag
 bag = []
+
 
 # Create your views here.
 def get_store(request):
@@ -30,15 +32,23 @@ def store_details(request, store_id ):
 def get_bag(request):
     """A view to show the cart/bag"""
     global bag
-    products = []
+    products_bag = []
     grand_total = 0
+    
+    if request.POST:
+        for key, value in request.POST.items():
+            print('Key: %s' % (key))
+            print('value: %s' % (value))
+            if key == 'delete' and len(bag) != 0:
+                del bag[int(value)]
+        
     for id in bag:
         product=get_object_or_404(Product, pk=id)
-        products.append(product)
+        products_bag.append(product)
         grand_total+=product.price
     
     context = {
-        'products': products,
+        'products_bag': products_bag,
         'grand_total': grand_total,
     }
 
