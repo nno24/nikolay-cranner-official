@@ -29,9 +29,9 @@
 {% endblock %}
 {% block content %}
 {% for product in products_bag %}
-<div class="row">
+<div class="row product-row">
     <div class="col s3 center"><img src="{{ MEDIA_URL }}{{ product.image }}" alt="{{ product.image }}" class="nc-bag-img"></div>
-    <div class="col s3">{{ product.name }}</div>
+    <div class="col s3" id="{{ product.pk }}">{{ product.name }}</div>
     <div class="col s3">{{ product.price }} USD</div>
     <div class="col s3">
         <form action="{% url 'bag' %}" method="post">
@@ -46,30 +46,32 @@
 <div class="row">
     <div class="col s3 center"></div>
     <div class="col s3 ">Grand Total</div>
-    <div class="col s3 ">{{ grand_total }} USD</div>
+    <div class="col s3 " id="grand-total">{{ grand_total }}</div>
     <div class="col s3 "></div>
 </div>
+<script>
+    let grand_total = document.getElementById('grand-total').textContent;
+    let ref_id = 'test1';
+
+</script>
 <div class="row">
     <div class="col s6 offset-s3 center">
-        <form action="" method="post">
-            {% csrf_token %}
-            <button class="btn waves-effect waves-light btn nc-btn-color" id="" type="submit" name="" value="" onclick="">Continue To Payment
-                <i class="material-icons left">payment</i>
-            </button>
-        </form>
+        <div id="paypal-button-container"></div>
     </div>
 </div>
-<div id="paypal-button-container"></div>
 <script src="https://www.paypal.com/sdk/js?client-id=ATfsuzE4j3nQYzab5kaRV2v9C0jsFb_vHBJKzspzRiUuIH8Om9AXo898FXRansPyNPPQH23yEuQX3Y_H&currency=USD"></script>
 <script>
+
      paypal.Buttons({
 
 // Set up the transaction
 createOrder: function(data, actions) {
     return actions.order.create({
         purchase_units: [{
+            reference_id: 'test1',
             amount: {
-                value: '88.44'
+               
+                value: grand_total
             }
         }]
     });
