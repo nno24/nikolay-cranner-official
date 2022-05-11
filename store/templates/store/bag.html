@@ -33,11 +33,19 @@
     <div class="col s3 center"><img src="{{ MEDIA_URL }}{{ product.image }}" alt="{{ product.image }}" class="nc-bag-img"></div>
     <div class="col s3" id="{{ product.pk }}">{{ product.name }}</div>
     <div class="col s3">{{ product.price }} USD</div>
-    <div class="col s3">
+    <div class="col s1">
         <form action="{% url 'bag' %}" method="post">
             {% csrf_token %}
-            <button class="btn-floating btn-small waves-effect waves-light nc-btn-color" id="{{ forloop.counter0 }}" type="submit" name="delete" value="{{ forloop.counter0 }}" onclick="">
+            <button {{ remove }} class="btn-floating btn-small waves-effect waves-light nc-btn-color" id="remove-{{ forloop.counter0 }}" type="submit" name="delete" value="{{ forloop.counter0 }}" onclick="">
                 <i class="material-icons">remove</i>
+            </button>
+        </form>
+    </div>
+    <div class="col s2">
+        <form action="{% url 'bag' %}" method="post">
+            {% csrf_token %}
+            <button {{ download }} class="btn-floating btn-small waves-effect waves-light nc-btn-color" id="download-{{ forloop.counter0 }}" type="submit" name="download" value="{{ forloop.counter0 }}" onclick="">
+                <i class="material-icons">download</i>
             </button>
         </form>
     </div>
@@ -91,8 +99,10 @@ onApprove: function(data, actions) {
         //element.innerHTML = '<h3>Thank you for your payment!</h3>';
         // Or go to another URL:  actions.redirect('thank_you.html');
         
-                    
-        document.getElementById('order-form').submit();          
+        document.getElementById('download-0').removeAttribute('disabled');              
+        document.getElementById('order-form').submit();
+    
+        
 
            
         

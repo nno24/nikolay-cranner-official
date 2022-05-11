@@ -49,6 +49,8 @@ def get_bag(request):
     products_bag = []
     global grand_total
     grand_total = 0
+    download = 'disabled'
+    remove = ''
     
     form = OrderForm(request.POST or None)
     if form.is_valid():
@@ -61,8 +63,15 @@ def get_bag(request):
         for key, value in request.POST.items():
             print('Key: %s' % (key))
             print('value: %s' % (value))
+
+            #If deleting an item
             if key == 'delete' and len(bag) != 0:
                 del bag[int(value)]
+            #If order was submitted to database, after successful purchase ->
+            # enable downloads disable remove buttons.
+            elif key == 'order_id':
+                download = ''
+                remove = 'disabled'
 
     
     #Update the products in bag view
@@ -75,6 +84,8 @@ def get_bag(request):
         'products_bag': products_bag,
         'grand_total': grand_total,
         'form': form,
+        'download': download,
+        'remove': remove,
     }
 
     return render(request, 'store/bag.html', context)
