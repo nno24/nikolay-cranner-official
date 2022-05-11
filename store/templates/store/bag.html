@@ -42,12 +42,11 @@
         </form>
     </div>
     <div class="col s2">
-        <form action="{% url 'bag' %}" method="post">
-            {% csrf_token %}
-            <button {{ download }} class="btn-floating btn-small waves-effect waves-light nc-btn-color" id="download-{{ forloop.counter0 }}" type="submit" name="download" value="{{ forloop.counter0 }}" onclick="">
-                <i class="material-icons">download</i>
-            </button>
-        </form>
+            <a href="{{ MEDIA_URL }}{{ product.media }}" download="mp3" style="pointer-events: {{ download_pointer_events }};">
+                <button {{ download }} class="btn-floating btn-small waves-effect waves-light nc-btn-color" id="download-{{ forloop.counter0 }}" type="submit" name="download" value="{{ forloop.counter0 }}" onclick="">
+                    <i class="material-icons">download</i>
+                </button>
+            </a>
     </div>
 </div>
 {% endfor %}

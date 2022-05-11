@@ -50,6 +50,7 @@ def get_bag(request):
     global grand_total
     grand_total = 0
     download = 'disabled'
+    download_pointer_events = 'none'
     remove = ''
     
     form = OrderForm(request.POST or None)
@@ -72,6 +73,7 @@ def get_bag(request):
             elif key == 'order_id':
                 download = ''
                 remove = 'disabled'
+                download_pointer_events = 'auto'
 
     
     #Update the products in bag view
@@ -86,6 +88,7 @@ def get_bag(request):
         'form': form,
         'download': download,
         'remove': remove,
+        'download_pointer_events': download_pointer_events,
     }
 
     return render(request, 'store/bag.html', context)
