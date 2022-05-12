@@ -49,9 +49,12 @@ def get_bag(request):
     products_bag = []
     global grand_total
     grand_total = 0
+
+    #download and buttons disabled status
     download = 'disabled'
     download_pointer_events = 'none'
-    remove = ''
+    remove = ''  
+    
     
     form = OrderForm(request.POST or None)
     if form.is_valid():
@@ -82,6 +85,11 @@ def get_bag(request):
         products_bag.append(product)
         grand_total+=product.price
     
+    #Update the order form values
+    order_id =' '.join(map(str,bag))
+    user_id = 'guest'
+
+
     context = {
         'products_bag': products_bag,
         'grand_total': grand_total,
@@ -89,6 +97,8 @@ def get_bag(request):
         'download': download,
         'remove': remove,
         'download_pointer_events': download_pointer_events,
+        'order_id': order_id,
+        'user_id': user_id,
     }
 
     return render(request, 'store/bag.html', context)

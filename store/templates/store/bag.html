@@ -118,7 +118,17 @@ onApprove: function(data, actions) {
         <div class="row">
           <form class="col s12" id="order-form" method="POST">
             {% csrf_token %}
-            {{ form.as_table }}
+            {% for field in form %}
+            <div class="fieldWrapper">
+                {% if field.class == 'order_id' %}
+                <p>order id</p>
+                {% elif field.class == 'user_id' %}
+                <p>user id</p>
+                {% elif field.class == 'grand_total' %}
+                <p>grand tot</p>
+                {% endif %}
+            </div>
+            {% endfor %}
             <div>
                 <p>
                     <button hidden type="submit"></button>
