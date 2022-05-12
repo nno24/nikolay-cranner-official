@@ -37,7 +37,7 @@
     <div class="col s6 offset-s1 nc-store-details-txt">
         <h5>{{ product.name }}</h5>
         <p>{{ product.description }}</p>
-        <p><strong>{{ product.price }} USD</strong></p>
+        <p><strong>{{ product.price }} $</strong></p>
         <form action="{% url 'store_details' product.pk %}" method="post">
             {% csrf_token %}
             <button class="btn waves-effect waves-light btn nc-btn-color" id="#add-to-basket" type="submit" name="add-to-basket" value="{{ product.pk }}">Add to basket

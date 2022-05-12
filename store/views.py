@@ -3,6 +3,7 @@ import requests
 from .models import Product, Category
 from django.http import JsonResponse
 from .forms import OrderForm
+import datetime
 
 #Global variables for bag
 bag = []
@@ -49,6 +50,8 @@ def get_bag(request):
     products_bag = []
     global grand_total
     grand_total = 0
+    transaction_date = datetime.date.today()
+    transaction_time = datetime.datetime.now().time()
 
     #download and buttons disabled status
     download = 'disabled'
@@ -72,11 +75,13 @@ def get_bag(request):
             if key == 'delete' and len(bag) != 0:
                 del bag[int(value)]
             #If order was submitted to database, after successful purchase ->
-            # enable downloads disable remove buttons.
+            # enable downloads disable remove buttons and set date and time
             elif key == 'order_id':
                 download = ''
                 remove = 'disabled'
                 download_pointer_events = 'auto'
+                transaction_date = datetime.date.today()
+                transaction_time = datetime.datetime.now().time()
 
     
     #Update the products in bag view
@@ -99,6 +104,8 @@ def get_bag(request):
         'download_pointer_events': download_pointer_events,
         'order_id': order_id,
         'user_id': user_id,
+        'transaction_date': transaction_date,
+        'transaction_time': transaction_time,
     }
 
     return render(request, 'store/bag.html', context)

@@ -18,11 +18,14 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 //Auto fill hidden form for submitting order to database...
-//document.addEventListener('DOMContentLoaded', function autoFillOrderForm() {
-//  document.getElementById('id_order_id').setAttribute('value', 'heyho');
-//  document.getElementById('id_user_id').setAttribute('value', 'user1');
-//  document.getElementById('id_grand_total').setAttribute('value', '150');
-//});
+document.addEventListener('DOMContentLoaded', function autoFillOrderForm() {
+  document.getElementById('id_order_id').setAttribute('value', order_id );
+  document.getElementById('id_user_id').setAttribute('value', user_id );
+  document.getElementById('id_grand_total').setAttribute('value', grand_total );
+  document.getElementById('id_transaction_date').setAttribute('value', transaction_date );
+  document.getElementById('id_transaction_time').setAttribute('value', transaction_time );
+  console.log("updating form fields");
+});
 
     
 

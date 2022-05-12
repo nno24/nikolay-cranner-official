@@ -37,4 +37,4 @@ class Order(models.Model):
     user_id = models.CharField(max_length=254, null=True, blank=True)
     transaction_date = models.DateField(default=tz.now)
     transaction_time = models.TimeField(default=time(18, 00))
-    grand_total = models.IntegerField(default=0)
+    grand_total = models.DecimalField(default=0.00, max_digits=10, decimal_places=2)

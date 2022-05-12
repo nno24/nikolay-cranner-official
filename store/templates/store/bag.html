@@ -32,7 +32,7 @@
 <div class="row product-row">
     <div class="col s3 center"><img src="{{ MEDIA_URL }}{{ product.image }}" alt="{{ product.image }}" class="nc-bag-img"></div>
     <div class="col s3" id="{{ product.pk }}">{{ product.name }}</div>
-    <div class="col s3">{{ product.price }} USD</div>
+    <div class="col s3">{{ product.price }} $</div>
     <div class="col s1">
         <form action="{% url 'bag' %}" method="post">
             {% csrf_token %}
@@ -56,10 +56,36 @@
     <div class="col s3 " id="grand-total">{{ grand_total }}</div>
     <div class="col s3 "></div>
 </div>
+<div class="row">
+    <div class="col s3 center"></div>
+    <div class="col s3 ">User Id</div>
+    <div class="col s3 " id="user_id">{{ user_id }}</div>
+    <div class="col s3 "></div>
+</div>
+<div class="row">
+    <div class="col s3 center"></div>
+    <div class="col s3 ">Order Id</div>
+    <div class="col s3" id="order_id">{{ order_id }}</div>
+    <div class="col s3 "></div>
+</div>
+<div class="row">
+    <div class="col s3 center"></div>
+    <div class="col s3 ">Date</div>
+    <div class="col s3" id="transaction_date">{{ transaction_date }}</div>
+    <div class="col s3 "></div>
+</div>
+<div class="row">
+    <div class="col s3 center"></div>
+    <div class="col s3 ">Time</div>
+    <div class="col s3" id="transaction_time">{{ transaction_time }}</div>
+    <div class="col s3 "></div>
+</div>
 <script>
-    let grand_total = document.getElementById('grand-total').textContent;
-    let ref_id = 'test1';
-
+  let grand_total = document.getElementById('grand-total').textContent;
+  let user_id = document.getElementById('user_id').textContent;
+  let order_id = document.getElementById('order_id').textContent;
+  let transaction_date = document.getElementById('transaction_date').textContent;
+  let transaction_time = document.getElementById('transaction_time').textContent;
 </script>
 <div class="row">
     <div class="col s6 offset-s3 center">
@@ -75,7 +101,7 @@
 createOrder: function(data, actions) {
     return actions.order.create({
         purchase_units: [{
-            reference_id: 'test1',
+            reference_id: order_id,
             amount: {
                
                 value: grand_total
@@ -118,18 +144,7 @@ onApprove: function(data, actions) {
         <div class="row">
           <form class="col s12" id="order-form" method="POST">
             {% csrf_token %}
-            {% for field in form %}
-            <div class="fieldWrapper">
-                {% if field.class == 'order_id' %}
-                <p>order id</p>
-                {% elif field.class == 'user_id' %}
-                <p>user id</p>
-                {% elif field.class == 'grand_total' %}
-                <p>grand tot</p>
-                {% endif %}
-            </div>
-            {% endfor %}
-            <div>
+            {{ form.as_table }}
                 <p>
                     <button hidden type="submit"></button>
                 </p>
