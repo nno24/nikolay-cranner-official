@@ -51,7 +51,8 @@ def get_bag(request):
     global grand_total
     grand_total = 0
     transaction_date = datetime.date.today()
-    transaction_time = datetime.datetime.now().time()
+    transaction_time = datetime.datetime.now().time().strftime("%H:%M:%S")
+    print(transaction_date, transaction_time)
 
     #download and buttons disabled status
     download = 'disabled'
@@ -81,7 +82,7 @@ def get_bag(request):
                 remove = 'disabled'
                 download_pointer_events = 'auto'
                 transaction_date = datetime.date.today()
-                transaction_time = datetime.datetime.now().time()
+                transaction_time = datetime.datetime.now().time().strftime("%H:%M:%S")
 
     
     #Update the products in bag view

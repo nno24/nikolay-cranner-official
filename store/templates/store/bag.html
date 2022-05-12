@@ -84,8 +84,6 @@
   let grand_total = document.getElementById('grand-total').textContent;
   let user_id = document.getElementById('user_id').textContent;
   let order_id = document.getElementById('order_id').textContent;
-  let transaction_date = document.getElementById('transaction_date').textContent;
-  let transaction_time = document.getElementById('transaction_time').textContent;
 </script>
 <div class="row">
     <div class="col s6 offset-s3 center">
@@ -124,7 +122,11 @@ onApprove: function(data, actions) {
         //element.innerHTML = '<h3>Thank you for your payment!</h3>';
         // Or go to another URL:  actions.redirect('thank_you.html');
         
-        document.getElementById('download-0').removeAttribute('disabled');              
+        document.getElementById('download-0').removeAttribute('disabled');
+        let transaction_date = document.getElementById('transaction_date').textContent;
+        let transaction_time = document.getElementById('transaction_time').textContent;
+        document.getElementById('id_transaction_date').setAttribute('value', transaction_date );
+        document.getElementById('id_transaction_time').setAttribute('value', transaction_time );              
         document.getElementById('order-form').submit();
     
         
