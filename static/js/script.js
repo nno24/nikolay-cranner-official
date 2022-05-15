@@ -11,57 +11,62 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
 
+let grand_total = document.getElementById('grand-total').textContent;
+let user_id = document.getElementById('user_id').textContent;
+let order_id = document.getElementById('order_id').textContent;
 
-  let grand_total = document.getElementById('grand-total').textContent;
-  let user_id = document.getElementById('user_id').textContent;
-  let order_id = document.getElementById('order_id').textContent;
 
+const payPalButtons = paypal.Buttons({
 
-paypal.Buttons({
-
+  style: {
+    color: "gold",
+    shape: "rect",
+    layout: "vertical"
+  },
 // Set up the transaction
 createOrder: function(data, actions) {
-    return actions.order.create({
-        purchase_units: [{
-            reference_id: order_id,
-            amount: {
-               
-                value: grand_total
-            }
-        }]
-    });
+  const createOrderPayload = {
+      purchase_units: [{
+      reference_id: order_id,
+      amount: {
+         
+          value: grand_total
+      }
+    }]
+  }
+  return actions.order.create(createOrderPayload);
 },
 
 // Finalize the transaction
-onApprove: function(data, actions) {
-    return actions.order.capture().then(function(orderData) {
-        // Successful capture! For demo purposes:
-        console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
-        var transaction = orderData.purchase_units[0].payments.captures[0];
-        //alert('Transaction '+ transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
+onApprove: (data, actions) => {
+    const captureOrderHandler = (details) => {
+        const payerName = details.payer.name.given_name;
+        console.log('Transaction completed for: ' + payerName);
+        console.log('The details: ' + Object.keys(details));
 
-        // Replace the above to show a success message within this page, e.g.
-        //const element = document.getElementById('paypal-button-container');
-        //element.innerHTML = '';
-        //element.innerHTML = '<h3>Thank you for your payment!</h3>';
-        // Or go to another URL:  actions.redirect('thank_you.html');
-        
         document.getElementById('download-0').removeAttribute('disabled');
         let transaction_date = document.getElementById('transaction_date').textContent;
         let transaction_time = document.getElementById('transaction_time').textContent;
         document.getElementById('id_transaction_date').setAttribute('value', transaction_date );
         document.getElementById('id_transaction_time').setAttribute('value', transaction_time );              
         document.getElementById('order-form').submit();
-    
-        
+    };
+    return actions.order.capture().then(captureOrderHandler);
 
-           
-        
+  },
+
+  // handle unrecoverable errors
+  onError: (err) => {
+      console.error('An error prevented the buyer from checking out with PayPal');
+  }
+  });
+
+  //Render the paypal button
+  payPalButtons
+    .render("#paypal-button-container")
+    .catch((err) => {
+      console.error('PayPal Buttons failed to render');
     });
-}
-
-
-}).render('#paypal-button-container');
 
 
 /*
