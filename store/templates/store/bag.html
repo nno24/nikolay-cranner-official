@@ -8,7 +8,7 @@
             <a href="{% url 'home' %}" class="brand-logo left">
                 <img src='{% static "img/logo.png" %}' alt="Nikolay Cranner Logo" class="nc-logo">
             </a>
-            <a href="#" class="right" id="basket-counter"><i class="small material-icons right">shopping_cart</i></a>
+            <a href="#" class="right" id="basket-counter"><i class="small material-icons right">shopping_cart</i><i class="fa-duotone fa-sm fa-{{ bag_items }}"></i></a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="{% url 'music' %}">new music</a></li>

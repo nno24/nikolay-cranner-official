@@ -107,3 +107,6 @@ audio {
     margin-left: 0px !important;
 }
 
+.fa-duotone {
+    --fa-secondary-opacity: 0.20;
+}
