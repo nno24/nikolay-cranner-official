@@ -14,17 +14,30 @@
 <body>
   {% block page_header %}
   <header>
-    <!-- Dropdown Structure -->
+    <!-- Dropdown Structure Desktop/Tablet -->
     <ul id="dropdown1" class="dropdown-content">
       {% if request.user.is_authenticated %}
         {% if request.user.is_superuser %}
-        <li><a href="/admin">Product Management</a></li>
+        <li><a href="/admin">manage</a></li>
         {% endif %}
         <li><a href="#!">Profile</a></li>
-        <li><a href="/accounts/logout">Logout</a></li>
+        <li><a href="/accounts/logout">logout</a></li>
       {% else %}
-        <li><a href="/accounts/login">Log In</a></li>
-        <li><a href="/accounts/signup">Sign Up</a></li>
+        <li><a href="/accounts/login">log in</a></li>
+        <li><a href="/accounts/signup">sign up</a></li>
+      {% endif %}
+    </ul>
+    <!-- Dropdown Structure Mobile -->
+    <ul id="dropdown2" class="dropdown-content2">
+      {% if request.user.is_authenticated %}
+        {% if request.user.is_superuser %}
+        <li><a href="/admin">manage</a></li>
+        {% endif %}
+        <li><a href="#!">Profile</a></li>
+        <li><a href="/accounts/logout">logout</a></li>
+      {% else %}
+        <li><a href="/accounts/login">log in</a></li>
+        <li><a href="/accounts/signup">sign up</a></li>
       {% endif %}
     </ul>
     <nav>
@@ -45,6 +58,7 @@
         <li><a href="{% url 'music' %}">new music</a></li>
         <li><a href="{% url 'contact' %}">contact</a></li>
         <li><a href="{% url 'store' %}">store</a></li>
+        <li><a class="dropdown-trigger2" href="#!" data-target="dropdown2">{{ request.user }}<i class="material-icons right">arrow_drop_down</i></a></li>
       </ul>
   </header>
   {% endblock %}
