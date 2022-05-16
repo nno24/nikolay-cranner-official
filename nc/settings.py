@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'store',
     'music',
     'contact',
-    'login',
+    'userprofile',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',

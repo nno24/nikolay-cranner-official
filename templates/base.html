@@ -21,7 +21,7 @@
         <li><a href="/admin">manage</a></li>
         <li class="divider" tabindex="-1"></li>
         {% endif %}
-        <li><a href="#!">profile</a></li>
+        <li><a href="{% url 'user_profile' %}">profile</a></li>
         <li><a href="/accounts/logout">logout</a></li>
       {% else %}
         <li><a href="/accounts/login">log in</a></li>
@@ -36,7 +36,7 @@
         <li><a href="/admin">manage</a></li>
         <li class="divider" tabindex="-1"></li>
         {% endif %}
-        <li><a href="#!">profile</a></li>
+        <li><a href="{% url 'user_profile' %}">profile</a></li>
         <li><a href="/accounts/logout">logout</a></li>
       {% else %}
         <li><a href="/accounts/login">log in</a></li>
