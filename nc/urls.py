@@ -25,5 +25,6 @@ urlpatterns = [
     path('store/', include('store.urls')),
     path('music/', include('music.urls')),
     path('contact', include('contact.urls')),
-    path('login', include('login.urls'))
+    path('login', include('login.urls')),
+    path('accounts/', include('allauth.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
