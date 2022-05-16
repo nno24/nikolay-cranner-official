@@ -102,8 +102,6 @@ def get_bag(request):
     
     #Update the order form values
     order_id =' '.join(map(str,bag))
-    user_id = 'guest'
-
 
     context = {
         'products_bag': products_bag,
@@ -113,7 +111,6 @@ def get_bag(request):
         'remove': remove,
         'download_pointer_events': download_pointer_events,
         'order_id': order_id,
-        'user_id': user_id,
         'transaction_date': transaction_date,
         'transaction_time': transaction_time,
         'bag_items': bag_items,

@@ -36,13 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-//Auto fill hidden form for submitting order to database...
-document.addEventListener('DOMContentLoaded', function autoFillOrderForm() {
-  document.getElementById('id_order_id').setAttribute('value', order_id );
-  document.getElementById('id_user_id').setAttribute('value', user_id );
-  document.getElementById('id_grand_total').setAttribute('value', grand_total );
-  console.log("updating form fields");
-});
+
 
 /*
  document.addEventListener('DOMContentLoaded' && 'submit', function openModal() {
@@ -59,26 +53,17 @@ const payPalButtons = paypal.Buttons({
     shape: "rect",
     layout: "vertical"
   },
-// Set up the transaction
-createOrder: function(data, actions) {
-  const createOrderPayload = {
-      purchase_units: [{
-      reference_id: order_id,
-      amount: {
-         
-          value: grand_total
-      },
-    }]
-  }
-  console.log('The order payload is: ' + JSON.stringify(createOrderPayload, null, 4));
-  return actions.order.create(createOrderPayload);
-},
 
 //On Initializastion 
 onInit: (data, actions) => {
   let grand_total = document.getElementById('grand-total').textContent;
   let user_id = document.getElementById('user_id').textContent;
   let order_id = document.getElementById('order_id').textContent;
+
+  document.getElementById('id_order_id').setAttribute('value', order_id );
+  document.getElementById('id_user_id').setAttribute('value', user_id );
+  document.getElementById('id_grand_total').setAttribute('value', grand_total );
+  console.log("updating form fields");
   
   if (grand_total == 0){
     actions.disable();
@@ -88,6 +73,21 @@ onInit: (data, actions) => {
   }
 },
 
+// Set up the transaction -- making sure to get user_id and grand_total again, in case it was not set before
+//createOrder method was called -- this was an issue earlier.
+createOrder: function(data, actions) {
+  const createOrderPayload = {
+      purchase_units: [{
+      reference_id: document.getElementById('user_id').textContent,
+      amount: {
+         
+          value: document.getElementById('grand-total').textContent
+      },
+    }]
+  }
+  console.log('The order payload is: ' + JSON.stringify(createOrderPayload, null, 4));
+  return actions.order.create(createOrderPayload);
+},
 //If order is cancelled
 onCancel: (data) => {
   alert('Payment Cancelled');
