@@ -94,7 +94,7 @@ AUTHENTICATION_BACKENDS = [
 
 #Allauth config
 SITE_ID = 1
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ACCOUNT_EMAIL_REQUIRED=True
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE=True
 ACCOUNT_AUTHENTICATION_METHOD='username_email'
