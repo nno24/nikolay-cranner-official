@@ -65,6 +65,7 @@ body {
     margin: 2rem;
 }
 
+
 #nav-mobile li>a {
     color: #827373 !important;
     font-size: 1.2rem;
@@ -109,4 +110,11 @@ audio {
 
 ul.errorlist {
     display: none;
+}
+
+
+/* Styling for allauth templates */
+
+.forgot-password {
+    font-size: 0.6rem;
 }
