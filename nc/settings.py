@@ -67,7 +67,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, 'templates'),
-            #os.path.join(BASE_DIR, 'templates', 'allauth'),
+            os.path.join(BASE_DIR, 'templates', 'allauth'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -168,4 +168,4 @@ MEDIA_ROOT = (os.path.join(BASE_DIR, 'media'))
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CSRF_TRUSTED_ORIGINS = ["https://8000-nno24-nikolaycrannerof-v2exyjyg71q.ws-eu45.gitpod.io"]
+CSRF_TRUSTED_ORIGINS = ["https://8000-nno24-nikolaycrannerof-e6xkwe8oz4k.ws-eu45.gitpod.io"]

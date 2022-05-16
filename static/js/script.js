@@ -12,12 +12,10 @@ function printValues(obj) {
   }
 }
 
-let grand_total = document.getElementById('grand-total').textContent;
-let user_id = document.getElementById('user_id').textContent;
-let order_id = document.getElementById('order_id').textContent;
-
 
 //Event listeners -----------------------------------------
+
+
 
 //Initialize mobile menu
 document.addEventListener('DOMContentLoaded', function() {
@@ -36,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var elems = document.querySelectorAll('.dropdown-trigger');
   var instances = M.Dropdown.init(elems, {});
 });
+
 
 //Auto fill hidden form for submitting order to database...
 document.addEventListener('DOMContentLoaded', function autoFillOrderForm() {
@@ -77,6 +76,10 @@ createOrder: function(data, actions) {
 
 //On Initializastion 
 onInit: (data, actions) => {
+  let grand_total = document.getElementById('grand-total').textContent;
+  let user_id = document.getElementById('user_id').textContent;
+  let order_id = document.getElementById('order_id').textContent;
+  
   if (grand_total == 0){
     actions.disable();
   }

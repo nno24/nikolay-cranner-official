@@ -3,5 +3,25 @@ from .models import Order, Product
 
 # Register your models here.
 
-admin.site.register(Order)
-admin.site.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+    list_display = (
+        'sku',
+        'name',
+        'category',
+        'price',
+        'rating',
+        'image',
+    )
+
+    ordering = ('sku',)
+
+class OrdersAdmin(admin.ModelAdmin):
+    list_display = (
+        'order_id',
+        'user_id',
+        'transaction_date',
+        'grand_total',
+    )
+
+admin.site.register(Order, OrdersAdmin)
+admin.site.register(Product, ProductAdmin)
