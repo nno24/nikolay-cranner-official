@@ -88,7 +88,19 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
+
+#Allauth config
 SITE_ID = 1
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+ACCOUNT_EMAIL_REQUIRED=True
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE=True
+ACCOUNT_AUTHENTICATION_METHOD='username_email'
+ACCOUNT_EMAIL_VERIFICATION='mandatory'
+ACCOUNT_USERNAME_MIN_LENGTH=4
+LOGIN_URL ='/accounts/login'
+LOGIN_REDIRECT_URL = '/'
+
+
 
 WSGI_APPLICATION = 'nc.wsgi.application'
 
