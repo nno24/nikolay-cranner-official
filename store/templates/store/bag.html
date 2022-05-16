@@ -35,7 +35,7 @@
 <div class="row">
     <div class="col s3 center"></div>
     <div class="col s3 ">User Id</div>
-    <div class="col s3 " id="user_id">{{ request.user }}</div>
+    <div class="col s3 " id="user_id">{{ request.user.username|default:'guest' }}</div>
     <div class="col s3 "></div>
 </div>
 <div class="row">
