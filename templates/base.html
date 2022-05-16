@@ -19,46 +19,54 @@
       {% if request.user.is_authenticated %}
         {% if request.user.is_superuser %}
         <li><a href="/admin">manage</a></li>
+        <li class="divider" tabindex="-1"></li>
         {% endif %}
-        <li><a href="#!">Profile</a></li>
+        <li><a href="#!">profile</a></li>
         <li><a href="/accounts/logout">logout</a></li>
       {% else %}
         <li><a href="/accounts/login">log in</a></li>
+        <li class="divider" tabindex="-1"></li>
         <li><a href="/accounts/signup">sign up</a></li>
       {% endif %}
     </ul>
     <!-- Dropdown Structure Mobile -->
-    <ul id="dropdown2" class="dropdown-content2">
+    <ul id="dropdown2" class="dropdown-content">
       {% if request.user.is_authenticated %}
         {% if request.user.is_superuser %}
         <li><a href="/admin">manage</a></li>
+        <li class="divider" tabindex="-1"></li>
         {% endif %}
-        <li><a href="#!">Profile</a></li>
+        <li><a href="#!">profile</a></li>
         <li><a href="/accounts/logout">logout</a></li>
       {% else %}
         <li><a href="/accounts/login">log in</a></li>
+        <li class="divider" tabindex="-1"></li>
         <li><a href="/accounts/signup">sign up</a></li>
       {% endif %}
     </ul>
-    <nav>
+    <div class="navbar-fixed">
+      <nav>
         <div class="nav-wrapper nc-header-footer">
           <a href="{% url 'home' %}" class="brand-logo left">
             <img src='{% static "img/logo.png" %}' alt="Nikolay Cranner Logo" class="nc-logo">
           </a>
+          {% block page_header_extra %}
+          {% endblock %}
           <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="{% url 'music' %}">new music</a></li>
             <li><a href="{% url 'contact' %}">contact</a></li>
             <li><a href="{% url 'store' %}">store</a></li>
-            <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">{{ request.user }}<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">{{ request.user.username|default:'guest' }}<i class="material-icons right">arrow_drop_down</i></a></li>
           </ul>
         </div>
       </nav>
+    </div>
       <ul class="sidenav nc-header-footer" id="mobile-demo">
         <li><a href="{% url 'music' %}">new music</a></li>
         <li><a href="{% url 'contact' %}">contact</a></li>
         <li><a href="{% url 'store' %}">store</a></li>
-        <li><a class="dropdown-trigger2" href="#!" data-target="dropdown2">{{ request.user }}<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown2">{{ request.user.username|default:'guest' }}<i class="material-icons right">arrow_drop_down</i></a></li>
       </ul>
   </header>
   {% endblock %}

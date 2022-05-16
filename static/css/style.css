@@ -1,8 +1,13 @@
 {% load static %}
 
-.nc-header-footer, .modal-footer {
+.nc-header-footer, .modal-footer, .dropdown-content {
     background-color: #1C140D !important;
     color: #827373 !important;
+}
+
+.dropdown-content>li:hover, li:hover {
+    background-color: #150E05 !important;
+    transition: 5s;
 }
 
 main {
@@ -62,7 +67,7 @@ input {
       margin-left: 20px;
   }
 
-  .sidenav li>a {
+  .sidenav li>a, .sidenav li>a>i {
     color: #827373 !important;
     font-size: 2rem;
     margin: 2rem;
@@ -114,6 +119,7 @@ audio {
 ul.errorlist {
     display: none;
 }
+
 
 
 /* Styling for allauth templates */

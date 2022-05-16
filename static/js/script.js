@@ -29,16 +29,25 @@ document.addEventListener('DOMContentLoaded', function() {
     var instances = M.Modal.init(elems, {'dismissible': true, 'opacity': 0.65});
   });
 
- //Initialize dropdown for login / signup etc Desktop/Tablet
+ 
+  //Initialize dropdown for login / signup etc Desktop/Tablet
 document.addEventListener('DOMContentLoaded', function() {
   var elems = document.querySelectorAll('.dropdown-trigger');
-  var instances = M.Dropdown.init(elems, {});
+  var instances = M.Dropdown.init(elems, {
+    'coverTrigger': false,
+    'inDuration': 500,
+    'outDuration': 300,
+  });
 });
 
  //Initialize dropdown for login / signup etc Mobile
  document.addEventListener('DOMContentLoaded', function() {
-  var elems = document.querySelectorAll('.dropdown-trigger2');
-  var instances = M.Dropdown.init(elems, {});
+  var elems2 = document.querySelectorAll('.dropdown-trigger2');
+  var instances = M.Dropdown.init(elems2, {
+    'coverTrigger': false,
+    'inDuration': 500,
+    'outDuration': 300,
+  });
 });
 
 

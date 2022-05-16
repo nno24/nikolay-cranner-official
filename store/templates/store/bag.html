@@ -1,32 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block page_header %}
-<header>
-    <div class="navbar-fixed">
-        <nav>
-            <div class="nav-wrapper nc-header-footer">
-            <a href="{% url 'home' %}" class="brand-logo left">
-                <img src='{% static "img/logo.png" %}' alt="Nikolay Cranner Logo" class="nc-logo">
-            </a>
-            <a href="#" class="right" id="basket-counter"><i class="small material-icons right">shopping_cart</i><i class="fa-duotone fa-sm fa-{{ bag_items }}"></i></a>
-            <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="{% url 'music' %}">new music</a></li>
-                <li><a href="{% url 'contact' %}">contact</a></li>
-                <li><a href="{% url 'store' %}">store</a></li>
-                <li><a href="{% url 'login' %}">login</a></li>
-            </ul>
-            </div>
-        </nav>
-    </div>
-      <ul class="sidenav nc-header-footer" id="mobile-demo">
-        <li><a href="{% url 'music' %}">new music</a></li>
-        <li><a href="{% url 'contact' %}">contact</a></li>
-        <li><a href="{% url 'store' %}">store</a></li>
-        <li><a href="{% url 'login' %}">login</a></li>
-      </ul>
-  </header>
-{% endblock %}
+{% block page_header_extra %}
+    <a href="{% url 'bag' %}" class="right basket-counter"><i class="small material-icons right">shopping_cart</i><i class="fa-duotone fa-sm fa-{{ bag_items }}"></i></a>
+{% endblock %} 
 {% block content %}
 {% for product in products_bag %}
 <div class="row product-row">
