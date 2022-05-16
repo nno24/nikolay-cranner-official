@@ -25,11 +25,17 @@ document.addEventListener('DOMContentLoaded', function() {
     var instances = M.Sidenav.init(elems, {});
   });
 
-  //Initialize modals
+//Initialize modals
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems, {'dismissible': true, 'opacity': 0.65});
   });
+
+ //Initialize dropdown for login / signup etc
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.dropdown-trigger');
+  var instances = M.Dropdown.init(elems, {});
+});
 
 //Auto fill hidden form for submitting order to database...
 document.addEventListener('DOMContentLoaded', function autoFillOrderForm() {
