@@ -32,7 +32,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["nc.herokuapp.com", "localhost", "nikolaycranner.herokuapp.com"]
+ALLOWED_HOSTS = ["nikolaycranner.herokuapp.com","localhost"]
 
 # Application definition
 
@@ -173,11 +173,11 @@ USE_TZ = True
 #Static files to cloudinary config
 STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [(os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles-cdn')
 
 MEDIA_URL = '/media/'
-DEFAULT_FILE_STORAGE ='cloudinary_storage.storage.MediaCloudinaryStorage'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 MEDIA_ROOT = (os.path.join(BASE_DIR, 'media'))
 
 
@@ -186,4 +186,4 @@ MEDIA_ROOT = (os.path.join(BASE_DIR, 'media'))
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CSRF_TRUSTED_ORIGINS = ["https://8000-nno24-nikolaycrannerof-e6xkwe8oz4k.ws-eu45.gitpod.io"]
+#CSRF_TRUSTED_ORIGINS = ["https://8000-nno24-nikolaycrannerof-e6xkwe8oz4k.ws-eu45.gitpod.io"]
