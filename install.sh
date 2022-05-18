@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pcks="django dj_database_url gunicorn dj3-cloudinary-storage psycopg2 django-allauth Pillow"
+pcks="django dj_database_url gunicorn dj3-cloudinary-storage psycopg2-binary django-allauth Pillow"
 
 for p in $pcks
 do
