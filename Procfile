@@ -1,1 +1,1 @@
-web: gunicorn nikolaycranner.wsgi
+web: gunicorn nc.wsgi
