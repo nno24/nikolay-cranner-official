@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Order, Product
+from .models import Order, Product, Bag
 
 # Register your models here.
 
@@ -25,3 +25,4 @@ class OrdersAdmin(admin.ModelAdmin):
 
 admin.site.register(Order, OrdersAdmin)
 admin.site.register(Product, ProductAdmin)
+admin.site.register(Bag)

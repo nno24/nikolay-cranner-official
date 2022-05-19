@@ -1,21 +1,19 @@
 from django.shortcuts import render, get_object_or_404, redirect
 import requests
-from .models import Product, Category
+from .models import Product, Category, Bag
 from .forms import OrderForm
 import datetime
 
 #Global variables for bag
 bag = []
-bag_items = 0
 products_bag = []
 grand_total = 0
 
 
 # Create your views here.
 def get_store(request):
-    """A view to show all product"""
-    global bag_items
-
+    """A view to show all product"""   
+    bag_items = get_object_or_404(Bag)
     products = Product.objects.all()
     context = {
         'products': products,
@@ -27,12 +25,19 @@ def get_store(request):
 def store_details(request, store_id ):
     """A view to show product details"""
     global bag
-    global bag_items
+    bag_items = get_object_or_404(Bag)
+
 
 
     if request.POST:
+        for key, value in request.POST.items():
+            print('Key: %s' % (key))
+            print('value: %s' % (value))
         bag.append(store_id)
-        bag_items+=1
+        bag_items.bag_items+=1
+        bag_items.save()
+
+        return redirect('/store')
         
 
 
@@ -53,7 +58,8 @@ def get_bag(request):
     global bag
     global products_bag
     global grand_total
-    global bag_items
+    bag_items = get_object_or_404(Bag)
+
 
     products_bag = []
     grand_total = 0
@@ -82,7 +88,9 @@ def get_bag(request):
             #If deleting an item
             if key == 'delete' and len(bag) != 0:
                 del bag[int(value)]
-                bag_items-=1
+                bag_items.bag_items-=1
+                bag_items.save()
+                return redirect('/store/bag/')
             #If order was submitted to database, after successful purchase ->
             # enable downloads disable remove buttons and set date and time
             elif key == 'order_id':

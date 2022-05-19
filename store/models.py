@@ -38,3 +38,8 @@ class Order(models.Model):
     transaction_date = models.DateField(default=tz.now)
     transaction_time = models.TimeField(default=time(18, 00))
     grand_total = models.DecimalField(default=0.00, max_digits=10, decimal_places=2)
+
+
+class Bag(models.Model):
+    bag_items = models.IntegerField(default=0)
+    

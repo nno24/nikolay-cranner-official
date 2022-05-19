@@ -28,7 +28,10 @@ TEMPLATES_DIR_ALLAUTH = os.path.join(BASE_DIR,'templates','allauth')
 
 
 #For deployment
-SECRET_KEY = os.environ.get('SECRET_KEY')
+if 'SECRET_KEY' in os.environ:
+    SECRET_KEY = os.environ.get('SECRET_KEY')
+else:
+    SECRET_KEY = 'secret9999'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # Set to True of development
@@ -178,7 +181,6 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 
 MEDIA_URL = '/media/'
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 MEDIA_ROOT = (os.path.join(BASE_DIR, 'media'))
 
 
@@ -210,7 +212,7 @@ if 'USE_AWS' in os.environ:
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#CSRF_TRUSTED_ORIGINS = ["https://8000-nno24-nikolaycrannerof-e6xkwe8oz4k.ws-eu45.gitpod.io"]
+CSRF_TRUSTED_ORIGINS = ["https://8000-nno24-nikolaycrannerof-2e4dhdtsnhh.ws-eu45.gitpod.io"]
 
 if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
