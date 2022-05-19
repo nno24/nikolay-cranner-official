@@ -42,4 +42,4 @@ class Order(models.Model):
 
 class Bag(models.Model):
     bag_items = models.IntegerField(default=0)
-    
+    bag_name = models.CharField(max_length=254, null=True, blank=True, default="guest")

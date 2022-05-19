@@ -7,13 +7,27 @@ import datetime
 #Global variables for bag
 bag = []
 products_bag = []
+bag_counter = 0
 grand_total = 0
+
 
 
 # Create your views here.
 def get_store(request):
-    """A view to show all product"""   
-    bag_items = get_object_or_404(Bag)
+    """A view to show all product"""
+    global bag
+   
+
+    #Create a bag for the user if it don't exist
+    session_user = request.user.username
+
+    try:   
+        bag_items = get_object_or_404(Bag, bag_name=session_user)
+    except:
+        bag_items = Bag(bag_name=session_user)
+        bag_items.save()
+        bag = []
+
     products = Product.objects.all()
     context = {
         'products': products,
@@ -25,7 +39,8 @@ def get_store(request):
 def store_details(request, store_id ):
     """A view to show product details"""
     global bag
-    bag_items = get_object_or_404(Bag)
+    session_user = request.user.username
+    bag_items = get_object_or_404(Bag, bag_name=session_user)
 
 
 
@@ -58,7 +73,8 @@ def get_bag(request):
     global bag
     global products_bag
     global grand_total
-    bag_items = get_object_or_404(Bag)
+    session_user = request.user.username
+    bag_items = get_object_or_404(Bag, bag_name=session_user)
 
 
     products_bag = []
