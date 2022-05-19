@@ -31,7 +31,7 @@ TEMPLATES_DIR_ALLAUTH = os.path.join(BASE_DIR,'templates','allauth')
 if 'SECRET_KEY' in os.environ:
     SECRET_KEY = os.environ.get('SECRET_KEY')
 else:
-    SECRET_KEY = ''
+    SECRET_KEY = 'secret9999!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # Set to True of development
@@ -128,12 +128,25 @@ if 'DATABASE_URL' in os.environ:
         'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
     }
 else:
+    
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
+    """
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'db.postgres',
+            'USER': 'postgres',
+            'PASSWORD': 'postgres',
+            'HOST': 'localhost',
+            'PORT': '5432',
+        }
+    }
+    """
 
 
 
@@ -212,7 +225,7 @@ if 'USE_AWS' in os.environ:
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#CSRF_TRUSTED_ORIGINS = ["https://8000-nno24-nikolaycrannerof-2e4dhdtsnhh.ws-eu45.gitpod.io"]
+CSRF_TRUSTED_ORIGINS = ["https://8000-nno24-nikolaycrannerof-xoyw399k1vp.ws-eu45.gitpod.io"]
 
 if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

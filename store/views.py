@@ -5,8 +5,6 @@ from .forms import OrderForm
 import datetime
 
 #Global variables for bag
-bag = []
-products_bag = []
 bag_counter = 0
 grand_total = 0
 
@@ -15,32 +13,29 @@ grand_total = 0
 # Create your views here.
 def get_store(request):
     """A view to show all product"""
-    global bag
-   
 
     #Create a bag for the user if it don't exist
     session_user = request.user.username
 
     try:   
-        bag_items = get_object_or_404(Bag, bag_name=session_user)
+        bag = get_object_or_404(Bag, bag_name=session_user)
     except:
-        bag_items = Bag(bag_name=session_user)
-        bag_items.save()
-        bag = []
+        bag = Bag(bag_name=session_user)
+        bag.save()
 
     products = Product.objects.all()
     context = {
         'products': products,
-        'bag_items': bag_items,
+        'bag': bag,
     }
     return render(request, 'store/store.html', context)
 
 
 def store_details(request, store_id ):
     """A view to show product details"""
-    global bag
+
     session_user = request.user.username
-    bag_items = get_object_or_404(Bag, bag_name=session_user)
+    bag = get_object_or_404(Bag, bag_name=session_user)
 
 
 
@@ -48,19 +43,19 @@ def store_details(request, store_id ):
         for key, value in request.POST.items():
             print('Key: %s' % (key))
             print('value: %s' % (value))
-        bag.append(store_id)
-        bag_items.bag_items+=1
-        bag_items.save()
+        
+        bag.bag_items+-store_id
+        bag.save()
 
         return redirect('/store')
         
 
 
     product = get_object_or_404(Product, pk=store_id)
+
     context = {
         'product': product,
         'bag': bag,
-        'bag_items': bag_items,
 
     }
 
@@ -70,11 +65,9 @@ def store_details(request, store_id ):
 
 def get_bag(request):
     """A view to show the cart/bag"""
-    global bag
-    global products_bag
     global grand_total
     session_user = request.user.username
-    bag_items = get_object_or_404(Bag, bag_name=session_user)
+    bag = get_object_or_404(Bag, bag_name=session_user)
 
 
     products_bag = []
@@ -102,10 +95,9 @@ def get_bag(request):
             print('value: %s' % (value))
 
             #If deleting an item
-            if key == 'delete' and len(bag) != 0:
-                del bag[int(value)]
-                bag_items.bag_items-=1
-                bag_items.save()
+            if key == 'delete' and len(bag.bag_items) != 0:
+                del bag.bag_items[int(value)]
+                bag.save()
                 return redirect('/store/bag/')
             #If order was submitted to database, after successful purchase ->
             # enable downloads disable remove buttons and set date and time
@@ -118,7 +110,7 @@ def get_bag(request):
 
     
     #Update the products in bag view
-    for id in bag:
+    for id in bag.bag_items:
         product=get_object_or_404(Product, pk=id)
         products_bag.append(product)
         grand_total+=product.price
@@ -136,15 +128,13 @@ def get_bag(request):
         'order_id': order_id,
         'transaction_date': transaction_date,
         'transaction_time': transaction_time,
-        'bag_items': bag_items,
+        'bag': bag,
     }
 
     return render(request, 'store/bag.html', context)
 
 def get_greeting(request):
-    global products_bag
-    global grand_total
-
+    """A view to display success message after purchase"""
     context = {
         'products_bag': products_bag,
         'grand_total': grand_total,
