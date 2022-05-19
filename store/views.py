@@ -23,10 +23,11 @@ def get_store(request):
         bag = Bag(bag_name=session_user)
         bag.save()
 
+    quantity = bag.bag_quantity
     products = Product.objects.all()
     context = {
         'products': products,
-        'bag': bag,
+        'quantity': quantity,
     }
     return render(request, 'store/store.html', context)
 
@@ -44,18 +45,25 @@ def store_details(request, store_id ):
             print('Key: %s' % (key))
             print('value: %s' % (value))
         
-        bag.bag_items+-store_id
+        try:
+            bag.bag_items+=store_id + " "
+            bag.bag_quantity+=1
+        except:
+            bag.bag_items=store_id + " "
+            bag.bag_quantity+=1
+
         bag.save()
 
         return redirect('/store')
         
 
-
+    
+    quantity = bag.bag_quantity
     product = get_object_or_404(Product, pk=store_id)
 
     context = {
         'product': product,
-        'bag': bag,
+        'quantity': quantity,
 
     }
 
@@ -68,6 +76,7 @@ def get_bag(request):
     global grand_total
     session_user = request.user.username
     bag = get_object_or_404(Bag, bag_name=session_user)
+    bag_items_to_list = bag.bag_items.split(" ")
 
 
     products_bag = []
@@ -94,10 +103,13 @@ def get_bag(request):
             print('Key: %s' % (key))
             print('value: %s' % (value))
 
-            #If deleting an item
+            #If deleting an item - pop out the list item, and convert back to string / model.
             if key == 'delete' and len(bag.bag_items) != 0:
-                del bag.bag_items[int(value)]
+                del bag_items_to_list[int(value)]
+                bag.bag_items = ' '.join(map(str, bag_items_to_list))
+                bag.bag_quantity-=1
                 bag.save()
+
                 return redirect('/store/bag/')
             #If order was submitted to database, after successful purchase ->
             # enable downloads disable remove buttons and set date and time
@@ -110,13 +122,20 @@ def get_bag(request):
 
     
     #Update the products in bag view
-    for id in bag.bag_items:
-        product=get_object_or_404(Product, pk=id)
-        products_bag.append(product)
-        grand_total+=product.price
+    try:
+        bag_items_to_list = bag.bag_items.split(" ")
+
+        for id in bag_items_to_list:
+            product=get_object_or_404(Product, pk=id)
+            products_bag.append(product)
+            grand_total+=product.price
+    except:
+        print("no items in bag")
+        
     
     #Update the order form values
-    order_id =' '.join(map(str,bag))
+    order_id = bag.bag_items
+    quantity = bag.bag_quantity
 
     context = {
         'products_bag': products_bag,
@@ -128,7 +147,7 @@ def get_bag(request):
         'order_id': order_id,
         'transaction_date': transaction_date,
         'transaction_time': transaction_time,
-        'bag': bag,
+        'quantity': quantity,
     }
 
     return render(request, 'store/bag.html', context)

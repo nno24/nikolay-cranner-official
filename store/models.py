@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone as tz
 from datetime import date, time
-from django.contrib.postgres.fields import ArrayField
+
 
 
 # Create your models here.
@@ -43,5 +43,6 @@ class Order(models.Model):
 
 
 class Bag(models.Model):
-    bag_items = ArrayField(models.CharField(max_length=10, blank=True))
+    bag_items = models.CharField(max_length=254, blank=True, null=True)
     bag_name = models.CharField(max_length=254, null=True, blank=True, default="guest")
+    bag_quantity = models.IntegerField(default=0)

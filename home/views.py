@@ -9,7 +9,7 @@ def get_home(request):
     try:
         session_user = request.user.username
         bag = get_object_or_404(Bag, bag_name=session_user)
-        print('bag deleted: ', bag.name)
+        print('bag deleted: ', bag.bag_name)
         bag.delete()
     except:
         print('bag dont exist')
