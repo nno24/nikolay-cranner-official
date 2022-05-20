@@ -28,10 +28,8 @@ TEMPLATES_DIR_ALLAUTH = os.path.join(BASE_DIR,'templates','allauth')
 
 #Paypal client ID
 
-if 'PAYPAL_CLIENT_ID' in os.environ:
-    PAYPAL_CLIENT_ID = os.environ.get('PAYPAL_CLIENT_ID')
-else:
-    PAYPAL_CLIENT_ID='ATfsuzE4j3nQYzab5kaRV2v9C0jsFb_vHBJKzspzRiUuIH8Om9AXo898FXRansPyNPPQH23yEuQX3Y_H'
+
+PAYPAL_CLIENT_ID='ATfsuzE4j3nQYzab5kaRV2v9C0jsFb_vHBJKzspzRiUuIH8Om9AXo898FXRansPyNPPQH23yEuQX3Y_H'
 
 #For deployment
 if 'SECRET_KEY' in os.environ:
