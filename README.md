@@ -1,4 +1,4 @@
-<h1 align="center">Pizza Heaven - Resturant Booking</h1>
+<h1 align="center">Nikolay Cranner Official</h1>
 
 [View the live project here.](https://nikolaycranner.herokuapp.com/)
 
