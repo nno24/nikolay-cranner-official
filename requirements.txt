@@ -2,9 +2,7 @@ asgiref==3.5.2
 backports.zoneinfo==0.2.1
 boto3==1.23.4
 botocore==1.26.4
-cloudinary==1.29.0
 dj-database-url==0.5.0
-dj3-cloudinary-storage==0.0.6
 Django==4.0.4
 django-allauth==0.50.0
 django-storages==1.12.3

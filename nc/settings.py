@@ -57,8 +57,6 @@ INSTALLED_APPS = [
     'music',
     'contact',
     'userprofile',
-
-    #others
     'storages',
 ]
 
