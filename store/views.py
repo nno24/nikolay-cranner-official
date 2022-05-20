@@ -76,7 +76,8 @@ def get_bag(request):
     global grand_total
     session_user = request.user.username
     bag = get_object_or_404(Bag, bag_name=session_user)
-    bag_items_to_list = bag.bag_items.split(" ")
+    if bag.bag_items:
+        bag_items_to_list = bag.bag_items.split(" ")
 
 
     products_bag = []
