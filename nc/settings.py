@@ -26,10 +26,6 @@ TEMPLATES_DIR_ALLAUTH = os.path.join(BASE_DIR,'templates','allauth')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
-#Paypal client ID
-
-
-PAYPAL_CLIENT_ID='ATfsuzE4j3nQYzab5kaRV2v9C0jsFb_vHBJKzspzRiUuIH8Om9AXo898FXRansPyNPPQH23yEuQX3Y_H'
 
 #For deployment
 if 'SECRET_KEY' in os.environ:
