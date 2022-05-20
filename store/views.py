@@ -8,15 +8,25 @@ import datetime
 bag_counter = 0
 grand_total = 0
 order_id=''
+session_user='guest'
 
 
+def get_session_user(request):
+    if request.user.is_authenticated:
+        session_user = request.user.username
+        print("session user is: ", session_user)
+        return session_user
+    else:
+        session_user = 'guest'
+        print("session user is: ", session_user)
+        return session_user
 
 # Create your views here.
 def get_store(request):
     """A view to show all product"""
-
+    global session_user
     #Create a bag for the user if it don't exist
-    session_user = request.user.username
+    session_user = get_session_user(request)
 
     try:   
         bag = get_object_or_404(Bag, bag_name=session_user)
@@ -35,11 +45,9 @@ def get_store(request):
 
 def store_details(request, store_id ):
     """A view to show product details"""
-
-    session_user = request.user.username
+    global session_user
+    session_user = get_session_user(request)
     bag = get_object_or_404(Bag, bag_name=session_user)
-
-
 
     if request.POST:
         for key, value in request.POST.items():
@@ -74,19 +82,23 @@ def store_details(request, store_id ):
 
 def get_bag(request):
     """A view to show the cart/bag"""
+    #Global vars
     global grand_total
     global order_id
-    session_user = request.user.username
-    bag = get_object_or_404(Bag, bag_name=session_user)
-    if bag.bag_items:
-        bag_items_to_list = bag.bag_items.split(" ")
+    global session_user
 
-
+    #Local vars
+    session_user = get_session_user(request)
     products_bag = []
     grand_total = 0
     transaction_date = datetime.date.today()
     transaction_time = datetime.datetime.now().time().strftime("%H:%M:%S")
     print(transaction_date, transaction_time)
+    bag = get_object_or_404(Bag, bag_name=session_user)
+
+    if bag.bag_items:
+        bag_items_to_list = bag.bag_items.split(" ")
+
 
     #download and buttons disabled status
     download = 'disabled'
@@ -130,16 +142,22 @@ def get_bag(request):
 
     
     #Update the products in bag view
-    if bag.bag_items.split(" "):
+    try: 
+        bag.bag_items.split(" ")
         bag_items_to_list = bag.bag_items.split(" ")
         for id in bag_items_to_list:
             if id != "":
                 product=get_object_or_404(Product, pk=id)
                 products_bag.append(product)
                 grand_total+=product.price
-    else:
+    except:
         print("no items in bag")
-        
+        quantity = bag.bag_quantity
+        context = {
+            'quantity': quantity,
+            'grand_total': grand_total,
+        }
+        return render(request, 'store/bag.html', context)
     
     #Update the order form values
     order_items = bag.bag_items
@@ -164,6 +182,14 @@ def get_bag(request):
 
 def get_greeting(request):
     """A view to display success message after purchase"""
+    global session_user
+    session_user = get_session_user(request)
+    try:   
+        bag = get_object_or_404(Bag, bag_name=session_user)
+        bag.delete()
+        print("deleted shopping bag for: ", session_user)
+    except:
+        return render(request, 'store/greeting.html')    
     context = {
         
     }
@@ -173,16 +199,23 @@ def get_greeting(request):
 
 def view_order(request):
     """ A view to display an order """
-    
-    if request.user.is_authenticated:
-        session_user = request.user.username
-        print("the user is auth")
-    else:
-        session_user = 'guest'
-        print("the user is guest")
-    print("the order_id is: ", order_id)
-    order = get_object_or_404(Order, user_id=session_user, order_id=order_id)
+    global session_user
+    session_user = get_session_user(request)
+    products_order = []
+
+    print("the order_id is: ", order_id) 
+    try:
+        order = get_object_or_404(Order, user_id=session_user, order_id=order_id)
+    except:
+        return render(request, 'store/view_order.html')
+
+    for id in order.order_items.split(" "):
+        if id != "":
+            product = get_object_or_404(Product, pk=id)
+            products_order.append(product)
+
     context = {
         'order': order,
+        'products_order': products_order,
     }
     return render(request, 'store/view_order.html', context)

@@ -73,23 +73,30 @@ const payPalButtons = paypal.Buttons({
 
 //On Initializastion 
 onInit: (data, actions) => {
-  let grand_total = document.getElementById('grand-total').textContent;
-  let user_id = document.getElementById('user_id').textContent;
-  let order_id = document.getElementById('order_id').textContent;
-  let order_items = document.getElementById('order_items').textContent;
-
-  document.getElementById('id_order_id').setAttribute('value', order_id );
-  document.getElementById('id_order_items').setAttribute('value', order_items );
-  document.getElementById('id_user_id').setAttribute('value', user_id );
-  document.getElementById('id_grand_total').setAttribute('value', grand_total );
-  console.log("updating form fields");
+  try {
+    let grand_total = document.getElementById('grand-total').textContent;
+    let user_id = document.getElementById('user_id').textContent;
+    let order_id = document.getElementById('order_id').textContent;
+    let order_items = document.getElementById('order_items').textContent;
   
-  if (grand_total == 0){
+    document.getElementById('id_order_id').setAttribute('value', order_id );
+    document.getElementById('id_order_items').setAttribute('value', order_items );
+    document.getElementById('id_user_id').setAttribute('value', user_id );
+    document.getElementById('id_grand_total').setAttribute('value', grand_total );
+    actions.enable();
+    console.log("updated form fields, and enabled paypal buttons");
+  }
+
+  catch (error) {
+    console.log("No items in bag: " + error);
+    console.log("Disabling paypal payment button");
     actions.disable();
   }
-  else {
-    actions.enable();
+
+  finally {
+    console.log("No action needed")
   }
+
 },
 
 // Set up the transaction -- making sure to get user_id and grand_total again, in case it was not set before

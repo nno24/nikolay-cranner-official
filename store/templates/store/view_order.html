@@ -1,6 +1,35 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container">
-    
+    <div class="row center">
+        {% if order %}
+        <div class="col s12">
+            <h5>Order: {{order.order_id}}</h5>
+            <hr>
+        </div>
+        {% for product in products_order %}
+        <div class="row product-row">
+            <div class="col s3 m2 l2 offset-l2"><img src="{{ MEDIA_URL }}{{ product.image }}" alt="{{ product.image }}" class="nc-bag-img"></div>
+            <div class="col s5 l3" id="{{ product.pk }}">{{ product.name }}</div>
+            <div class="col s2 l2">{{ product.price }}</div>
+            <div class="col s2 l1">
+                <form action="{% url 'bag' %}" method="post">
+                    {% csrf_token %}
+                    <button class="btn-floating btn-small waves-effect waves-light nc-btn-color" id="download-{{ forloop.counter0 }}" type="submit" name="download" value="{{ forloop.counter0 }}" onclick="">
+                        <i class="material-icons">download</i>
+                    </button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <h5>You have no current orders...</h5>
+        <div class="col s12 m6 offset-m3 l4 offset-l4 center">
+            <a href="{% url 'store' %}">
+                <button class="btn waves-effect waves-light btn nc-btn-color" id="#to-store" type="submit" name="to-store" value="">Back to store</button>
+            </a>
+        </div>
+        {% endif %}
+    </div> 
 </div>
 {% endblock %}

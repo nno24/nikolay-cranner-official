@@ -29,6 +29,11 @@ body {
 input {
     color: white;
 }
+
+hr {
+    margin: 50px;
+    opacity: 0.2;
+}
 .modal-content {
     background-color: #150E05;
     color: #827373;
@@ -82,7 +87,7 @@ input {
 .nc-product-img {
     height: auto;
     width: 100%;
-    margin-top: 20vh;
+    margin-top: 5vh;
 }
 
 .nc-product-img:hover {
@@ -97,7 +102,7 @@ input {
 .nc-store-details-img {
     height: auto;
     width: 70%;
-    margin-top: 3vh;
+    margin-top: 2vh;
 }
 
 .nc-bag-img {
