@@ -4,12 +4,13 @@
     <a href="{% url 'bag' %}" class="right basket-counter"><i class="small material-icons right">shopping_cart</i><i class="fa-duotone fa-sm fa-{{ quantity }}"></i></a>
 {% endblock %} 
 {% block content %}
+<div class="container">
 {% for product in products_bag %}
 <div class="row product-row">
-    <div class="col s3 center"><img src="{{ MEDIA_URL }}{{ product.image }}" alt="{{ product.image }}" class="nc-bag-img"></div>
-    <div class="col s3" id="{{ product.pk }}">{{ product.name }}</div>
-    <div class="col s3">{{ product.price }} $</div>
-    <div class="col s1">
+    <div class="col s3 m2 l2 offset-l2"><img src="{{ MEDIA_URL }}{{ product.image }}" alt="{{ product.image }}" class="nc-bag-img"></div>
+    <div class="col s5 l3" id="{{ product.pk }}">{{ product.name }}</div>
+    <div class="col s2 l2">{{ product.price }}</div>
+    <div class="col s2 l1">
         <form action="{% url 'bag' %}" method="post">
             {% csrf_token %}
             <button {{ remove }} class="btn-floating btn-small waves-effect waves-light nc-btn-color" id="remove-{{ forloop.counter0 }}" type="submit" name="delete" value="{{ forloop.counter0 }}" onclick="">
@@ -17,48 +18,43 @@
             </button>
         </form>
     </div>
-    <div class="col s2">
-            <a href="{{ MEDIA_URL }}{{ product.media }}" download="mp3" style="pointer-events: {{ download_pointer_events }};">
-                <button {{ download }} class="btn-floating btn-small waves-effect waves-light nc-btn-color" id="download-{{ forloop.counter0 }}" type="submit" name="download" value="{{ forloop.counter0 }}" onclick="">
-                    <i class="material-icons">download</i>
-                </button>
-            </a>
-    </div>
 </div>
 {% endfor %}
 <div class="row">
-    <div class="col s3 center"></div>
-    <div class="col s3 ">Grand Total</div>
-    <div class="col s3 " id="grand-total">{{ grand_total }}</div>
-    <div class="col s3 "></div>
+    <div class="col s3 m2 l2 offset-l2"></div>
+    <div class="col s5 l3">Grand Total:</div>
+    <div class="col s2 l2" id="grand-total">{{ grand_total }}</div>
+    <div class="col s2 l1"></div>
 </div>
-<div class="row">
+<div hidden class="row">
     <div class="col s3 center"></div>
     <div class="col s3 ">User Id</div>
     <div class="col s3 " id="user_id">{{ request.user.username|default:'guest' }}</div>
     <div class="col s3 "></div>
 </div>
-<div class="row">
+<div hidden class="row">
     <div class="col s3 center"></div>
     <div class="col s3 ">Order Id</div>
     <div class="col s3" id="order_id">{{ order_id }}</div>
     <div class="col s3 "></div>
 </div>
-<div class="row">
+<div hidden class="row">
     <div class="col s3 center"></div>
     <div class="col s3 ">Date</div>
     <div class="col s3" id="transaction_date">{{ transaction_date }}</div>
     <div class="col s3 "></div>
 </div>
-<div class="row">
+<div hidden class="row">
     <div class="col s3 center"></div>
     <div class="col s3 ">Time</div>
     <div class="col s3" id="transaction_time">{{ transaction_time }}</div>
     <div class="col s3 "></div>
 </div>
-<div class="row">
-    <div class="col s6 offset-s3 center">
-        <div id="paypal-button-container"></div>
+<div class="container">
+    <div class="row">
+        <div class="col s12 m6 offset-m3 l3 offset-l4">
+            <div id="paypal-button-container"></div>
+        </div>
     </div>
 </div>
 <div class="container">
@@ -76,6 +72,7 @@
         </div>
       </div>
     </div>
-  </div>
+</div>
+</div>
   <script src="https://www.paypal.com/sdk/js?client-id=ATfsuzE4j3nQYzab5kaRV2v9C0jsFb_vHBJKzspzRiUuIH8Om9AXo898FXRansPyNPPQH23yEuQX3Y_H&currency=USD"></script>
 {% endblock %}
