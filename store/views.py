@@ -123,14 +123,14 @@ def get_bag(request):
 
     
     #Update the products in bag view
-    try:
+    if bag.bag_items.split(" "):
         bag_items_to_list = bag.bag_items.split(" ")
-
         for id in bag_items_to_list:
-            product=get_object_or_404(Product, pk=id)
-            products_bag.append(product)
-            grand_total+=product.price
-    except:
+            if id != "":
+                product=get_object_or_404(Product, pk=id)
+                products_bag.append(product)
+                grand_total+=product.price
+    else:
         print("no items in bag")
         
     
