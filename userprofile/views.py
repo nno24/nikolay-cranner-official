@@ -6,7 +6,11 @@ from store.models import Product, Category, Order
 
 def user_profile(request):
     """ A view to show the orders of the current user """
-    orders = get_list_or_404(Order, user_id=request.user.username)
+    try:
+        orders = get_list_or_404(Order, user_id=request.user.username)
+    except:
+        return render(request, 'userprofile/userprofile.html')
+        
     products_all = get_list_or_404(Product)
     orders_detail = []
 

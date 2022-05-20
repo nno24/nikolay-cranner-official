@@ -26,6 +26,12 @@ TEMPLATES_DIR_ALLAUTH = os.path.join(BASE_DIR,'templates','allauth')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
+#Paypal client ID
+
+if 'PAYPAL_CLIENT_ID' in os.environ:
+    PAYPAL_CLIENT_ID = os.environ.get('PAYPAL_CLIENT_ID')
+else:
+    PAYPAL_CLIENT_ID='ATfsuzE4j3nQYzab5kaRV2v9C0jsFb_vHBJKzspzRiUuIH8Om9AXo898FXRansPyNPPQH23yEuQX3Y_H'
 
 #For deployment
 if 'SECRET_KEY' in os.environ:
@@ -226,6 +232,7 @@ if 'USE_AWS' in os.environ:
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CSRF_TRUSTED_ORIGINS = ["https://8000-nno24-nikolaycrannerof-xoyw399k1vp.ws-eu45.gitpod.io"]
+SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popups'
 
 if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
