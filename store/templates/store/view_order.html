@@ -13,12 +13,11 @@
             <div class="col s5 l3" id="{{ product.pk }}">{{ product.name }}</div>
             <div class="col s2 l2">{{ product.price }}</div>
             <div class="col s2 l1">
-                <form action="{% url 'bag' %}" method="post">
-                    {% csrf_token %}
+                <a href="{{ MEDIA_URL }}{{ product.media }}" download >
                     <button class="btn-floating btn-small waves-effect waves-light nc-btn-color" id="download-{{ forloop.counter0 }}" type="submit" name="download" value="{{ forloop.counter0 }}" onclick="">
                         <i class="material-icons">download</i>
                     </button>
-                </form>
+                </a>
             </div>
         </div>
         {% endfor %}

@@ -98,12 +98,6 @@ def get_bag(request):
 
     if bag.bag_items:
         bag_items_to_list = bag.bag_items.split(" ")
-
-
-    #download and buttons disabled status
-    download = 'disabled'
-    download_pointer_events = 'none'
-    remove = ''  
     
     
     form = OrderForm(request.POST or None)
@@ -126,21 +120,10 @@ def get_bag(request):
                 bag.save()
 
                 return redirect('/store/bag/')
-                
-            #If order was submitted to database, after successful purchase ->
-            # enable downloads disable remove buttons and set date and time
-            elif key == 'order_id':
-                download = ''
-                remove = 'disabled'
-                download_pointer_events = 'auto'
-                transaction_date = datetime.date.today()
-                transaction_time = datetime.datetime.now().time().strftime("%H:%M:%S")
+            elif key in 'order_id':
+                return redirect('greeting')
 
-                return redirect('/store/greeting/')
-
-                
-
-    
+               
     #Update the products in bag view
     try: 
         bag.bag_items.split(" ")
@@ -168,9 +151,6 @@ def get_bag(request):
         'products_bag': products_bag,
         'grand_total': grand_total,
         'form': form,
-        'download': download,
-        'remove': remove,
-        'download_pointer_events': download_pointer_events,
         'order_id': order_id,
         'order_items': order_items,
         'transaction_date': transaction_date,

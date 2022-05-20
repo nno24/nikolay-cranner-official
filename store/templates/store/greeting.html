@@ -6,6 +6,7 @@
         <div class="col s12 center">
             {% if request.user.is_authenticated %}
             <h3>Thank you for you order {{ request.user.username }}!</h3>
+            <p>Successful purchase</p>
             {% else %}
             <h3>Thank you for you order !</h3>
             {% endif %}
