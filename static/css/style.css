@@ -91,12 +91,12 @@ input {
 }
 
 .nc-store-details-txt {
-    text-align: left;
+    text-align: center;
 }
 
 .nc-store-details-img {
     height: auto;
-    width: 100%;
+    width: 70%;
     margin-top: 10vh;
 }
 

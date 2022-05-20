@@ -4,32 +4,33 @@
 <a href="{% url 'bag' %}" class="right basket-counter"><i class="small material-icons right">shopping_cart</i><i class="fa-duotone fa-sm fa-{{ quantity }}"></i></a>
 {% endblock %}
 {% block content %}
-<div class="row">
-    <div class="col s10 offset-s1">
-        <img src="{{ MEDIA_URL }}{{ product.image }}" alt="{{ product.image }}" class="nc-store-details-img">
+<div class="container">
+    <div class="row"></div>
+        <div class="col s12 m8 offset-m2 l6 offset-l3 center">
+            <img src="{{ MEDIA_URL }}{{ product.image }}" alt="{{ product.image }}" class="nc-store-details-img">
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col s6 offset-s1 nc-store-details-txt">
-        <h5>{{ product.name }}</h5>
-        <p>{{ product.description }}</p>
-        <p><strong>{{ product.price }} $</strong></p>
-        <form action="{% url 'store_details' product.pk %}" method="post">
-            {% csrf_token %}
-            <button class="btn waves-effect waves-light btn nc-btn-color" id="#add-to-basket" type="submit" name="add-to-basket" value="{{ product.pk }}">Add to basket
-                <i class="material-icons left">add_shopping_cart</i>
-            </button>
-        </form>
-        <div id="add-to-basket" class="modal">
-            <div class="modal-content">
-                <h4>Added {{product.name}} to basket</h3>
-                <p>Continue shopping ?</p>
+    <div class="row">
+        <div class="col s10 offset-s1 m8 offset-m2 l6 offset-l3 center nc-store-details-txt">
+            <h5>{{ product.name }}</h5>
+            <p>{{ product.description }}</p>
+            <form action="{% url 'store_details' product.pk %}" method="post">
+                {% csrf_token %}
+                <button class="btn waves-effect waves-light btn nc-btn-color" id="#add-to-basket" type="submit" name="add-to-basket" value="{{ product.pk }}">Add to basket | {{ product.price }}$ 
+                    <i class="material-icons left">add_shopping_cart</i>
+                </button>
+            </form>
+            <div id="add-to-basket" class="modal">
+                <div class="modal-content">
+                    <h4>Added {{product.name}} to basket</h3>
+                    <p>Continue shopping ?</p>
+                </div>
+                <div class="modal-footer">
+                <a href="{% url 'bag' %}" class="modal-close waves-effect waves-light btn-flat nc-btn-color">To Checkout</a>
+                <a href="{% url 'store' %}" class="modal-close waves-effect waves-light btn-flat nc-btn-color">Continue Shopping</a>
+                </div>
             </div>
-            <div class="modal-footer">
-              <a href="{% url 'bag' %}" class="modal-close waves-effect waves-light btn-flat nc-btn-color">To Checkout</a>
-              <a href="{% url 'store' %}" class="modal-close waves-effect waves-light btn-flat nc-btn-color">Continue Shopping</a>
-            </div>
-          </div>
+        </div>
     </div>
 </div>
 {% endblock %}

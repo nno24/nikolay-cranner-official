@@ -4,15 +4,15 @@
      <a href="{% url 'bag' %}" class="right basket-counter"><i class="small material-icons right">shopping_cart</i><i class="fa-duotone fa-sm fa-{{ quantity }}"></i></a>
     {% endblock %}
 {% block content %}
+<div class="container">
+    <div class="row">
 {% for product in products %}
-<div class="row">
-    <div class="col s8 offset-s2">
-        <a href="{% url 'store_details' product.pk %}">
-            <img src="{{ MEDIA_URL }}{{ product.image }}" alt="{{ product.image }}" class="nc-product-img">
-        </a>
-        <p>{{ product.name }}</p>
-        <audio controls src="{{ MEDIA_URL }}{{ product.media }}"></audio>
+        <div class="col s12 center m6 l4">
+            <a href="{% url 'store_details' product.pk %}">
+                <img src="{{ MEDIA_URL }}{{ product.image }}" alt="{{ product.image }}" class="nc-product-img">
+            </a>
+        </div>
+{% endfor %}
     </div>
 </div>
-{% endfor %}
 {% endblock %}
