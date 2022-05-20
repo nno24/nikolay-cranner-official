@@ -6,30 +6,29 @@
     </div>
 </div>
         <div class="row center">
-            <div class="col s4">
+            <div class="col s4 m3 offset-m2 l2 offset-l3">
                 <h5>order date</h5>
             </div>
-            <div class="col s4">
+            <div class="col s4 m3 l2">
                 <h5>total</h5>
             </div>
-            <div class="col s4">
+            <div class="col s4 m3 l2">
             </div>
         </div>
         <hr>
         {% for order in orders %}
         <div class="row center">
-            <div class="col s4">
+            <div class="col s4 m3 offset-m2 l2 offset-l3">
                 <p>{{ order.transaction_date }}</p>
             </div>
-            <div class="col s4">
+            <div class="col s4 m3 l2">
                 <p>{{order.grand_total}} $</p>
             </div>
-            <div class="col s4">
+            <div class="col s4 m3 l2">
                 <a href="{% url 'order' order.order_id %}">
                     <button class="btn waves-effect waves-light btn nc-btn-color" id="#view-order" type="submit" name="view-order" value="">View this order</button>
                 </a>
             </div>
         </div>
-        <hr>
         {% endfor %}   
 {% endblock %}
