@@ -36,6 +36,7 @@ class Product(models.Model):
 
 class Order(models.Model):
     order_id = models.CharField(max_length=254, null=True, blank=True)
+    order_items = models.CharField(max_length=254, null=True, blank=True)
     user_id = models.CharField(max_length=254, null=True, blank=True)
     transaction_date = models.DateField(default=tz.now)
     transaction_time = models.TimeField(default=time(18, 00))

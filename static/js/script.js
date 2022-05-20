@@ -76,8 +76,10 @@ onInit: (data, actions) => {
   let grand_total = document.getElementById('grand-total').textContent;
   let user_id = document.getElementById('user_id').textContent;
   let order_id = document.getElementById('order_id').textContent;
+  let order_items = document.getElementById('order_items').textContent;
 
   document.getElementById('id_order_id').setAttribute('value', order_id );
+  document.getElementById('id_order_items').setAttribute('value', order_items );
   document.getElementById('id_user_id').setAttribute('value', user_id );
   document.getElementById('id_grand_total').setAttribute('value', grand_total );
   console.log("updating form fields");
@@ -115,8 +117,6 @@ onApprove: (data, actions) => {
         const payerName = details.payer.name.given_name;
         console.log('Transaction completed for: ' + payerName);
         console.log('The details: ' + JSON.stringify(details, null, 4));
-
-        document.getElementById('download-0').removeAttribute('disabled');
         let transaction_date = document.getElementById('transaction_date').textContent;
         let transaction_time = document.getElementById('transaction_time').textContent;
         document.getElementById('id_transaction_date').setAttribute('value', transaction_date );

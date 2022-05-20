@@ -1,12 +1,13 @@
 from django.shortcuts import render, get_object_or_404, redirect
 import requests
-from .models import Product, Category, Bag
+from .models import Product, Category, Bag, Order
 from .forms import OrderForm
 import datetime
 
-#Global variables for bag
+#Global tmp variables for bag/orders
 bag_counter = 0
 grand_total = 0
+order_id=''
 
 
 
@@ -74,6 +75,7 @@ def store_details(request, store_id ):
 def get_bag(request):
     """A view to show the cart/bag"""
     global grand_total
+    global order_id
     session_user = request.user.username
     bag = get_object_or_404(Bag, bag_name=session_user)
     if bag.bag_items:
@@ -112,6 +114,7 @@ def get_bag(request):
                 bag.save()
 
                 return redirect('/store/bag/')
+                
             #If order was submitted to database, after successful purchase ->
             # enable downloads disable remove buttons and set date and time
             elif key == 'order_id':
@@ -120,6 +123,10 @@ def get_bag(request):
                 download_pointer_events = 'auto'
                 transaction_date = datetime.date.today()
                 transaction_time = datetime.datetime.now().time().strftime("%H:%M:%S")
+
+                return redirect('/store/greeting/')
+
+                
 
     
     #Update the products in bag view
@@ -135,7 +142,8 @@ def get_bag(request):
         
     
     #Update the order form values
-    order_id = bag.bag_items
+    order_items = bag.bag_items
+    order_id = str(transaction_date) + '.' + str(transaction_time)
     quantity = bag.bag_quantity
 
     context = {
@@ -146,6 +154,7 @@ def get_bag(request):
         'remove': remove,
         'download_pointer_events': download_pointer_events,
         'order_id': order_id,
+        'order_items': order_items,
         'transaction_date': transaction_date,
         'transaction_time': transaction_time,
         'quantity': quantity,
@@ -156,7 +165,24 @@ def get_bag(request):
 def get_greeting(request):
     """A view to display success message after purchase"""
     context = {
-        'products_bag': products_bag,
-        'grand_total': grand_total,
+        
     }
     return render(request, 'store/greeting.html', context)
+
+
+
+def view_order(request):
+    """ A view to display an order """
+    
+    if request.user.is_authenticated:
+        session_user = request.user.username
+        print("the user is auth")
+    else:
+        session_user = 'guest'
+        print("the user is guest")
+    print("the order_id is: ", order_id)
+    order = get_object_or_404(Order, user_id=session_user, order_id=order_id)
+    context = {
+        'order': order,
+    }
+    return render(request, 'store/view_order.html', context)

@@ -8,6 +8,12 @@ class OrderForm(forms.ModelForm):
         'type': 'hidden',
         'value': ''
     }))
+    order_items = forms.CharField(label='order_items', widget=forms.TextInput(attrs={
+        'class': 'order_items',
+        'placeholder': 'order_items',
+        'type': 'hidden',
+        'value': ''
+    }))
     user_id = forms.CharField(label='user_id', widget=forms.TextInput(attrs={
         'class': 'user_id',
         'placeholder': 'user_id',
@@ -38,6 +44,7 @@ class OrderForm(forms.ModelForm):
         model = Order
         fields = [
             'order_id',
+            'order_items',
             'user_id',
             'grand_total',
             'transaction_date',
