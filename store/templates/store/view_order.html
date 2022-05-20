@@ -21,6 +21,13 @@
             </div>
         </div>
         {% endfor %}
+        <div class="row">
+            <div class="col s12">
+                <a href="{% url 'user_profile' %}">
+                    <button class="btn waves-effect waves-light btn nc-btn-color" id="#to-all-orders" type="submit" name="to-all-orders" value="">All Orders</button>
+                </a>
+            </div>
+        </div>
         {% else %}
         <h5>You have no current orders...</h5>
         <div class="col s12 m6 offset-m3 l4 offset-l4 center">

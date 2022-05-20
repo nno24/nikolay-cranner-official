@@ -168,16 +168,17 @@ def get_greeting(request):
         bag = get_object_or_404(Bag, bag_name=session_user)
         bag.delete()
         print("deleted shopping bag for: ", session_user)
+        order = get_object_or_404(Order, user_id=session_user, order_id=order_id)
     except:
         return render(request, 'store/greeting.html')    
     context = {
-        
+        'order': order,
     }
     return render(request, 'store/greeting.html', context)
 
 
 
-def view_order(request):
+def view_order(request, order_id):
     """ A view to display an order """
     global session_user
     session_user = get_session_user(request)

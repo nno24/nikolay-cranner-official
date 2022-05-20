@@ -1,25 +1,35 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="row ">
-    <div class="col s8 offset-s2 center">
-        <h3>{{ request.user }}'s orders</h3>
+    <div class="col s12 center">
+        <h3>{{ session_user }}'s orders</h3>
     </div>
 </div>
-        {% for order in orders_detail %}
-            {% if 'order' in order %}
-            <div class="row center">
-                <div class="col s8 offset-s2 left">
-                    <p><strong>{{ order|title}}</strong></p>
-                </div>
-            </div>       
-            {% else %}
-            <div class="row">
-                <div class="col s3 center"><img src="{{ MEDIA_URL }}{{ order.image }}" alt="{{ order.image }}" class="nc-bag-img"></div>
-                <div class="col s3 center" id="{{ order.pk }}">{{ order.name }}</div>
-                <div class="col s3 center">{{ order.price }} $</div>
-                <div class="col s3 center"></div>
+        <div class="row center">
+            <div class="col s4">
+                <h5>order date</h5>
             </div>
-            {% endif %}
-        {% endfor %}
-    
+            <div class="col s4">
+                <h5>total</h5>
+            </div>
+            <div class="col s4">
+            </div>
+        </div>
+        <hr>
+        {% for order in orders %}
+        <div class="row center">
+            <div class="col s4">
+                <p>{{ order.transaction_date }}</p>
+            </div>
+            <div class="col s4">
+                <p>{{order.grand_total}} $</p>
+            </div>
+            <div class="col s4">
+                <a href="{% url 'order' order.order_id %}">
+                    <button class="btn waves-effect waves-light btn nc-btn-color" id="#view-order" type="submit" name="view-order" value="">View this order</button>
+                </a>
+            </div>
+        </div>
+        <hr>
+        {% endfor %}   
 {% endblock %}
