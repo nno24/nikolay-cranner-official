@@ -1,21 +1,20 @@
 {% extends 'base.html' %}
-{% load static %}
 {% block content %}
 <div class="container">
     <div class="row">
         <div class="col s12 center">
             {% if request.user.is_authenticated %}
-            <h3>Thank you for you order {{ request.user.username }}!</h3>
+            <h3>The payment failed {{ request.user.username }}!</h3>
             {% else %}
-            <h3>Thank you for you order !</h3>
+            <h3>The payment failed!</h3>
             {% endif %}
-            <p>Successful purchase</p>
+            <p>Payment failed on checkout</p>
         </div>
     </div>
     <div class="row">
         <div class="col s12 m6 offset-m3 l4 offset-l4 center">
-            <a href="{% url 'order' order.order_id %}">
-                <button class="btn waves-effect waves-light btn nc-btn-color" id="#view-my-order" type="submit" name="view-my-order" value="">View my order</button>
+            <a href="{% url 'bag' %}">
+                <button class="btn waves-effect waves-light btn nc-btn-color" id="#try-again" type="submit" name="try-again" value="">Try again</button>
             </a>
         </div>
     </div>

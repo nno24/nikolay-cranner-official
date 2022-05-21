@@ -200,3 +200,11 @@ def view_order(request, order_id):
         'products_order': products_order,
     }
     return render(request, 'store/view_order.html', context)
+
+
+def payment_failed(request):
+    """ A view to  tell the user the payment failed """
+    context = {
+
+    }
+    return render(request, 'store/payment_failed.html')
