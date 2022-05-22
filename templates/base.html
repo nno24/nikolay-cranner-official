@@ -14,7 +14,7 @@
     <link rel="icon" href="{% static  'img/logo.png' %}">
     <title>Nikolay Cranner | Official</title>
     <!-- Meta Pixel Code -->
-    <script>
+    <script type="text/plain" data-cookieconsent="marketing">
       !function(f,b,e,v,n,t,s)
       {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
       n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -23,14 +23,12 @@
       t.src=v;s=b.getElementsByTagName(e)[0];
       s.parentNode.insertBefore(t,s)}(window, document,'script',
       'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('consent', Cookiebot.consent.marketing ? 'grant' : 'revoke');
       fbq('init', '755119178813459');
       fbq('track', 'PageView');
       {% block fb_pixel %}
       {% endblock %}
     </script>
-    <noscript><img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=755119178813459&ev=PageView&noscript=1"
-    /></noscript>
     <!-- End Meta Pixel Code -->
 </head>
 <body>

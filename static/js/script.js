@@ -15,7 +15,9 @@ function printValues(obj) {
 
 //Event listeners -----------------------------------------
 
-
+window.addEventListener('CookiebotOnConsentReady', function (e) {
+  fbq('consent', Cookiebot.consent.marketing ? 'grant' : 'revoke')
+}, false)
 
 //Initialize mobile menu
 document.addEventListener('DOMContentLoaded', function() {
