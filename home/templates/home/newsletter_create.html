@@ -9,6 +9,11 @@
             {{ message }}
           </div>
           {% endfor %}
+          {% for receipient in receipients_lst %}
+          <p>{{ receipient }}</p>
+          {% endfor %}
+          <hr>
+          <a href="{% url 'home' %}">Back home</a>
           {% else %}
           <p>Create Newsletter</p>
             <form action="" method="post">
