@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block fb_pixel %}
+//Send a trcking event to fb pixel, about successful purchase
+fbq('track', 'Purchase', {currency: "USD", value: {{order.grand_total}} }); 
+{% endblock %}    
 {% block content %}
 <div class="container">
     <div class="row">
