@@ -17,7 +17,9 @@ main {
     flex: 1 0 auto;
 }
 
-
+.messages {
+    color: turquoise;
+}
 body {
     display: flex;
     min-height: 100vh;
@@ -26,7 +28,7 @@ body {
     color: #827373 !important;
   }
 
-input {
+input,textarea {
     color: white;
 }
 
