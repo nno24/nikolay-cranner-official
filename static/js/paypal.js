@@ -63,7 +63,9 @@ const payPalButtons = paypal.Buttons({
           let transaction_date = document.getElementById('transaction_date').textContent;
           let transaction_time = document.getElementById('transaction_time').textContent;
           document.getElementById('id_transaction_date').setAttribute('value', transaction_date );
-          document.getElementById('id_transaction_time').setAttribute('value', transaction_time );              
+          document.getElementById('id_transaction_time').setAttribute('value', transaction_time );
+          //Send a trcking event to fb pixel, about successful purchase
+          fbq('track', 'Purchase', {currency: "USD", value: grand_total});              
           document.getElementById('order-form').submit();
       };
       return actions.order.capture().then(captureOrderHandler);
