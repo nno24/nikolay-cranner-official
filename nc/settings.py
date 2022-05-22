@@ -37,7 +37,9 @@ else:
 # Set to True of development
 DEBUG = 'DEVELOPMENT' in os.environ
 
-ALLOWED_HOSTS = ["nikolaycranner.herokuapp.com","localhost"]
+#X_FRAME_OPTIONS = 'SAMEORIGIN'
+X_FRAME_OPTIONS = 'ALLOW-FROM http://ami.responsivedesign.is/'
+ALLOWED_HOSTS = ["nikolaycranner.herokuapp.com","localhost", "nikolaycranner.com"]
 
 # Application definition
 
