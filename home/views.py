@@ -2,12 +2,13 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.template import RequestContext
 from django.contrib import messages
 import requests
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMultiAlternatives
 from django_pandas.io import read_frame
 from store.models import Bag
 from store.views import get_session_user
 from .forms import SubscribersForm, Subscribers, NewsletterForm
 from django.contrib.admin.views.decorators import staff_member_required
+from django.template.loader import get_template
 
 # Create your views here.
 def get_home(request):
@@ -60,7 +61,10 @@ def newsletter_create(request):
             #set title and message, and send email
             title = nform.cleaned_data.get('title')
             message = nform.cleaned_data.get('message')
-            send_mail(title, message, '', receipients_lst, fail_silently=False,)
+            html_template = get_template("newsletter/one.html").render()
+            mail = EmailMultiAlternatives(subject=title, body=message, from_email='', to=receipients_lst)
+            mail.attach_alternative(html_template, 'text/html')
+            mail.send()
             messages.success(request, 'Newsletter successfully sent to: ')
 
             context = {
