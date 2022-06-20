@@ -19,7 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.admin.views.decorators import staff_member_required
 
-admin.site.login = staff_member_required(admin.site.login, login_url='page_not_found')
+admin.site.login = staff_member_required(admin.site.login, redirect_field_name='', login_url='/404')
 
 
 urlpatterns = [
