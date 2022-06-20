@@ -58,12 +58,15 @@ def newsletter_create(request):
             receipients_lst = df['email'].values.tolist()
             print(receipients_lst)
 
-            #set title and message, and send email
+            # Render message and title into the html template
             title = nform.cleaned_data.get('title')
             message = nform.cleaned_data.get('message')
-            html_template = get_template("newsletter/one.html").render()
-            mail = EmailMultiAlternatives(subject=title, body=message, from_email='', to=receipients_lst)
-            mail.attach_alternative(html_template, 'text/html')
+            newsletter_html = get_template("newsletter/one.html").render({
+                'message': message,
+                'title': title,
+            })
+            mail = EmailMultiAlternatives(subject=title, from_email='', to=receipients_lst)
+            mail.attach_alternative(newsletter_html, 'text/html')
             mail.send()
             messages.success(request, 'Newsletter successfully sent to: ')
 
