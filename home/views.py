@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.template import RequestContext
 from django.contrib import messages
 import requests
 from django.core.mail import send_mail
@@ -6,6 +7,7 @@ from django_pandas.io import read_frame
 from store.models import Bag
 from store.views import get_session_user
 from .forms import SubscribersForm, Subscribers, NewsletterForm
+from django.contrib.admin.views.decorators import staff_member_required
 
 # Create your views here.
 def get_home(request):
@@ -41,6 +43,7 @@ def get_home(request):
 
     return render(request, 'home/home.html', context)
 
+
 def newsletter_create(request):
     """A view to create newsletters for admin users only"""
 
@@ -72,3 +75,12 @@ def newsletter_create(request):
     }
 
     return render(request, 'home/newsletter_create.html', context)
+
+def page_not_found(request, exception=None):
+    """ A view to return 404 """
+    return render(request, 'home/404.html', status=404)
+
+
+def server_error(request, exception=None):
+    """ A view to return 500 """
+    return render(request, 'home/500.html', status=500)

@@ -30,12 +30,14 @@ TEMPLATES_DIR_ALLAUTH = os.path.join(BASE_DIR,'templates','allauth')
 #For deployment
 if 'SECRET_KEY' in os.environ:
     SECRET_KEY = os.environ.get('SECRET_KEY')
+    DEBUG = False
 else:
     SECRET_KEY = 'secret9999!'
+    DEBUG = True
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # Set to True of development
-DEBUG = 'DEVELOPMENT' in os.environ
+
 
 #X_FRAME_OPTIONS = 'SAMEORIGIN'
 X_FRAME_OPTIONS = 'ALLOW-FROM http://ami.responsivedesign.is/'
@@ -225,7 +227,7 @@ if 'USE_AWS' in os.environ:
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CSRF_TRUSTED_ORIGINS = ["https://8000-nno24-nikolaycrannerof-cttxdhrjjoq.ws-eu45.gitpod.io"]
+CSRF_TRUSTED_ORIGINS = ["https://8000-nno24-nikolaycrannerof-pbyt2k55r15.ws-eu47.gitpod.io"]
 SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popups'
 
 if 'DEVELOPMENT' in os.environ:
