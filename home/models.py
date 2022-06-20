@@ -4,6 +4,7 @@ from django.db import models
 class Subscribers(models.Model):
     email = models.EmailField(null=True)
     date = models.DateTimeField(auto_now_add=True)
+    subscribed = models.BooleanField(default=True)
 
     def __str__(self):
         return self.email

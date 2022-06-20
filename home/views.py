@@ -26,10 +26,15 @@ def get_home(request):
     if request.POST:
         form = SubscribersForm(request.POST)
         if form.is_valid():
-            #Check if already subscribed
+            #Check if already user already exist and is/not subscribed.
             try: 
-                get_object_or_404(Subscribers, email=request.POST.get('email'))
-                messages.error(request, 'Already subscribed')
+                subscriber = get_object_or_404(Subscribers, email=request.POST.get('email'))
+                if subscriber.subscribed:
+                    messages.error(request, 'Already subscribed')
+                else:
+                    subscriber.subscribed = True
+                    subscriber.save()
+                    messages.success(request, 'Welcome back! You are subscribed!')
             except:
                 form.save()
                 messages.success(request, 'You are subscribed!')
@@ -53,21 +58,26 @@ def newsletter_create(request):
         if nform.is_valid():
             nform.save()
             #get the list of subscribers and prep message
-            receipients = Subscribers.objects.all()
+            receipients = Subscribers.objects.filter(subscribed=True)
             df = read_frame(receipients, fieldnames=['email'])
             receipients_lst = df['email'].values.tolist()
             print(receipients_lst)
 
             # Render message and title into the html template
+            # Also render the id of the subscriber to the template, for unsubscribe link.
             title = nform.cleaned_data.get('title')
             message = nform.cleaned_data.get('message')
-            newsletter_html = get_template("newsletter/one.html").render({
-                'message': message,
-                'title': title,
-            })
-            mail = EmailMultiAlternatives(subject=title, from_email='', to=receipients_lst)
-            mail.attach_alternative(newsletter_html, 'text/html')
-            mail.send()
+
+            for receipient in receipients:
+                print(type(receipient.email))
+                newsletter_html = get_template("newsletter/one.html").render({
+                    'message': message,
+                    'title': title,
+                    'receipient': receipient,
+                })                
+                mail = EmailMultiAlternatives(subject=title, from_email='', to=list(receipient.email.split(" ")))
+                mail.attach_alternative(newsletter_html, 'text/html')
+                mail.send()
             messages.success(request, 'Newsletter successfully sent to: ')
 
             context = {
@@ -82,6 +92,23 @@ def newsletter_create(request):
     }
 
     return render(request, 'home/newsletter_create.html', context)
+
+def unsubscribe(request, id):
+    """A view to unsubscribe"""
+    subscribers = Subscribers.objects.all()
+    for subs in subscribers:
+        print(subs.id, subs.email)
+    subscriber = Subscribers.objects.get(id=id)
+    try:
+        subscriber.subscribed = False
+        subscriber.save()
+    except:
+        messages.error(request, "Someting went wrong..")
+    context = {
+        'subscriber': subscriber,
+    }
+
+    return render(request, 'home/unsubscribe.html', context)
 
 def page_not_found(request, exception=None):
     """ A view to return 404 """

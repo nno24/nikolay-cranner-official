@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container nc-txt-md">
+  <div class="row">
+    <div class="col s12 center m6 l4">
+      <h3>Unsubscribe</h3>
+    </div>
+  <div class="row">
+    <div class="col s12 center m6 offset-m3 l5 offset-l4">
+      {% if messages %}
+      {% for message in messages %}
+      <div class="messages">
+        {{ message }}
+      </div>
+      {% endfor %}
+      {% endif %}
+    {% if subscriber.subscribed == False %}
+    <h4>Successfully unsubscribed</h4>
+    <p>{{subscriber.email}}</p>
+    {% else %}
+    <h4>Something went wrong..</h4>
+    {% endif %}
+    <br>
+    <a href="{% url 'home' %}"></a>
+</div>
+{% endblock %}

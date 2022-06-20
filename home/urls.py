@@ -8,4 +8,5 @@ views.newsletter_create = staff_member_required(views.newsletter_create, login_u
 urlpatterns = [
     path('', views.get_home, name='home'),
     path('newsletter_create/', views.newsletter_create, name='newsletter_create'),
+    path('unsubscribe/<id>', views.unsubscribe, name='unsubscribe'),
 ]
