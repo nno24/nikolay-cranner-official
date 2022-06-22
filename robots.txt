@@ -2,3 +2,6 @@ User-agent: *
 Disalllow: /accounts/
 Disalllow: /music/
 Disalllow: /contact/
+
+
+Sitemap: http://nikolaycranner.com/sitemap.xml
