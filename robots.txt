@@ -1,5 +1,4 @@
 User-agent: *
 Disalllow: /accounts/
 Disalllow: /music/
-Disalllow: /store/
 Disalllow: /contact/
