@@ -9,6 +9,8 @@ from store.views import get_session_user
 from .forms import SubscribersForm, Subscribers, NewsletterForm
 from django.contrib.admin.views.decorators import staff_member_required
 from django.template.loader import get_template
+from django.templatetags.static import static
+
 
 # Create your views here.
 def get_home(request):
