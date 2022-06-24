@@ -17,15 +17,6 @@ class SubscriberTest(TestCase):
         self.assertTrue(isinstance(s, Subscribers))
         self.assertEqual(s.__str__(), s.email)
 
-    # Views tests
-
-    def test_subscriber_view(self):
-        s = self.create_subscriber()
-        url = reverse("home.views.get_home")
-        resp = self.client.get(url)
-
-        self.assertEqual(resp.status_code, 200)
-
 
 class NewsletterTest(TestCase):
 
@@ -39,4 +30,26 @@ class NewsletterTest(TestCase):
 
 
 
+# View tests with selenium
+
+import unittest
+from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
+
+class TestNewsletterSignup(unittest.TestCase):
+
+    def setUp(self):
+        self.driver = webdriver.Chrome(ChromeDriverManager().install())
+    
+    def test_newsletter_signup_fire(self):
+        self.driver.get("http://127.0.0.1:8000/")
+        self.driver.find_element(by=id, value="id_email").send_keys("test@test.com")
+        self.driver.find_element(by=type, value="button").click()
+        self.assertIn("http://127.0.0.1:8000/", self.driver.current_url)
+    
+    def tearDown(self):
+        self.driver.quit
+
+if __name__ == '__main__':
+    unittest.main()
 
