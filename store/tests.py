@@ -43,6 +43,16 @@ class OrderTest(TestCase):
     def test_order_creation(self):
         o = self.create_order()
         self.assertTrue(isinstance(o, Order))
+
+class BagTest(TestCase):
+
+    def create_bag(self, bag_items="1 2 3", bag_quantity=3 ):
+        return Bag.objects.create(bag_items=bag_items, bag_quantity=bag_quantity)
+
+    
+    def test_bag_creation(self):
+        b = self.create_bag()
+        self.assertTrue(isinstance(b, Bag))
         
 
 
