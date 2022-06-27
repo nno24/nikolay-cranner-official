@@ -44,7 +44,6 @@ firefox_options.add_argument("--headless")
 class TestNewsletterSignup(unittest.TestCase):
 
     def setUp(self):
-        #self.driver = webdriver.Firefox(GeckoDriverManager().install())
         self.driver = webdriver.Firefox( executable_path=GeckoDriverManager().install(), options=firefox_options )
     
     def test_newsletter_signup_fire(self):
