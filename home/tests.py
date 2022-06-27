@@ -34,17 +34,23 @@ class NewsletterTest(TestCase):
 
 import unittest
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.firefox import GeckoDriverManager
+from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.common.by import By
+
+firefox_options = Options()
+firefox_options.add_argument("--headless")
 
 class TestNewsletterSignup(unittest.TestCase):
 
     def setUp(self):
-        self.driver = webdriver.Chrome(ChromeDriverManager().install())
+        #self.driver = webdriver.Firefox(GeckoDriverManager().install())
+        self.driver = webdriver.Firefox( executable_path=GeckoDriverManager().install(), options=firefox_options )
     
     def test_newsletter_signup_fire(self):
         self.driver.get("http://127.0.0.1:8000/")
-        self.driver.find_element(by=id, value="id_email").send_keys("test@test.com")
-        self.driver.find_element(by=type, value="button").click()
+        self.driver.find_element(By.ID, "id_email").send_keys("ttt@ttt.com")
+        self.driver.find_element(By.TAG_NAME, "button").click()
         self.assertIn("http://127.0.0.1:8000/", self.driver.current_url)
     
     def tearDown(self):

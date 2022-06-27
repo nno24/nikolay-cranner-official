@@ -41,7 +41,7 @@ else:
 
 #X_FRAME_OPTIONS = 'SAMEORIGIN'
 X_FRAME_OPTIONS = 'ALLOW-FROM http://ami.responsivedesign.is/'
-ALLOWED_HOSTS = ["nikolaycranner.herokuapp.com","localhost", "nikolaycranner.com"]
+ALLOWED_HOSTS = ["nikolaycranner.herokuapp.com","localhost","127.0.0.1","nikolaycranner.com"]
 
 # Application definition
 
@@ -138,18 +138,6 @@ else:
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
-    """
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'db.postgres',
-            'USER': 'postgres',
-            'PASSWORD': 'postgres',
-            'HOST': 'localhost',
-            'PORT': '5432',
-        }
-    }
-    """
 
 
 
