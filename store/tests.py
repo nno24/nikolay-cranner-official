@@ -53,6 +53,43 @@ class BagTest(TestCase):
     def test_bag_creation(self):
         b = self.create_bag()
         self.assertTrue(isinstance(b, Bag))
+
+
+
+# Selenium tests
+
+import unittest
+from selenium import webdriver
+from webdriver_manager.firefox import GeckoDriverManager
+from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.common.by import By
+
+firefox_options = Options()
+firefox_options.add_argument("--headless")
+
+class TestBag(unittest.TestCase):
+
+    def setUp(self):
+        self.driver = webdriver.Firefox( executable_path=GeckoDriverManager().install(), options=firefox_options )
+    
+    def test_bag_fire(self):
+        self.driver.get("http://127.0.0.1:8000/store/")
+        self.driver.get("http://127.0.0.1:8000/store/10")
+        self.driver.find_element(By.TAG_NAME, "button").click()
+        self.assertIn("http://127.0.0.1:8000/store/", self.driver.current_url)
+        self.driver.get("http://127.0.0.1:8000/store/11")
+        self.driver.find_element(By.TAG_NAME, "button").click()
+        self.assertIn("http://127.0.0.1:8000/store/", self.driver.current_url)
+        self.driver.get("http://127.0.0.1:8000/store/bag/")
+        self.driver.find_element(By.ID, "remove-1").click()
+        self.driver.find_element(By.ID, "remove-0").click()
+        self.assertIn("http://127.0.0.1:8000/store/bag/", self.driver.current_url)
+    
+    def tearDown(self):
+        self.driver.quit
+
+if __name__ == '__main__':
+    unittest.main()
         
 
 
