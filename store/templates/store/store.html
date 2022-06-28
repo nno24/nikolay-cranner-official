@@ -4,8 +4,6 @@
      <a href="{% url 'bag' %}" class="right basket-counter"><i class="small material-icons right">shopping_cart</i><i class="fa-duotone fa-sm fa-{{ quantity }}"></i></a>
     {% endblock %}
 {% block content %}
-<div class="container">
-    <div class="row">
 {% for product in products %}
         <div class="col s12 center m6 l4">
             <a href="{% url 'store_details' product.pk %}">
@@ -13,6 +11,4 @@
             </a>
         </div>
 {% endfor %}
-    </div>
-</div>
 {% endblock %}

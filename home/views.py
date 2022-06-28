@@ -3,12 +3,12 @@ from django.template import RequestContext
 from django.contrib import messages
 import requests
 from django.core.mail import send_mail, EmailMultiAlternatives
+from django.template.loader import get_template
 from django_pandas.io import read_frame
 from store.models import Bag
 from store.views import get_session_user
 from .forms import SubscribersForm, Subscribers, NewsletterForm
 from django.contrib.admin.views.decorators import staff_member_required
-from django.template.loader import get_template
 from django.templatetags.static import static
 
 
@@ -32,7 +32,7 @@ def get_home(request):
             try: 
                 subscriber = get_object_or_404(Subscribers, email=request.POST.get('email'))
                 if subscriber.subscribed:
-                    messages.error(request, 'Already subscribed')
+                    messages.warning(request, 'Already subscribed')
                 else:
                     subscriber.subscribed = True
                     subscriber.save()

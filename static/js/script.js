@@ -54,14 +54,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+ /* jQuery ---------------------*/
 
-/*
- document.addEventListener('DOMContentLoaded' && 'submit', function openModal() {
-    var instance = M.Modal.getInstance($('#add-to-basket'));
-    instance.open();
-});
-*/
-
+ //Fade effect on messages
+ $(".msg").ready(function(){
+  $(".msg").fadeOut(10000);
+})
 
 
 

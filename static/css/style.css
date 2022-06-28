@@ -1,4 +1,3 @@
-{% load static %}
 
 .nc-header-footer, .modal-footer, .dropdown-content {
     background-color: #1C140D !important;
@@ -17,9 +16,64 @@ main {
     flex: 1 0 auto;
 }
 
-.messages {
-    color: turquoise;
+/* Custom styling for messages django */
+
+.msg {
+    text-align: center;
+    opacity: 0.8;
 }
+
+#msg-row {
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10vh;
+}
+
+.success {
+    background-color: rgb(212, 244, 212);
+    color: rgb(15, 69, 15);
+}
+
+.error {
+    background-color: rgb(230, 171, 171);
+    color: rgb(131, 4, 4);
+}
+
+.warning {
+    background-color: rgb(233, 222, 183);
+    color: rgb(112, 94, 14);
+}
+
+.info {
+    background-color: rgb(224, 224, 224);
+    color: rgb(84, 83, 83);
+}
+
+/* END Custom styling for messages django */
+
+/* Checkbox styling*/
+
+[type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+    opacity: 1;
+    pointer-events: all;
+    display: inline-block;
+    margin: .4rem;
+}
+
+
+.label-checked {
+    color: rgb(79, 31, 190);
+}
+
+/* End checkbox styling */
+
+select, input {
+    display: block;
+    text-align: left;
+}
+
 body {
     display: flex;
     min-height: 100vh;
@@ -32,6 +86,10 @@ input,textarea {
     color: white;
 }
 
+textarea {
+    height: 110px !important;
+}
+
 hr {
     margin: 50px;
     opacity: 0.1;
@@ -39,18 +97,6 @@ hr {
 .modal-content {
     background-color: #150E05;
     color: #827373;
-}
-
-
-.air-20 {
-    height: 20vh;
-}
-.air-50 {
-      height: 50vh;
-  }
-
-.air-80 {
-    height: 80vh;
 }
 
 .nc-txt-md {
@@ -135,3 +181,18 @@ ul.errorlist {
     font-size: 0.6rem;
 }
 
+
+
+/* card */
+
+.card {
+    opacity: 0.6;
+}
+
+.card-action>a {
+    color: #df833d !important;
+}
+
+.modal-footer>a {
+    color: #6f4d32 !important;
+}
