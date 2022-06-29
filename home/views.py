@@ -97,18 +97,23 @@ def newsletter_create(request):
 
 def unsubscribe(request, id):
     """A view to unsubscribe"""
-    subscribers = Subscribers.objects.all()
-    for subs in subscribers:
-        print(subs.id, subs.email)
-    subscriber = Subscribers.objects.get(id=id)
     try:
+        subscribers = Subscribers.objects.all()
+        subscriber = Subscribers.objects.get(id=id)       
         subscriber.subscribed = False
         subscriber.save()
+        messages.success(request, "Successfully unsubscribed: "+ subscriber.email)
+
+        context = {
+            'subscriber': subscriber,
+        }
+        
     except:
         messages.error(request, "Someting went wrong..")
-    context = {
-        'subscriber': subscriber,
-    }
+
+        context = {
+            
+        }        
 
     return render(request, 'home/unsubscribe.html', context)
 
