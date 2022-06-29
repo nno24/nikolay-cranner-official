@@ -111,11 +111,101 @@ only accessible to the admin. Real emails are pushed out. Have not implemented a
 
 
 ## Testing
+A combination of manual test steps and automatic tests have been implemented.
+### Automatic tests
+Automatic tests have been written for all custom models, and some view test's for the front-end.
+The model's testing is utilizing the TestCase class in python. The view test's are using [selenium](https://www.selenium.dev/documentation/)
+in headless mode. [Coverage](https://coverage.readthedocs.io/en/6.4.1/) is used for running the tests, and to generate a html report of
+the total coverage of automatic tests across the entire application. The testing is done in gitpod during development, but can work for 
+any other IDE as well. Headless mode was necessary because the docker image used in gitpod during development was not graphical, but a graphical image could
+obtained from gitpod. Each app have a tests.py file, this is where the tests are located.
 
-Tested on all devices, and with payment with real paypal/credit cards.
-NOTE: For testing purposes with paypal checkout and sandbox, use the following:
-user: sb-h8kdy16271303@personal.example.com
-pass: Ofkk^(5>
+#### Test procedure in gitpod
+1. Install Firefox:
+```
+$ sudo apt update && sudo apt install firefox
+```
+2. Install coverage
+```
+$ pip3 install coverage
+```
+3. Obtain a [GH_TOKEN](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) in your github
+This is needed to not exceed the API rate limit for selenium.
+Add this token to your env.py file. env.py is loded in settings.py
+
+4. Run the tests for each app or all in one
+```
+$ coverage run manage.py test -v 2
+or
+$ coverage run manage.py test appname -v 2
+```
+
+
+### Manual testing
+#### Newsletter
+1. Access the ["website"](nikolaycranner.com) 
+2. Try signing up to the newsletter
+    1. Success message
+3.  Try signing up to the newsletter with the same email
+    1. Error message saying "You are already subscribed
+4. Login as superuser, create a newsletter
+    1. A list of all receipients presented, and success message
+    2. The subscriber in step 3 have received a new message
+    3. The email shall contain an unsubscribe link
+5. Click the unsubscribe link in the email
+    1. You are unsubscribed
+6. Sign up for the newsletter again, with the same email
+    2. Success message, but saying welcome back instead.
+
+#### Contact
+1. Login as superuser, and access the admin app
+Create some more UserMessageOwner's with example emails, or accounts you have access to.
+Enter UserMessageOwnerGroups, and add the emails you defined in UserMessageOwner's, save.
+
+The purpose of this classes, is to define who will receive the email if a user sends a message from the contact form.
+Also, the receipients will depend on the topic selected in the contact form.
+
+2. Go to the [contact section](nikolaycranner.com/contact)
+    1. A contact form is present
+3. Fill out the contact form with the same email as in the Newsletter test.
+    Check yes for Newsletter signup, and press Send.
+    1. Two messages: 1) Successfully sent 2) Already subscribed ( if you resubscribed in the previous test)
+    2. Autoreply received for the email set in the contact form
+    3. Receipients in the UserMessageOwnersGroup received the email message.
+    4. Redirected to home page.
+
+#### Store
+
+1. Signup as a new user, and login
+    1. Your username is reflected in the app
+2. Go to store, add some products to the bag.
+    Try removing and adding some items.
+    1. Bag is updated in the top navigation bar, with the corect quantity.
+3. Access the bag by click on it
+    1. A summary page is showing your order, and grand total
+4. Checkout with paypal
+    - NOTE: For testing purposes with paypal checkout and sandbox, use the following:
+    - user: sb-h8kdy16271303@personal.example.com
+    - pass: Ofkk^(5>
+
+    1. Landing page with successful payment
+5. Hit view my order
+    1. A summary of the order, and a download button is present
+6. Hit the download button
+    1. The file is downloaded for each product
+    - NOTE: Only example snippet exist on all products ( so far )
+
+7. Enter profile from the main menu
+    1. A summary of all orders are listed for your user
+8. Enter some of the orders from View button
+    1. The order is displaying the products, and contains download posibility
+
+#### General
+1. Try entering an invalid like [somerandom](nikolaycranner.com/somerandom) within the main dns
+    1. Custom 404 matching the site.
+1. Try the above steps on various devices.
+    1. Responsive and UX friendy on all devices.
+
 
 
 ## Deployment
