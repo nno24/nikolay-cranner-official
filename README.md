@@ -2,12 +2,45 @@
 
 [View the live project here.](https://nikolaycranner.herokuapp.com/)
 
+## Core business intents
+
+The core business intents in this application is to promote the aspiring artist Nikolay Cranner, via core functionalities like contact forms, newletter signup, and a store where fans can purchase items.
+The business is BTB and BTC, meaning e.g agents or producers / other artists( BTB ) can reach the artist team by posting inquiries via
+the contact form. On the other hand, potential or existing fans (BTC) can sign up for newsletter, contact the artist the artist team for e.g booking for private events, or purchase items in the store.
+More advanced features will be added for the next waves.
+
+## Roadmap
+So far, Wave 1 is done.
+
+### Wave 1
+- Develop core functionalities, like payment solution, store, newsletter signup, contact form, emails.
+- Responsiveness, scalability, testing
+
+### Wave 2
+After this stage, the website shall be ready for production for the artist.
+- Brand specific frontend design like colors, content, UI/UX experience, branding, media, products in the store.
+- DNS, ssl certificate, facebook pexel full integration
+- Email templates for newsletters.
+
+### Wave 3
+- Advanced store features like NFT's, physical merch.
+- Web3 compliant.
+
+
+### Overview
 This is the official page for Nikolay Cranner. It is designed to be responsive and accessible on a range of devices, making it easy to navigate.
 The page offers role base authentication, including admin manage privileges for inventory of the store. If a user is not authenticated, it's default user id will be guest. The site have a webstore where customers can purchase music via paypal with the possibility to download the song(s) after successful purchase, and for authenticated users it also offers a profile page where the user can view previous orders and its contents. Login and signup is found in the menu, and for this allauth
-is used with email verification as the signup process. Real emails are pushed out to the user tha signs up to the page. NOTE check the spam filter, cause domain priority is not considered in this project ( yet ). The user also have the ability to remove products from shopping bag before purchase. The orders are stored on the postgres server. So that the user can find back to this any time, while logged in. NOTE: if more guest users are trying to shop at the time, the system is not good at handing this at the moment, because the user id will be guest for all users. To be improved in the future.
+is used with email verification as the signup process. Real emails are pushed out to the user tha signs up to the page. NOTE check the spam filter, cause domain priority is not considered in this project ( yet ). The user also have the ability to remove products from shopping bag before purchase. The orders are stored on the postgres server. So that the user can find back to this any time, while logged in.
+
+The Site also features a contact form, where visitors, either BTB or BTC related inquiries can be posted.
+When the contact form is posted, an automatic reply will go out to the email provided ( mandatory ).
+The receipients of the inquiries depend on the topic selected in the contact form. This can be defined by 
+the superuser in th UserMessageOwners and UserMessageOwnerGroups classes in admin. This way, the defined receipients
+in e.g UserMessageOwnersGroup 'Booking' will receive the inquiries from the user that posted the message, in their
+inbox. It's also possible to sign up for the newsletter via the contact form.
 
 It's also possible to signup to the newsletter, and the admin user can push out newsletters to the subscribers from a menu item
-only accessible to the admin. Real emails are pushed out. Have not implemented a way to unsubscribe yet.
+only accessible to superusers. Real emails are pushed out. Unsubscription can be accessed from the first newsletter.
 
 <h2 align="center">
     <img src="screenshots/iamresp/r-home.png">
@@ -17,6 +50,58 @@ only accessible to the admin. Real emails are pushed out. Have not implemented a
 
 ## User Experience (UX)
 -   ### User stories
+    - Store:
+        - As a user I want to be able to purchase items in the store, so that i can benefit from the products.
+            - Acceptance Criteria:
+                - store available from the main menu
+                - view description and more information about an item
+                - add an item to the basket
+                - see how many items i have in my basket
+                - checkout page summarizing my current items, and showing total price
+                - checkout with paypal
+                - informative messages when success or fail
+    - Newsletter:
+        - As a user I want to be able to sign-up for a newsletter, so that i can stay updated.
+           - Acceptance Criteria:
+            - signup verification message in the website
+            - signup verification email
+            - posibility to unsubscribe after receiving the first newsletter.
+    
+    - Contact:
+        - As a user BTB, or BTC, I want to be able to contact the business, so that I can forward my enquiries.
+            - Acceptance criteria:
+                - Contact form easily availabe to the user.
+                - required fields:
+
+                    - email
+
+                    - topic
+
+                    - message
+
+                - optional fields:
+
+                    - name
+
+                - Select a topic from a dropdown
+
+                - Automatic greeting email to the user, after the message is posted.
+
+                - The owner receive the email in his inbox from the user.
+
+                - Save the email to the newsletter group, if the user wants to.
+                - Save the message on the dataserver.
+
+    - Authentication:
+        - As a user i want to be able to signup or signin to the website, so that i can have control of my orders, receive discounts, and get exclusive offers.
+            - Aceptance Criteria:
+            - Signup / signin available from the main menu
+            - Email verification to verify account
+            - Signout available from main menu
+            - My username is visible when signed in
+            - Notifed if signed in / signup / signout was successful.
+
+        
 
     -  [Jira User Stories](https://nno24.atlassian.net/jira/software/c/projects/NCO/boards/1?selectedIssue=NCO-10&atlOrigin=eyJpIjoiMWMyZmRlZTdiMjMxNGEyNzhlMmE4NDkyMmRiZmFkNWYiLCJwIjoiaiJ9)
 
@@ -107,7 +192,10 @@ only accessible to the admin. Real emails are pushed out. Have not implemented a
     - Chrome DevTools was used to test responsiveness on all devices,to inspect html/css, and to debug the application.
 1.  [Am I Responsive?](http://ami.responsivedesign.is/)
     - Am I Responsive? was used to create the screenshot of the website for all devices, the first image of the README.
-
+1. [Coverage](https://coverage.readthedocs.io/en/6.4.1/)
+    - Used for automatic testing.
+1. [Selenium](https://www.selenium.dev/documentation/)
+    - Used for testing html in headless mode. This is automatic browser interaction.
 
 
 ## Testing
@@ -257,6 +345,7 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 ## Credits
 1. Awesome django documentation
 2. Stackoverflow at times, and some youtube videos came handy to get django more in the fingers.
+3. [RealPython.com](https://realpython.com/testing-in-django-part-1-best-practices-and-examples/)  for helpful examples in testing.
 
 ### Code
 
