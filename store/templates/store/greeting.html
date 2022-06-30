@@ -9,9 +9,9 @@ fbq('track', 'Purchase', {currency: "USD", value: {{order.grand_total}} });
     <div class="row">
         <div class="col s12 center">
             {% if request.user.is_authenticated %}
-            <h3>Thank you for you order {{ request.user.username }}!</h3>
+            <h1>Thank you for you order {{ request.user.username }}!</h1>
             {% else %}
-            <h3>Thank you for you order !</h3>
+            <h1>Thank you for you order !</h1>
             {% endif %}
             <p>Successful purchase</p>
         </div>

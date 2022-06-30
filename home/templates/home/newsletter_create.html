@@ -19,7 +19,7 @@
       </div>
       {% else %}
       <h5>Create Newsletter</h5>
-        <form action="" method="post">
+        <form action="#!" method="post">
           {% csrf_token %}
           {{ nform.as_table }}      
           <button class="btn waves-effect waves-light nc-btn-color" type="submit" name="action">Send</button>

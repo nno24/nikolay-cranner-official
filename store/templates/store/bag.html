@@ -5,11 +5,11 @@
 {% endblock %} 
 {% block content %}
 {% if quantity == 0 %}
-    <h4>Your bag is empty</h4>
+    <h1>Your bag is empty</h1>
     <a href="{% url 'store' %}">back to store</a>
     <hr>
     {% else %}
-    <h4>Your bag items</h4>
+    <h1>Your bag items</h1>
     <hr>
 {% for product in products_bag %}
 <div class="row product-row">

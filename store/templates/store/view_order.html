@@ -4,7 +4,8 @@
     <div class="row center">
         {% if order %}
         <div class="col s12">
-            <h5>Order: {{order.order_id}}</h5>
+            <h1>Order:</h1>
+            <p>{{order.order_id}}</p>
             <hr>
         </div>
         {% for product in products_order %}
@@ -29,7 +30,7 @@
             </div>
         </div>
         {% else %}
-        <h5>You have no current orders...</h5>
+        <h1>You have no current orders...</h1>
         <div class="col s12 m6 offset-m3 l4 offset-l4 center">
             <a href="{% url 'store' %}">
                 <button class="btn waves-effect waves-light btn nc-btn-color" id="#to-store" type="submit" name="to-store" value="">Back to store</button>

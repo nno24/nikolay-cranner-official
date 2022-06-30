@@ -4,9 +4,9 @@
     <div class="row">
         <div class="col s12 center">
             {% if request.user.is_authenticated %}
-            <h3>The payment failed {{ request.user.username }}!</h3>
+            <h1>The payment failed {{ request.user.username }}!</h1>
             {% else %}
-            <h3>The payment failed!</h3>
+            <h1>The payment failed!</h1>
             {% endif %}
             <p>Payment failed on checkout</p>
         </div>
