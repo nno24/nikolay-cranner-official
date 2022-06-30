@@ -313,6 +313,9 @@ Also, the receipients will depend on the topic selected in the contact form.
   When using the Nu html checker, you have to specify all urls in the project.  
   This was done during validation check,  but the results is not documented here.  
   Try it for yourself [here]((https://validator.w3.org/nu/?doc=http%3A%2F%2Fnikolaycranner.com)):
+- Python validation tests was performed with [pylint](https://pylint.pycqa.org/en/latest/) for each app.  
+  most of the python code is fixed, but due to lack of time, there are still improvements to be made.
+  Some of the common validation errors is trailing white spaces, and too long lines + docstrings.
 
 
 ## Deployment
