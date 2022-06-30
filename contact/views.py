@@ -1,13 +1,12 @@
+""" View for the contact app"""
 from django.shortcuts import render, get_object_or_404, redirect
-import requests
 from django.contrib import messages
-from .forms import UserMessageForm
-from .models import UserMessage, UserMessageOwnerGroup
-from home.models import Subscribers
-from django.core.mail import send_mail, EmailMultiAlternatives
+from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
-from django_pandas.io import read_frame
 from nc import settings
+from home.models import Subscribers
+from .forms import UserMessageForm
+from .models import UserMessageOwnerGroup
 
 # Create your views here.
 def get_contact(request):
@@ -50,8 +49,9 @@ def get_contact(request):
                 'name': name,
             })
             try:
-                # convert the list of receipients in group to list depending on topic
-                receipients_group = UserMessageOwnerGroup.objects.filter(name=form.cleaned_data.get('topic'))
+                # convert list of receipients in group to list depending on topic
+                receipients_group = \
+                    UserMessageOwnerGroup.objects.filter(name=form.cleaned_data.get('topic'))
                 receipients = []
                 for owner in receipients_group:
                     for email in owner.emails.all():
@@ -63,7 +63,6 @@ def get_contact(request):
             mail.send()
 
             return redirect('home')
-            
     form = UserMessageForm()
     context = {
         'form': form,

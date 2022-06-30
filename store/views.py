@@ -1,8 +1,9 @@
-from django.shortcuts import render, get_object_or_404, redirect
-import requests
-from .models import Product, Category, Bag, Order
-from .forms import OrderForm
+""" View functions for the store app """
 import datetime
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Product, Bag, Order
+from .forms import OrderForm
+
 
 #Global tmp variables for bag/orders
 bag_counter = 0
@@ -23,7 +24,8 @@ def get_session_user(request):
 
 # Create your views here.
 def get_store(request):
-    """A view to show all product"""
+    """A view to show all products"""
+    
     global session_user
     #Create a bag for the user if it don't exist
     session_user = get_session_user(request)
@@ -45,6 +47,7 @@ def get_store(request):
 
 def store_details(request, store_id ):
     """A view to show product details"""
+
     global session_user
     session_user = get_session_user(request)
     bag = get_object_or_404(Bag, bag_name=session_user)
@@ -82,6 +85,7 @@ def store_details(request, store_id ):
 
 def get_bag(request):
     """A view to show the cart/bag"""
+
     #Global vars
     global grand_total
     global order_id
@@ -162,6 +166,7 @@ def get_bag(request):
 
 def get_greeting(request):
     """A view to display success message after purchase"""
+
     global session_user
     session_user = get_session_user(request)
     try:   
@@ -180,6 +185,7 @@ def get_greeting(request):
 
 def view_order(request, order_id):
     """ A view to display an order """
+
     global session_user
     session_user = get_session_user(request)
     products_order = []
@@ -204,6 +210,7 @@ def view_order(request, order_id):
 
 def payment_failed(request):
     """ A view to  tell the user the payment failed """
+    
     context = {
 
     }

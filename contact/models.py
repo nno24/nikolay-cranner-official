@@ -1,12 +1,14 @@
+""" Database models in this app"""
 from django.db import models
 
 # Create your models here.
 
 class UserMessage(models.Model):
+    """ Model for contact form """
     TOPICS = (
         ('Booking', 'Booking'),
         ('Other', 'Other')
-    )       
+    )
     email = models.EmailField(null=False, blank=False)
     topic = models.CharField(choices=TOPICS, default="Booking", null=False,\
                              blank=False, max_length=15)
@@ -15,17 +17,19 @@ class UserMessage(models.Model):
     newsletter_signup = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.email
+        return str(self.email)
 
 
 class UserMessageOwner(models.Model):
+    """ Model for owners """
     email = models.EmailField(null=False, blank=False)
-    
+
     def __str__(self):
-        return self.email    
+        return str(self.email)
 
 
 class UserMessageOwnerGroup(models.Model):
+    """ Model for owner groups """
     TOPICS = (
         ('Booking', 'Booking'),
         ('Other', 'Other')
@@ -33,6 +37,6 @@ class UserMessageOwnerGroup(models.Model):
     name = models.CharField(choices=TOPICS, default="Booking", null=False,\
                              blank=False, max_length=15)
     emails = models.ManyToManyField(UserMessageOwner)
-    
+
     def __str__(self):
-        return self.name
+        return str(self.name)

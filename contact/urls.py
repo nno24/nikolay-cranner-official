@@ -1,4 +1,5 @@
-from django.urls import path, include
+""" Urls defined for this app"""
+from django.urls import path
 from . import views
 
 urlpatterns = [

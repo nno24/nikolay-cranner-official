@@ -1,25 +1,26 @@
+""" Databse models in this app"""
 from django.db import models
 from django.utils import timezone as tz
 from datetime import date, time
 
 
-
-# Create your models here.
-
 class Category(models.Model):
+    """ Product Category model"""
     class Meta:
+        """ Model settings """
         verbose_name_plural = 'Categories'
         
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
 
     def __str__(self):
-        return self.name
+        return str(self.name)
     
     def get_friendly_name(self):
         return self.friendly_name(self)
     
 class Product(models.Model):
+    """ Product model """
     category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)
     sku = models.CharField(max_length=254, null=True, blank=True)
     name = models.CharField(max_length=254)
@@ -32,9 +33,10 @@ class Product(models.Model):
     media = models.FileField(null=True, blank=True)
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
 class Order(models.Model):
+    """ Order model"""
     order_id = models.CharField(max_length=254, null=True, blank=True)
     order_items = models.CharField(max_length=254, null=True, blank=True)
     user_id = models.CharField(max_length=254, null=True, blank=True)
@@ -44,6 +46,7 @@ class Order(models.Model):
 
 
 class Bag(models.Model):
+    """ Bag model - temporary stored"""
     bag_items = models.CharField(max_length=254, blank=True, null=True)
     bag_name = models.CharField(max_length=254, null=True, blank=True, default="guest")
     bag_quantity = models.IntegerField(default=0)

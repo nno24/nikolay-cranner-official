@@ -1,20 +1,19 @@
+""" View functions for this app"""
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template import RequestContext
 from django.contrib import messages
-import requests
-from django.core.mail import send_mail, EmailMultiAlternatives
+from django.contrib.admin.views.decorators import staff_member_required
+from django.templatetags.static import static
+from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
 from django_pandas.io import read_frame
 from store.models import Bag
 from store.views import get_session_user
 from .forms import SubscribersForm, Subscribers, NewsletterForm
-from django.contrib.admin.views.decorators import staff_member_required
-from django.templatetags.static import static
-
 
 # Create your views here.
 def get_home(request):
-
+    """ A view for the home page, subscribers, etc"""
     #Delete bag in database if it exists for the session user.
     try:
         session_user = get_session_user(request)
