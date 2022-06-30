@@ -192,10 +192,20 @@ only accessible to superusers. Real emails are pushed out. Unsubscription can be
     - Chrome DevTools was used to test responsiveness on all devices,to inspect html/css, and to debug the application.
 1.  [Am I Responsive?](http://ami.responsivedesign.is/)
     - Am I Responsive? was used to create the screenshot of the website for all devices, the first image of the README.
+
+### Test related
 1. [Coverage](https://coverage.readthedocs.io/en/6.4.1/)
     - Used for automatic testing.
 1. [Selenium](https://www.selenium.dev/documentation/)
     - Used for testing html in headless mode. This is automatic browser interaction.
+1. [Jigsaw W3](https://jigsaw.w3.org/css-validator/)
+    - Used for validating CSS
+1. [JSHint](https://jshint.com/)
+    - Used for validating javaScript
+1. [Nu html checker](https://validator.w3.org/nu/)
+    - Used for validating html
+1. [Pylint](https://pylint.pycqa.org/en/latest/)
+    - Used for validating python
 
 
 ## Testing
@@ -294,6 +304,15 @@ Also, the receipients will depend on the topic selected in the contact form.
 1. Try the above steps on various devices.
     1. Responsive and UX friendy on all devices.
 
+### Validation tests
+
+- [CSS results](screenshots/validation/css_validation.PNG)
+- JavaScript: [scripts.js results](screenshots/validation/jshint-script_js.PNG)
+- JavaScript: [paypal.js results](screenshots/validation/jshint-paypal_js.PNG)
+- Html validation was more extensive, due to all the html files in the project.  
+  When using the Nu html checker, you have to specify all urls in the project.  
+  This was done during validation check,  but the results is not documented here.  
+  Try it for yourself [here]((https://validator.w3.org/nu/?doc=http%3A%2F%2Fnikolaycranner.com)):
 
 
 ## Deployment
