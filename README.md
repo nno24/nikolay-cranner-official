@@ -148,7 +148,6 @@ only accessible to superusers. Real emails are pushed out. Unsubscription can be
 ## Features to be added/fixed
 -   When anonymous user is purchasing products, it's not working good if more anonymous users are shopping at the same time.
     Each anonymous user have the user_id of "guest", and this should be fixed to a unique user id. ( could be done via cookie consent dialouge )
--   The users can not unsubscribe to newsletters
 -   Missing cookie consent dialouge
 -   Add more products to inventory etc.
 
