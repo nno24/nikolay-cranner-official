@@ -4,6 +4,10 @@
     color: #827373 !important;
 }
 
+.nc-socials>a {
+    padding-left: 32px;
+}
+
 .dropdown-content>li:hover, li:hover {
     background-color: #150E05 !important;
     transition: 5s;
@@ -50,8 +54,6 @@ main {
     background-color: rgb(224, 224, 224);
     color: rgb(84, 83, 83);
 }
-
-/* END Custom styling for messages django */
 
 /* Checkbox styling*/
 
@@ -173,6 +175,11 @@ ul.errorlist {
     display: none;
 }
 
+iframe {
+    width: 100%;
+    border: none;
+    border-radius: .2rem;
+}
 
 
 /* Styling for allauth templates */
@@ -181,9 +188,7 @@ ul.errorlist {
     font-size: 0.6rem;
 }
 
-
-
-/* card */
+/* Materializecss cards */
 
 .card {
     opacity: 0.6;
@@ -196,3 +201,6 @@ ul.errorlist {
 .modal-footer>a {
     color: #6f4d32 !important;
 }
+
+
+

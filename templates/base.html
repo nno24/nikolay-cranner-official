@@ -36,9 +36,9 @@
       {% block fb_pixel %}
       {% endblock %}
     </script>
-    <noscript><img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=755119178813459&ev=PageView&noscript=1"
-    /></noscript>
+    <noscript>
+      <img height="1" width="1" style="display:none;" src="https://www.facebook.com/tr?id=755119178813459&ev=PageView&noscript=1" alt="facebook-pixel"></img>
+    </noscript>
     <!-- End Meta Pixel Code -->
 </head>
 <body>
@@ -123,25 +123,11 @@
   </main>
   <footer class="page-footer nc-header-footer">
     <div class="container">
-      <div class="row center">
-          <ul>
-            <div class="col s3 m2 offset-m2 l1 offset-l4">
-              <li><a class="grey-text text-lighten-3" href="https://open.spotify.com/artist/4NvkvOJ0mDM7QjdzOZLDRd?si=jLyIf8k9R9aKJbMTzNoJsw" rel="nofollow"><i class="fab fa-spotify"></i></a></li>
-            </div>
-            <div class="col s3 m2 l1">
-              <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/nikolay_cranner/" rel="nofollow"></a><i class="fab fa-instagram"></i></a></li>
-
-            </div>
-            <div class="col s3 m2 l1">
-              <li><a class="grey-text text-lighten-3" href="https://www.facebook.com/NikolayCranner" rel="nofollow"><i class="fab fa-facebook"></i></a></li>
-
-            </div>
-            <div class="col s3 m2 l1">
-              <li><a class="grey-text text-lighten-3" href="https://soundcloud.com/nikolaycranner" rel="nofollow"><i class="fab fa-soundcloud"></i></a></li>
-
-            </div>
-            
-          </ul>
+      <div class="row center nc-socials">
+        <a class="grey-text text-lighten-3" href="https://open.spotify.com/artist/4NvkvOJ0mDM7QjdzOZLDRd?si=jLyIf8k9R9aKJbMTzNoJsw" rel="nofollow"><i class="fab fa-spotify"></i></a>         
+        <a class="grey-text text-lighten-3" href="https://www.instagram.com/nikolay_cranner/" rel="nofollow"></a><i class="fab fa-instagram"></i></a>
+        <a class="grey-text text-lighten-3" href="https://www.facebook.com/NikolayCranner" rel="nofollow"><i class="fab fa-facebook"></i></a>
+        <a class="grey-text text-lighten-3" href="https://soundcloud.com/nikolaycranner" rel="nofollow"><i class="fab fa-soundcloud"></i></a>
       </div>
     </div>
     <div class="footer-copyright nc-header-footer center">
@@ -152,6 +138,6 @@
   </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>    
-    <script src='{% static "js/script.js" %}' type="text/javascript"></script>
+    <script src='{% static "js/script.js" %}'></script>
 </body>
 </html>
