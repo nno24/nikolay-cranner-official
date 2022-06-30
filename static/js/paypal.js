@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 //Paypal API integration ------------------------------------
 const payPalButtons = paypal.Buttons({
 
@@ -30,7 +32,7 @@ const payPalButtons = paypal.Buttons({
     }
   
     finally {
-      console.log("No action needed")
+      console.log("No action needed");
     }
   
   },
@@ -46,7 +48,7 @@ const payPalButtons = paypal.Buttons({
             value: document.getElementById('grand-total').textContent
         },
       }]
-    }
+    };
     console.log('The order payload is: ' + JSON.stringify(createOrderPayload, null, 4));
     return actions.order.create(createOrderPayload);
   },
@@ -73,7 +75,7 @@ const payPalButtons = paypal.Buttons({
     // handle unrecoverable errors
     onError: (err) => {
         console.error('An error prevented the buyer from checking out with PayPal');
-        location.href = '/store/payment_failed/'
+        location.href = '/store/payment_failed/';
     }
     });
   

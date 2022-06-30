@@ -3,10 +3,10 @@
 function printValues(obj) {
   for (var key in obj) {
       if (typeof obj[key] === "object") {
-          console.log('key: ' + key )
+          console.log('key: ' + key );
           printValues(obj[key]);   
       } else {
-          console.log('key: ' + key )
+          console.log('key: ' + key );
           console.log('val: ' + obj[key]);    
       }
   }
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
  
-  //Initialize dropdown for login / signup etc Desktop/Tablet
+//Initialize dropdown for login / signup etc Desktop/Tablet
 document.addEventListener('DOMContentLoaded', function() {
   var elems = document.querySelectorAll('.dropdown-trigger');
   var instances = M.Dropdown.init(elems, {
@@ -59,12 +59,4 @@ document.addEventListener('DOMContentLoaded', function() {
  //Fade effect on messages
  $(".msg").ready(function(){
   $(".msg").fadeOut(10000);
-})
-
-
-
-
-
-    
-
- 
+});
