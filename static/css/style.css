@@ -32,7 +32,7 @@ main {
     top: 0;
     left: 0;
     width: 100%;
-    height: 10vh;
+    height: auto;
 }
 
 .success {
@@ -111,6 +111,18 @@ hr {
       color: white;
   }
 
+  .nc-submit-button {
+    background-color: transparent;
+    border: none;
+    float: right;
+    display: flex;
+    
+  }
+
+  .nc-submit-button:hover {
+    background-color: #827373;
+  }
+
   .nc-btn-color:hover {
       background-color: #827373;
   }
@@ -140,11 +152,21 @@ hr {
     margin-top: 5vh;
 }
 
+
 .nc-product-img:hover {
     opacity: 0.5;
     transition: 2s;
 }
 
+.nc-foreground-img {
+    background-repeat: no-repeat;
+    background-color: #150E05;
+    background-size: contain;
+    background-position: center;
+    width: 100%;
+    height: 15vh;
+    z-index: -1;
+}
 .nc-store-details-txt {
     text-align: center;
 }
@@ -181,6 +203,9 @@ iframe {
     border-radius: .2rem;
 }
 
+p {
+    margin: 0%;
+}
 
 /* Styling for allauth templates */
 
@@ -202,5 +227,30 @@ iframe {
     color: #6f4d32 !important;
 }
 
+
+/* video background */
+* { box-sizing: border-box; }
+.video-background {
+  background: #000;
+  position: fixed;
+  top: 0; right: 0; bottom: 0; left: 0;
+  z-index: -99;
+}
+.video-foreground,
+.video-background iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.5;
+}
+@media (min-aspect-ratio: 16/9) {
+  .video-foreground { height: 300%; top: -100%; }
+}
+@media (max-aspect-ratio: 16/9) {
+  .video-foreground { width: 300%; left: -100%; }
+}
 
 

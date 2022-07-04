@@ -4,6 +4,8 @@ from .models import Subscribers, Newsletter
 
 class SubscribersForm(forms.ModelForm):
     """ Subscribers form """
+    email = forms.EmailField(label='Become an insider..')
+    email.widget.attrs.update({'placeholder': 'Email'})
     class Meta:
         """ Form settings """
         model = Subscribers
