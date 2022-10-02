@@ -1,7 +1,7 @@
 
 .nc-header-footer, .modal-footer, .dropdown-content {
-    background-color: #1C140D !important;
-    color: #827373 !important;
+    background-color: #181717 !important;
+    color: #ffffff !important;
 }
 
 .nc-socials>a {
@@ -17,6 +17,7 @@ main {
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
+    background-attachment: fixed;
     flex: 1 0 auto;
 }
 
@@ -80,8 +81,8 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    background-color: #150E05;
-    color: #827373 !important;
+    background-color: #070605;
+    color: #ffffff !important;
   }
 
 input,textarea {
@@ -98,7 +99,7 @@ hr {
 }
 .modal-content {
     background-color: #150E05;
-    color: #827373;
+    color: #f8f5f5;
 }
 
 .nc-txt-md {
@@ -123,14 +124,14 @@ hr {
   }
 
   .sidenav li>a, .sidenav li>a>i {
-    color: #827373 !important;
+    color: #ffffff !important;
     font-size: 2rem;
     margin: 2rem;
 }
 
 
 #nav-mobile li>a {
-    color: #827373 !important;
+    color: #ffffff !important;
     font-size: 1.2rem;
 }
 
@@ -195,11 +196,11 @@ iframe {
 }
 
 .card-action>a {
-    color: #df833d !important;
+    color: #ffffff !important;
 }
 
 .modal-footer>a {
-    color: #6f4d32 !important;
+    color: #ffffff !important;
 }
 
 
