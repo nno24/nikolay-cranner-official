@@ -1,4 +1,8 @@
 
+html {
+    font-family:'Times New Roman', Times, serif;
+}
+
 .nc-header-footer, .modal-footer, .dropdown-content {
     background-color: #181717 !important;
     color: #ffffff !important;
@@ -98,7 +102,7 @@ hr {
     opacity: 0.1;
 }
 .modal-content {
-    background-color: #150E05;
+    background-color: #1b1b1b;
     color: #f8f5f5;
 }
 
@@ -108,7 +112,7 @@ hr {
   }
 
   .nc-btn-color {
-      background-color: #743C30;
+      background-color: darkgoldenrod;
       color: white;
   }
 
@@ -192,7 +196,7 @@ iframe {
 /* Materializecss cards */
 
 .card {
-    opacity: 0.6;
+    opacity: 0.8;
 }
 
 .card-action>a {
