@@ -1,49 +1,55 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-    <div class="row">
-      <div class="col s12">
-        <div class="card light-green darken-3">
-          <div class="card-content white-text">
-            <span class="card-title"></span>
-            <p>how you think matters..but</p>
-            <p>the real power is in how you feel</p>
-            <i class="material-icons">music_note</i>
-            <p>#housemusic</p>
-            <p><em>#deep #funky #jazzy</em></p>
-          </div>
+  <div class="row center">
+    <div class="col s12 m12 l10 offset-l1 header-div">
+      <img src="{% static "img/home_header.png" %}" alt="Header Image" class="header-img">
+        <p class="header-quote">how you think matters but the real power is in how you feel</p>
+        <form action="#!" method="post" class="header-subscribe">
+          <p class="subscribe-text">become an insider</p>
+          {% csrf_token %}
+          {{form}}      
           <div class="card-action">
-            <a href="{% url 'contact' %}">book now</a>
-             <!-- Modal Trigger Listen -->
-            <a class="modal-trigger" href="#modal1">Listen</a>
+            <button class="btn waves-effect waves-light nc-btn-color subscribe-btn" type="submit" name="action">Signup</button>
           </div>
-        </div>
-      </div>
+        </form>
     </div>
-    <div class="row">
-      <div class="col s12">
-        <div class="card light-green darken-3">
-          <div class="card-content white-text">
-            <span class="card-title"></span>
-            <p>become an insider now..</p>
-            <i class="material-icons">playlist_add_check</i>
-            <form action="#!" method="post">
-              {% csrf_token %}
-              {{form}}      
-              <div class="card-action">
-                <button class="btn waves-effect waves-light nc-btn-color" type="submit" name="action">Signup</button>
-              </div>
-            </form>
-        </div>
-      </div>
+  </div>
+  <div class="container">
+    <div class="row center news">
+     <div class="col s12 m8 offset-m2 l6 offset-l3">
+      
+     </div>
     </div>
-    <!-- Modal Structure Listen-->
-    <div id="modal1" class="modal">
-      <div class="modal-content">
-        <iframe src="https://open.spotify.com/embed/artist/4NvkvOJ0mDM7QjdzOZLDRd?utm_source=generator&theme=0" height="380" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-      </div>
-      <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect btn-flat">Close</a>
-        <a href="{% url 'store' %}" class="modal-close waves-effect btn-flat">Store</a>
-      </div>
+  </div>
+  <div class="container">
+    <div class="row center about">
+     <div class="col s12 m6 l6 about-div">
+      <h1 class="home-about-title">About</h1>
+      <p class="home-about-txt">Nikolay Cranner is a Norwegian producer, composer, DJ, engineer, and saxophonist dismantling preconceptions of House music. 
+        Imbuing the genre with his distinctive blend of sophistication and grit, he brings together the classic electronic sounds infused with deep vocals, 
+        undertones of jazz, and an entrancing fusion of styles. </p>
+     </div>
+     <div class="col s12 m6 l6">
+        <img src="{% static "img/home_about.jpg" %}" alt="About Image" class="home-about-img">
+     </div>
     </div>
+  </div>
+  <div class="container">
+    <div class="row center services services-div">
+     <div class="col s12 m6 l6">
+        <img src="{% static "img/home_services.jpg" %}" alt="About Image" class="home-services-img">
+     </div>
+     <div class="col s12 m6 l6">
+      <h1 class="home-services-title">Services</h1>
+      <p class="home-services-txt">Get the ultimate experience on your next gig with combined DJing and saxophone solos. 
+        <br>
+        <br>
+        Nikolay Cranner is here to make your gig stand out, by combining his own productions with
+        his influencers commericial blend.<br><br>He is availabe worldwide.
+         </p>
+      <a href="{% url 'contact' %}" class="btn waves-effect waves-light nc-btn-color home-contact-button">Contact</a>
+     </div>
+    </div>
+  </div>
 {% endblock %}

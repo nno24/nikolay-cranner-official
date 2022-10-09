@@ -25,6 +25,94 @@ main {
     flex: 1 0 auto;
 }
 
+
+/* HOME section */
+/* Header */
+.listen-now {
+    font-size: 0.9rem !important;
+    color: rgb(212, 212, 212) !important;
+}
+
+.listen-now:hover {
+    color: #1DB954 !important;
+    transition: 2s;
+}
+
+.header-img {
+    width: 100%;
+    height: auto;
+}
+
+.header-div {
+    position: relative;
+}
+
+.header-quote {
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    text-align: right;
+    width: 15%;
+    height: auto;
+}
+
+.header-subscribe {
+    position: absolute;
+    text-align: right;
+    height: auto;
+    width: 20%;
+    top: 50%;
+    left: 50%;
+}
+
+.quote {
+    z-index: 2;
+    top: 0;
+    left: 0;
+}
+
+.subscribe-text {
+    text-align: left;
+}
+
+.subscribe-btn {
+    float: right !important;
+}
+/* END Header */
+
+/* News */
+/* END News */
+
+/* About / Services */
+.about-div, .services-div {
+    position: relative;
+}
+.home-about-img, .home-services-img {
+    width: 100%;
+    height: auto;
+}
+
+.home-about-txt, .home-services-txt {
+    text-align: left;
+    margin-top: 15%;
+    margin-left: 10%;
+    width: 75%;
+}
+
+.home-about-title, .home-services-title {
+    text-align: left;
+    margin-left: 10%;
+}
+
+.home-contact-button {
+    float: left;
+    margin-left: 10%;
+    margin-bottom: 30%;
+    margin-top: 5%;
+}
+/*END About/Services */
+
+/* END HOME section */
 /* Custom styling for messages django */
 
 .msg {
@@ -37,7 +125,6 @@ main {
     top: 0;
     left: 0;
     width: 100%;
-    height: 10vh;
 }
 
 .success {
@@ -89,13 +176,23 @@ body {
     color: #ffffff !important;
   }
 
+/* Inputs */
+/* Materializecss */
+/* END Materializecss */
+
 input,textarea {
     color: white;
+    background-color: transparent !important;
+    text-align: right;
+    font-family:'Times New Roman', Times, serif;
+    font-size: 0.9 rem;
 }
 
 textarea {
     height: 110px !important;
 }
+
+/* END Inputs */
 
 hr {
     margin: 50px;
@@ -112,7 +209,7 @@ hr {
   }
 
   .nc-btn-color {
-      background-color: darkgoldenrod;
+      background-color: #B86D16;
       color: white;
   }
 
@@ -207,5 +304,72 @@ iframe {
     color: #ffffff !important;
 }
 
+/* Media Queries */
+@media screen and (max-width: 1300px) {    
+    .header-subscribe {
+        width: 25%;
+    }
+}
 
+/* Media Queries */
+@media screen and (max-width: 800px) {
+    .header-quote {
+
+    }
+    .header-subscribe {
+        width: 30%;
+    }
+}
+
+/* Media Queries S*/
+@media screen and (max-width: 600px) {
+    .home-about-txt {
+        position: absolute;
+        text-align: right;
+        width: 50%;
+        margin-top: 20vh;
+        left: 20vw;
+    }
+
+    .home-about-title {
+        position: absolute;
+        top: 50%;
+        left: 25vw;
+    }
+
+    .home-services-txt {
+        position: absolute;
+        text-align: left;
+        width: 50%;
+        left: 5vw;
+        margin-top: 10vh;
+        top: 10%;
+    }
+
+    .home-services-title {
+        position: absolute;
+        left: 5vw;
+        top: 0;
+    }
+
+    .home-contact-button {
+        position: absolute;
+        top: 82%;
+        left: 5vw;
+    }
+
+/* Media Queries */
+@media screen and (max-width: 586px) {
+    .header-quote {
+        width: 30%;
+        left: 25%;
+        top: 10%;
+    }
+    
+    .header-subscribe {
+        width: 50%;
+        position: relative;
+        left: 25%
+    }
+}
 

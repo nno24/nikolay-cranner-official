@@ -1,11 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Contact</h1>
-<form action="#!" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <br>
-    <br>
-    <button class="btn waves-effect waves-light nc-btn-color" type="submit" name="action">Send</button>
-</form>
+<div class="container">
+    <div class="row center news">
+     <div class="col s12 m8 offset-m2 l6 offset-l3">
+        <h1>Contact</h1>
+        <form action="#!" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <br>
+            <br>
+            <button class="btn waves-effect waves-light nc-btn-color" type="submit" name="action">Send</button>
+        </form>        
+     </div>
+    </div>
+  </div>
 {% endblock %}

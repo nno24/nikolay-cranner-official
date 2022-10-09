@@ -82,6 +82,8 @@
           <a href="{% url 'home' %}" class="brand-logo left">
             <img src='{% static "img/logo.png" %}' alt="Nikolay Cranner Logo" class="nc-logo">
           </a>
+          <!-- Modal Trigger Listen Now -->
+          <a class="modal-trigger brand-logo center listen-now" href="#modal1">LISTEN NOW</a>
           {% block page_header_extra %}
           {% endblock %}
           <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
@@ -100,6 +102,17 @@
         <li><a href="{% url 'store' %}">store</a></li>
         <li><a class="dropdown-trigger" href="#!" data-target="dropdown2">{{ request.user.username|default:'guest' }}<i class="material-icons right">arrow_drop_down</i></a></li>
       </ul>
+    <!-- Modal Structure Listen Now-->
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <iframe src="https://open.spotify.com/embed/artist/4NvkvOJ0mDM7QjdzOZLDRd?utm_source=generator&theme=0" height="350" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect btn-flat ">Close</a>
+        <a href="{% url 'store' %}" class="modal-close btn waves-effect waves-light nc-btn-color">Store</a>
+      </div>
+    </div>
+     <!-- END Modal Structure Listen Now-->
   </header>
   {% endblock %}
   <main style="background-image: url('{% static "img/background.jpg" %}');">
@@ -111,14 +124,8 @@
       {% endif %}
     </div>
   <section>
-    <div class="container">
-      <div class="row center">
-       <div class="col s12 m8 offset-m2 l6 offset-l3">
          {% block content %}
          {% endblock %}
-       </div>
-      </div>
-     </div>
   </section>
   </main>
   <footer class="page-footer nc-header-footer">
