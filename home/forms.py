@@ -1,6 +1,6 @@
 """ Forms used in this app"""
 from django import forms
-from .models import Subscribers, Newsletter
+from .models import Subscribers, Newsletter, NewsArticle
 
 class SubscribersForm(forms.ModelForm):
     """ Subscribers form """
@@ -17,4 +17,11 @@ class NewsletterForm(forms.ModelForm):
     class Meta:
         """ Form settings """
         model = Newsletter
+        fields = '__all__'
+
+class NewsArticleForm(forms.ModelForm):
+    """ News Article form """
+    class Meta:
+        """ Form settings """
+        model = NewsArticle
         fields = '__all__'

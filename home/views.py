@@ -2,6 +2,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template import RequestContext
 from django.contrib import messages
+from django.conf import settings
 from django.contrib.admin.views.decorators import staff_member_required
 from django.templatetags.static import static
 from django.core.mail import EmailMultiAlternatives
@@ -9,7 +10,8 @@ from django.template.loader import get_template
 from django_pandas.io import read_frame
 from store.models import Bag
 from store.views import get_session_user
-from .forms import SubscribersForm, Subscribers, NewsletterForm
+from .models import NewsArticle
+from .forms import SubscribersForm, Subscribers, NewsletterForm, NewsArticleForm
 
 # Create your views here.
 def get_home(request):
@@ -44,8 +46,15 @@ def get_home(request):
     else:
         form = SubscribersForm()
 
+
+    # Get the latest news article
+    try:
+        latest_news = NewsArticle.objects.last()
+    except:
+        messages.warning(request, "Unable to load latest news..")
     context = {
         'form': form,
+        'latest_news': latest_news
     }
 
     return render(request, 'home/home.html', context)
@@ -93,6 +102,31 @@ def newsletter_create(request):
     }
 
     return render(request, 'home/newsletter_create.html', context)
+
+def newsarticle_create(request):
+    """A view to create newsarticle for admin users only"""
+
+    if request.POST:
+        nform = NewsArticleForm(request.POST, request.FILES)
+        if nform.is_valid():
+            print("media file is: ",nform.cleaned_data['media'])
+            print("image file is: ",nform.cleaned_data['image'])
+            nform.save()
+            last_article = NewsArticle.objects.last()
+            messages.success(request, 'News Article: ' + last_article.title + " saved")
+
+            context = {
+                'last_article': last_article,
+            }
+            return render(request, 'home/newsarticle_create.html', context)
+    else:
+        nform = NewsArticleForm()
+    
+    context = {
+        'nform': nform,
+    }
+
+    return render(request, 'home/newsarticle_create.html', context)
 
 def unsubscribe(request, id):
     """A view to unsubscribe"""

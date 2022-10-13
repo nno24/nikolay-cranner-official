@@ -18,4 +18,11 @@ class Newsletter(models.Model):
 
     def __str__(self):
         return str(self.title)
+
+class NewsArticle(models.Model):
+    """ Model for news article on home page """
+    title = models.CharField(max_length=50, null=True, blank=True)
+    description = models.TextField()
+    image = models.ImageField(null=True, blank=True, upload_to='articles/')
+    media = models.FileField(null=True, blank=True, upload_to='articles/')
         

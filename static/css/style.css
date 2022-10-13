@@ -97,22 +97,28 @@ main {
 /* END News */
 
 /* About / Services */
-.about-div, .services-div {
+.about-div, .services-div, .news {
     position: relative;
 }
-.home-about-img, .home-services-img {
+
+.news {
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+}
+
+.home-about-img, .home-services-img, .home-news-img {
     width: 100%;
     height: auto;
 }
 
-.home-about-txt, .home-services-txt {
+.home-about-txt, .home-services-txt, .home-news-txt {
     text-align: left;
     margin-top: 15%;
     margin-left: 10%;
     width: 75%;
 }
 
-.home-about-title, .home-services-title {
+.home-about-title, .home-services-title, .home-news-title {
     text-align: left;
     margin-left: 10%;
 }
@@ -369,6 +375,24 @@ iframe {
         position: absolute;
         top: 82%;
         left: 5vw;
+    }
+
+    .news {
+        height: 75vh;
+    }
+
+    .home-news-txt {
+        position: absolute;
+        text-align: left;
+        width: 50%;
+        left: 5vw;
+        top: 20%;
+    }
+
+    .home-news-title {
+        position: absolute;
+        left: 5vw;
+        top: 0;
     }
 
 /* Media Queries */

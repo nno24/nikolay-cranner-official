@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if messages %}
+    <div class="container">
+      <div class="row center news">
+       <div class="col s12 m6 l6 news-div">
+        <h1 class="home-news-title">{{last_article.title}}</h1>
+        <img src="{{ MEDIA_URL }}{{ last_article.image }}" alt="News Image">
+        <p class="home-news-txt">{{last_article.description}}</p>
+       </div>
+      </div>
+    </div>
+    {% else %}
+      <div class="container">
+        <div class="row center">
+          <div class="col s12 m6 l6">
+            <h5>Create News Article</h5>
+            <form action="#!" method="post">
+              {% csrf_token %}
+              {{ nform.as_table }}      
+              <button class="btn waves-effect waves-light nc-btn-color" type="submit" name="action">Save</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+{% endblock %}
