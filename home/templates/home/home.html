@@ -4,8 +4,10 @@
   <div class="row center">
     <div class="col s12 m12 l10 offset-l1 header-div">
       <img src="{% static "img/home_header.png" %}" alt="Header Image" class="header-img">
+      <img src="{% static "img/logo-all-shine3-transp.png" %}" alt="Logo Header" class="header-logo">
         <p class="header-quote">how you think matters but the real power is in how you feel</p>
-        <form action="#!" method="post" class="header-subscribe">
+        <div class="header-subscribe">
+          <form action="#!" method="post">
           <p class="subscribe-text">become an insider</p>
           {% csrf_token %}
           {{form}}      
@@ -13,6 +15,7 @@
             <button class="btn waves-effect waves-light nc-btn-color subscribe-btn" type="submit" name="action">Signup</button>
           </div>
         </form>
+        </div>
     </div>
   </div>
   <div class="container">

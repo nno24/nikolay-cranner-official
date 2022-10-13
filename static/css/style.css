@@ -1,6 +1,8 @@
 
 html {
-    font-family:'Times New Roman', Times, serif;
+    /*font-family:'Times New Roman', Times, serif;*/
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight:100;
 }
 
 .nc-header-footer, .modal-footer, .dropdown-content {
@@ -49,11 +51,13 @@ main {
 
 .header-quote {
     position: absolute;
-    top: 20%;
-    left: 30%;
+    top: 0;
+    left: 50vw;
     text-align: right;
-    width: 15%;
+    width: 30vw;
     height: auto;
+    font-size: 4vw;
+    font-style: italic;
 }
 
 .header-subscribe {
@@ -61,8 +65,17 @@ main {
     text-align: right;
     height: auto;
     width: 20%;
-    top: 50%;
+    top: 70%;
     left: 50%;
+    font-size: 5vw;
+    font-style: oblique;
+}
+
+.header-logo {
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    height: 10%;
 }
 
 .quote {
@@ -362,8 +375,8 @@ iframe {
 @media screen and (max-width: 586px) {
     .header-quote {
         width: 30%;
-        left: 25%;
-        top: 10%;
+        left: 55%;
+        top: 7%;
     }
     
     .header-subscribe {
