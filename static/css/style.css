@@ -376,7 +376,7 @@ iframe {
         top: 82%;
         left: 5vw;
     }
-
+/*
     .news {
         height: 75vh;
     }
@@ -394,7 +394,7 @@ iframe {
         left: 5vw;
         top: 0;
     }
-
+*/
 /* Media Queries */
 @media screen and (max-width: 586px) {
     .header-quote {
