@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block page_header_extra %}
-<a href="{% url 'bag' %}" class="right basket-counter"><i class="small material-icons right">shopping_cart</i><i class="fa-duotone fa-sm fa-{{ quantity }}"></i></a>
+<a href="{% url 'bag' %}" class="right basket-counter"><i class="small material-icons right">shopping_cart</i>{{quantity}}</a>
 {% endblock %}
 {% block content %}
 <div class="container">
@@ -20,6 +20,11 @@
                     <i class="material-icons left">add_shopping_cart</i>
                 </button>
             </form>
+        </div>
+    </div>
+    <div class="row center">
+        <div class="col s12 m8 offset-m2 l6 offset-l3">
+            <a href="{% url 'store' %}">Back</a>
         </div>
     </div>
 </div>

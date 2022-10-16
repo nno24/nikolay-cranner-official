@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+  <div class="row center news">
+    <div class="col s12 m6 l6">
+      {% if this_article.image %}
+      <img src="{{ MEDIA_URL }}{{ this_article.image }}" alt="News Image" class="home-news-img">
+      {% endif %}
+      {% if this_article.embed %}
+      <div class="embed">
+        {{ this_article.embed|safe }}
+      </div>
+      {% endif %}
+    </div>
+    <div class="col s12 m6 l6 news-div">
+      {% if this_article.title %}
+      <h1 class="home-news-title">{{this_article.title}}</h1>
+      {% endif %}
+      {% if this_article.showdate %}
+      <p class="home-news-pubdate">{{this_article.pubdate}}</p>
+      {% endif %}
+      {% if this_article.section1 or this_article.section2 %}
+      <p class="home-news-txt">{{this_article.section1}} <br><br>{{this_article.section2}}</p>
+      {% endif %}
+    </div>
+  </div>
+  <div class="row center">
+    <div class="col s12 m6 l6">
+      <a href="{% url 'newsarticles' %}" class="btn waves-effect waves-light nc-btn-color">Back</a>
+      <a href="{% url 'newsarticle_edit' this_article.id %}" class="btn waves-effect waves-light nc-btn-color"> <i class="small material-icons">edit</i></a>
+      <a href="{% url 'newsarticle_delete' this_article.id %}" class="btn-small waves-effect waves-light nc-btn-color" id="{{ this_article.id }}"><i class="tiny material-icons">delete</i></a>
+    </div>
+  </div>
+</div>
+{% endblock %}

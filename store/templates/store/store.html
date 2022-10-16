@@ -1,13 +1,17 @@
 {% extends 'base.html' %}
     {% block page_header_extra %}
-     <a href="{% url 'bag' %}" class="right basket-counter"><i class="small material-icons right">shopping_cart</i><i class="fa-duotone fa-sm fa-{{ quantity }}"></i></a>
+     <a href="{% url 'bag' %}" class="right basket-counter"><i class="small material-icons right">shopping_cart</i>{{quantity}}</a>
     {% endblock %}
 {% block content %}
 {% for product in products %}
-        <div class="col s12 center m6 l4">
-            <a href="{% url 'store_details' product.pk %}">
-                <img src="{{ MEDIA_URL }}{{ product.image }}" alt="{{ product.image }}" class="nc-product-img">
-            </a>
+    <div class="container">
+        <div class="row center">
+            <div class="col s12 m8 offset-m2 l6 offset-l3">
+                <a href="{% url 'store_details' product.pk %}">
+                    <img src="{{ MEDIA_URL }}{{ product.image }}" alt="{{ product.image }}" class="nc-product-img">
+                </a>
+            </div>
         </div>
+    </div>
 {% endfor %}
 {% endblock %}

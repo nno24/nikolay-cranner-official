@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+      <div class="row center">
+       <div class="col s12 m8 offset-m2 l6 offset-l3">
+        {% if articles %}
+        <table>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Publ.date</th>
+              <th>Preview</th>
+              <th>Delete</th>
+              <th>Live status</th>
+            </tr>
+          </thead>
+        {% for article in articles %}
+        <tr>
+          <td>{{ article.title }}</td>
+          <td>{{ article.pubdate }}</td>
+          <td><a href="{% url 'newsarticle_preview' article.id %}" class="btn-small waves-effect waves-light nc-btn-color" id="{{ article.id }}"><i class="tiny material-icons">visibility</i></a></td>
+          <td><a href="{% url 'newsarticle_delete' article.id %}" class="btn-small waves-effect waves-light nc-btn-color" id="{{ article.id }}"><i class="tiny material-icons">delete</i></a></td>
+          <td>{{ article.live }}</td>
+        </tr>
+        {% endfor %}
+        </table>
+        {% else %}
+        <p>No articles yet</p>
+        {% endif %}
+       </div>
+      </div>
+      <div class="row center">
+        <div class="col s12 m8 offset-m2 l6 offset-l3">
+          <a href="{% url 'newsarticle_create' %}" class="btn-floating waves-effect waves-light nc-btn-color"><i class="material-icons">add</i></a>
+        </div>
+      </div>
+    </div>
+{% endblock %}

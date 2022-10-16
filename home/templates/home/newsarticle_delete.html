@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+      <div class="row center news">
+       <div class="col s12 m8 offset-m2 l6 offset-l3">
+        <h1>Are you sure you want to delete: {{ newsarticle.title}} ?</h1>
+        <a href="{% url 'newsarticle_delete_yes' newsarticle.id %}" class="btn-small waves-effect waves-light nc-btn-color" id="{{ newsarticle.id }}">YES</a>
+        <a href="{% url 'newsarticles' %}" class="btn-small waves-effect waves-light nc-btn-color" id="{{ article.id }}">NO</a>
+       </div>
+      </div>
+    </div>
+{% endblock %}

@@ -5,6 +5,23 @@ html {
     font-weight:100;
 }
 
+#home-video {
+
+}
+
+/*Checkbox styling*/
+[type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+    opacity: 1;
+    pointer-events: all;
+    position: relative;
+}
+
+
+.label-checked {
+    color: rgb(79, 31, 190);
+}
+
+
 .nc-header-footer, .modal-footer, .dropdown-content {
     background-color: #181717 !important;
     color: #ffffff !important;
@@ -93,10 +110,10 @@ main {
 }
 /* END Header */
 
-/* News */
-/* END News */
+/* Video */
+/*END Video*/
 
-/* About / Services */
+/* About / Services / News */
 .about-div, .services-div, .news {
     position: relative;
 }
@@ -106,9 +123,19 @@ main {
     margin-bottom: 10vh;
 }
 
-.home-about-img, .home-services-img, .home-news-img {
+.embed {
+    margin-top: 10%;
+}
+
+.home-about-img, .home-services-img {
     width: 100%;
     height: auto;
+}
+
+.home-news-img {
+    width: 100%;
+    height: auto;
+    margin-top: 15%;
 }
 
 .home-about-txt, .home-services-txt, .home-news-txt {
@@ -116,6 +143,11 @@ main {
     margin-top: 15%;
     margin-left: 10%;
     width: 75%;
+}
+
+.home-news-pubdate {
+    text-align: left;
+    margin-left: 10%;
 }
 
 .home-about-title, .home-services-title, .home-news-title {

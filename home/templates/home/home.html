@@ -18,20 +18,42 @@
         </div>
     </div>
   </div>
+  <div class="video-container">
+    <iframe id="home-video" src="https://www.youtube.com/embed/kBhZxNGpHpo?autoplay=1&mute=1&playsinline=1&controls=0"></iframe>
+  </div>
+  {% if newsarticles %}
   <div class="container">
+    <h1>News</h1>
+    {% for article in newsarticles %}
     <div class="row center news">
-      <div class="col s12 m6 l6">
-        <img src="{{ MEDIA_URL }}{{ latest_news.image }}" alt="News Image" class="home-news-img">
+      <div class="col s12 m8 l6">
+        {% if article.image %}
+        <img src="{{ MEDIA_URL }}{{ article.image }}" alt="News Image" class="home-news-img">
+        {% endif %}
+        {% if article.embed %}
+        <div class="embed">
+          {{ article.embed|safe }}
+        </div>
       </div>
+      {% endif %}
      <div class="col s12 m6 l6 news-div">
-      <h1 class="home-news-title">{{latest_news.title}}</h1>
-      <p class="home-news-txt">{{latest_news.section1}} <br><br>{{latest_news.section2}}</p>
+      {% if article.title %}
+      <h2 class="home-news-title">{{article.title}}</h2>
+      {% endif %}
+      {% if article.showdate %}
+      <p class="home-news-pubdate">{{article.pubdate}}</p>
+      {% endif %}
+      {% if article.section1 or article.section2 %}
+      <p class="home-news-txt">{{article.section1}} <br><br>{{article.section2}}</p>
+      {% endif %}
      </div>
     </div>
+    {% endfor %}
   </div>
+  {% endif %}
   <div class="container">
     <div class="row center about">
-     <div class="col s12 m6 l6 about-div">
+     <div class="col s12 m8 l6 about-div">
       <h1 class="home-about-title">About</h1>
       <p class="home-about-txt">Nikolay Cranner is a Norwegian producer, composer, DJ, engineer, and saxophonist dismantling preconceptions of House music. 
         Imbuing the genre with his distinctive blend of sophistication and grit, he brings together the classic electronic sounds infused with deep vocals, 

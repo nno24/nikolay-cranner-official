@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block page_header_extra %}
-    <a href="{% url 'bag' %}" class="right basket-counter"><i class="small material-icons right">shopping_cart</i><i class="fa-duotone fa-sm fa-{{ quantity }}"></i></a>
+    <a href="{% url 'bag' %}" class="right basket-counter"><i class="small material-icons right">shopping_cart</i>{{quantity}}</a>
 {% endblock %} 
 {% block content %}
-{% if quantity == 0 %}
+<div class="container">
+    <div class="row center">
+        <div class="col s12 m8 offset-m2 l6 offset-l3">
+            {% if quantity == 0 %}
     <h1>Your bag is empty</h1>
     <a href="{% url 'store' %}">back to store</a>
     <hr>
@@ -87,6 +90,10 @@
     </div>
 
 </div>
+        </div>
+    </div>
+</div>
+
 <script src="https://www.paypal.com/sdk/js?client-id=ATfsuzE4j3nQYzab5kaRV2v9C0jsFb_vHBJKzspzRiUuIH8Om9AXo898FXRansPyNPPQH23yEuQX3Y_H&currency=USD"></script>
 <script src='{% static "js/paypal.js" %}' type="text/javascript"></script>
 {% endblock %}

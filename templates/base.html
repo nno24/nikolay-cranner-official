@@ -50,7 +50,7 @@
         {% if request.user.is_superuser %}
         <li><a href="/admin">manage</a></li>
         <li><a href="{% url 'newsletter_create' %}">newsletter</a></li>
-        <li><a href="{% url 'newsarticle_create' %}">article</a></li>
+        <li><a href="{% url 'newsarticles' %}">article</a></li>
         <li class="divider" tabindex="-1"></li>
         {% endif %}
         <li><a href="{% url 'user_profile' %}">profile</a></li>
@@ -67,7 +67,7 @@
         {% if request.user.is_superuser %}
         <li><a href="/admin">manage</a></li>
         <li><a href="{% url 'newsletter_create' %}">newsletter</a></li>
-        <li><a href="{% url 'newsarticle_create' %}">article</a></li>
+        <li><a href="{% url 'newsarticles' %}">article</a></li>
         <li class="divider" tabindex="-1"></li>
         {% endif %}
         <li><a href="{% url 'user_profile' %}">profile</a></li>

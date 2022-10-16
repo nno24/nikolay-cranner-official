@@ -10,7 +10,8 @@ from django_pandas.io import read_frame
 from store.models import Bag
 from store.views import get_session_user
 from .models import NewsArticle
-from .forms import SubscribersForm, Subscribers, NewsletterForm, NewsArticleForm
+from .forms import SubscribersForm, Subscribers, NewsletterForm, \
+                    NewsArticleForm
 
 # Create your views here.
 def get_home(request):
@@ -46,14 +47,15 @@ def get_home(request):
         form = SubscribersForm()
 
 
-    # Get the latest news article
+    # Get the news with live status to True
     try:
-        latest_news = NewsArticle.objects.last()
+        newsarticles = NewsArticle.objects.filter(live=True)
     except:
         messages.warning(request, "Unable to load latest news..")
+    
     context = {
         'form': form,
-        'latest_news': latest_news
+        'newsarticles': newsarticles,
     }
 
     return render(request, 'home/home.html', context)
@@ -102,21 +104,105 @@ def newsletter_create(request):
 
     return render(request, 'home/newsletter_create.html', context)
 
+
+def newsarticles(request):
+    """ A view to display all news articles"""
+    articles = NewsArticle.objects.all()
+    context = {
+        'articles': articles,
+    }
+    return render(request, 'home/newsarticles.html', context)
+
+
+def newsarticle_preview(request, article_id):
+    """ A view to preview a news article """
+    this_article = NewsArticle.objects.get(id=article_id)
+    context = {
+        'this_article': this_article,
+    }
+
+    return render(request, 'home/newsarticle_preview.html', context)
+
+
+def newsarticle_edit(request, article_id):
+    """ A view to preview a news article """
+
+    if request.POST:
+        try:
+            this_article = NewsArticle.objects.get(id=article_id)
+            this_form = NewsArticleForm(request.POST, request.FILES)
+            if this_form.is_valid():
+                # Get the form, and compare if changes with object in db, only update db if changes.
+                cf = this_form.cleaned_data
+                ftitle = cf['title']
+                fsection1 = cf['section1']
+                fsection2 = cf['section2']
+                flive = cf['live']
+                fimage = cf['image']
+                fembed = cf['embed']
+                fshowdate = cf['showdate']
+
+                if (ftitle != this_article.title):
+                    this_article.title = ftitle
+                if ( fsection1 != this_article.section1 ):
+                    this_article.section1 = fsection1
+                if ( fsection2 != this_article.section2 ):
+                    this_article.section2 = fsection2
+                if ( flive != this_article.live ):
+                    this_article.live = flive
+                if ( fembed != this_article.embed ):
+                    this_article.embed = fembed
+                if ( fimage != this_article.image and fimage != None ):
+                    this_article.image = fimage
+                if ( fshowdate != this_article.showdate ):
+                    this_article.showdate = fshowdate
+                this_article.save()
+                messages.success(request, "Updated")
+                return redirect('newsarticles')
+        except:
+            messages.error(request, "Failed to update")
+
+    this_article = NewsArticle.objects.get(id=article_id)
+    this_form = NewsArticleForm(instance=this_article)
+    context = {
+        'this_form': this_form,
+    }
+
+    return render(request, 'home/newsarticle_edit.html', context)
+
+def newsarticle_delete(request, article_id):
+    """ A view to be asked if delete YES/NO """
+    newsarticle = NewsArticle.objects.get(id=article_id)
+    context = {
+        'newsarticle': newsarticle,
+    }
+    return render(request, 'home/newsarticle_delete.html', context)
+
+def newsarticle_delete_yes(request, article_id):
+    """ Delete function """
+    try:
+        newsarticle = NewsArticle.objects.get(id=article_id)
+        newsarticle.delete()
+        messages.success(request, "Deleted: " + newsarticle.title)
+    except:
+        messages.error(request, "Failed to delete..")
+    return redirect('newsarticles')
+
+
 def newsarticle_create(request):
     """A view to create newsarticle for admin users only"""
 
     if request.POST:
         articleform = NewsArticleForm(request.POST, request.FILES)
         if articleform.is_valid():
-            print("The image file name is: ", articleform.cleaned_data['image'])
-            articleform.save()
-            last_article = NewsArticle.objects.last()
-            messages.success(request, 'News Article: ' + last_article.title + " saved")
-
-            context = {
-                'last_article': last_article,
-            }
-            return render(request, 'home/newsarticle_create.html', context)
+            try:
+                articleform.save()
+                messages.success(request, "Saved")
+                return redirect('newsarticles')
+            except:
+                messages.error(request, 'Unable to create..')
+                return redirect('newsarticle_create')
+            
     else:
         articleform = NewsArticleForm()
     

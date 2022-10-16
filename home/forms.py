@@ -25,3 +25,5 @@ class NewsArticleForm(forms.ModelForm):
         """ Form settings """
         model = NewsArticle
         fields = '__all__'
+        exclude = ('pubdate','media')
+

@@ -1,5 +1,6 @@
 """ Database models in this app"""
 from django.db import models
+from django.utils import timezone as tz
 
 # Create your models here.
 class Subscribers(models.Model):
@@ -22,8 +23,11 @@ class Newsletter(models.Model):
 class NewsArticle(models.Model):
     """ Model for news article on home page """
     title = models.CharField(max_length=50, null=True, blank=True)
-    section1 = models.TextField(default="")
-    section2 = models.TextField(default="")
+    section1 = models.TextField(default="", null=True, blank=True)
+    section2 = models.TextField(default="", null=True, blank=True)
     image = models.ImageField(null=True, blank=True, upload_to='articles/')
+    embed = models.CharField(null=True, blank=True, max_length=500)
     media = models.FileField(null=True, blank=True, upload_to='articles/')
-        
+    live = models.BooleanField(default=False)
+    pubdate = models.DateField(default=tz.now)
+    showdate = models.BooleanField(default=True)
