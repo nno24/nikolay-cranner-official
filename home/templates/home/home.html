@@ -23,7 +23,6 @@
   </div>
   {% if newsarticles %}
   <div class="container">
-    <h1>News</h1>
     {% for article in newsarticles %}
     <div class="row center news">
       <div class="col s12 m8 l6">
@@ -34,11 +33,11 @@
         <div class="embed">
           {{ article.embed|safe }}
         </div>
+        {% endif %}
       </div>
-      {% endif %}
      <div class="col s12 m6 l6 news-div">
       {% if article.title %}
-      <h2 class="home-news-title">{{article.title}}</h2>
+      <h1 class="home-news-title">{{article.title}}</h1>
       {% endif %}
       {% if article.showdate %}
       <p class="home-news-pubdate">{{article.pubdate}}</p>
