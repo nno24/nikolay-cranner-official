@@ -22,7 +22,8 @@ class Newsletter(models.Model):
 class NewsArticle(models.Model):
     """ Model for news article on home page """
     title = models.CharField(max_length=50, null=True, blank=True)
-    description = models.TextField()
+    section1 = models.TextField(default="")
+    section2 = models.TextField(default="")
     image = models.ImageField(null=True, blank=True, upload_to='articles/')
     media = models.FileField(null=True, blank=True, upload_to='articles/')
         

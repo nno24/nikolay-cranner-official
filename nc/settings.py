@@ -183,10 +183,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-
 MEDIA_URL = '/media/'
 MEDIA_ROOT = (os.path.join(BASE_DIR, 'media'))
-
 
 if 'USE_AWS' in os.environ:
     # Cache control
@@ -216,7 +214,7 @@ if 'USE_AWS' in os.environ:
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CSRF_TRUSTED_ORIGINS = ["https://8000-nno24-nikolaycrannerof-3khq4tx8j67.ws-eu70.gitpod.io"]
+CSRF_TRUSTED_ORIGINS = ["https://8000-nno24-nikolaycrannerof-3khq4tx8j67.ws-eu70.gitpod.io", "https://8000-nno24-nikolaycrannerof-3khq4tx8j67.ws-eu71.gitpod.io"]
 SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popups'
 
 if 'DEVELOPMENT' in os.environ:

@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-    {% if messages %}
+    {% if last_article %}
     <div class="container">
       <div class="row center news">
        <div class="col s12 m6 l6 news-div">
         <h1 class="home-news-title">{{last_article.title}}</h1>
-        <img src="{{ MEDIA_URL }}{{ last_article.image }}" alt="News Image">
-        <p class="home-news-txt">{{last_article.description}}</p>
+        <img src="{{ MEDIA_URL }}{{ last_article.image }}" alt="News Image" class="home-news-img">
+        <p class="home-news-txt">{{last_article.section1}}<br><br>{{last_article.section2}}</p>
        </div>
       </div>
     </div>
@@ -15,9 +15,9 @@
         <div class="row center">
           <div class="col s12 m6 l6">
             <h5>Create News Article</h5>
-            <form action="#!" method="post">
+            <form action="#!" method="post" enctype="multipart/form-data">
               {% csrf_token %}
-              {{ nform.as_table }}      
+              {{ articleform.as_p }}      
               <button class="btn waves-effect waves-light nc-btn-color" type="submit" name="action">Save</button>
             </form>
           </div>

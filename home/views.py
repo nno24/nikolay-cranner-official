@@ -2,7 +2,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template import RequestContext
 from django.contrib import messages
-from django.conf import settings
 from django.contrib.admin.views.decorators import staff_member_required
 from django.templatetags.static import static
 from django.core.mail import EmailMultiAlternatives
@@ -107,11 +106,10 @@ def newsarticle_create(request):
     """A view to create newsarticle for admin users only"""
 
     if request.POST:
-        nform = NewsArticleForm(request.POST, request.FILES)
-        if nform.is_valid():
-            print("media file is: ",nform.cleaned_data['media'])
-            print("image file is: ",nform.cleaned_data['image'])
-            nform.save()
+        articleform = NewsArticleForm(request.POST, request.FILES)
+        if articleform.is_valid():
+            print("The image file name is: ", articleform.cleaned_data['image'])
+            articleform.save()
             last_article = NewsArticle.objects.last()
             messages.success(request, 'News Article: ' + last_article.title + " saved")
 
@@ -120,10 +118,10 @@ def newsarticle_create(request):
             }
             return render(request, 'home/newsarticle_create.html', context)
     else:
-        nform = NewsArticleForm()
+        articleform = NewsArticleForm()
     
     context = {
-        'nform': nform,
+        'articleform': articleform,
     }
 
     return render(request, 'home/newsarticle_create.html', context)
