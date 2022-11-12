@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<div class="container">
+  <div class="row center scrollbreak0">
+    <div class="col s12"></div>
+  </div>
+</div>
   <div class="row center">
     <div class="col s12 m12 l10 offset-l1 header-div">
       <img src="{% static "img/home_header.png" %}" alt="Header Image" class="header-img">
@@ -20,6 +25,11 @@
   </div>
   <div class="video-container">
     <iframe id="home-video" src="https://www.youtube.com/embed/kBhZxNGpHpo?autoplay=1&mute=1&playsinline=1&controls=0"></iframe>
+  </div>
+  <div class="container">
+    <div class="row center scrollbreak1">
+      <div class="col s12"></div>
+    </div>
   </div>
   {% if newsarticles %}
   <div class="container">
@@ -51,6 +61,11 @@
   </div>
   {% endif %}
   <div class="container">
+    <div class="row center scrollbreak1">
+      <div class="col s12"></div>
+    </div>
+  </div>
+  <div class="container">
     <div class="row center about">
      <div class="col s12 m6 l6 about-div">
       <h1 class="home-about-title">About</h1>
@@ -61,6 +76,11 @@
      <div class="col s12 m6 l6">
         <img src="{% static "img/home_about.jpg" %}" alt="About Image" class="home-about-img">
      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row center scrollbreak2">
+      <div class="col s12"></div>
     </div>
   </div>
   <div class="container">

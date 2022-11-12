@@ -114,6 +114,33 @@ main {
 /*END Video*/
 
 /* About / Services / News */
+.scrollbreak0 {
+    height: 10vh;
+    width: auto;
+    background-image: url("../img/jpeg-optimizer-Cheering-concert-crowd-772154-crop-col.jpg");
+    background-attachment: fixed;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.scrollbreak1 {
+    height: 100vh;
+    width: auto;
+    background-image: url("../img/jpeg-optimizer-People-waving-hands-at-concert-549079.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.scrollbreak2 {
+    height: 100vh;
+    width: auto;
+    background-image: url("../img/jpeg-optimizer-Dj-console-and-headphones-1220589.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 .about-div, .services-div, .news {
     position: relative;
 }
