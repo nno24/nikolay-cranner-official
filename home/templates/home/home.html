@@ -1,11 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<div class="container">
-  <div class="row center scrollbreak0">
-    <div class="col s12"></div>
-  </div>
-</div>
   <div class="row center">
     <div class="col s12 m12 l10 offset-l1 header-div">
       <img src="{% static "img/home_header.png" %}" alt="Header Image" class="header-img">
@@ -13,7 +8,7 @@
         <p class="header-quote">how you think matters but the real power is in how you feel</p>
         <div class="header-subscribe">
           <form action="#!" method="post">
-          <p class="subscribe-text">become an insider</p>
+          <p class="subscribe-text">subscribe today!</p>
           {% csrf_token %}
           {{form}}      
           <div class="card-action">
@@ -25,11 +20,6 @@
   </div>
   <div class="video-container">
     <iframe id="home-video" src="https://www.youtube.com/embed/kBhZxNGpHpo?autoplay=1&mute=1&playsinline=1&controls=0"></iframe>
-  </div>
-  <div class="container">
-    <div class="row center scrollbreak1">
-      <div class="col s12"></div>
-    </div>
   </div>
   {% if newsarticles %}
   <div class="container">
@@ -62,7 +52,10 @@
   {% endif %}
   <div class="container">
     <div class="row center scrollbreak1">
-      <div class="col s12"></div>
+      <div class="col s12 m8 offset-m2 l6 offset-l3">
+        <h1>Music</h1>
+        <iframe class="iframe-spotify" src="https://open.spotify.com/embed/artist/4NvkvOJ0mDM7QjdzOZLDRd?utm_source=generator" width="100%" height="400" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      </div>
     </div>
   </div>
   <div class="container">
@@ -76,11 +69,6 @@
      <div class="col s12 m6 l6">
         <img src="{% static "img/home_about.jpg" %}" alt="About Image" class="home-about-img">
      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="row center scrollbreak2">
-      <div class="col s12"></div>
     </div>
   </div>
   <div class="container">

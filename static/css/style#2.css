@@ -9,6 +9,11 @@ html {
 
 }
 
+#id_email {
+    background-color: white !important;
+    color: black;
+}
+
 /*Checkbox styling*/
 [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
     opacity: 1;
@@ -114,6 +119,10 @@ main {
 /*END Video*/
 
 /* About / Services / News */
+.iframe-spotify {
+    border-radius: 6px;
+    margin-top: 20%;
+}
 .scrollbreak0 {
     height: 10vh;
     width: auto;
@@ -126,7 +135,7 @@ main {
 .scrollbreak1 {
     height: 100vh;
     width: auto;
-    background-image: url("../img/jpeg-optimizer-People-waving-hands-at-concert-549079.jpg");
+    background-image: url("../img/background_3.jpg");
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
